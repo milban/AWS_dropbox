@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "layout.html" %}
+{% block body %}
+  <h1>Welcome to AWS EC2 and S3 Demo Application</h1>
+  <p>User can only login <a href="{{ url_for('login') }}">Enter your credentials?</a>
+{% endblock %}
+      </body>
+</html>
