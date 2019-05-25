@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Ola's blog</title>
+    </head>
+    <body>
+        <h1> Regist</h1>
+        <form method="POST" class="user-form">{% csrf_token %}
+            {{ form.as_p }}
+            <p>{{ message }}</p>
+            <button type ="submit" class="save btn btn-default">Login</button>
+        </form>
+    </body>
+</html>

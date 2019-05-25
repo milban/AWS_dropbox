@@ -1,0 +1,24 @@
+<html>
+    {#head 는 문서 정보를 가지고 있지만,#}
+    {#웹 페이지에서 보이지 않는 정보들을 담는 영역입니다.#}
+    <head>
+        <title>Ola's blog</title>
+    </head>
+{#    body 란 웹 페이지에 직접적으로 보이는 내용이 들어갑니다. #}
+    <body>
+        <h1> Log In</h1>
+        <form method="POST" class="user-form">{% csrf_token %}
+            <label for="msg">아이디</label>
+            <input type="text" name="User_Id"  minlength="1" autofocus required/>
+            <br>
+            <label for="msg">패스워드</label>
+            <input type="text" name="User_Password" minlength="1" required/>
+            <p>{{ message }}</p>
+            <button type ="submit" class="save btn btn-default">Login</button>
+        </form>
+        <a href="{% url 'regist_page' %}">
+            <button type="button" class="btn btn-danger" >regist</button>
+        </a>
+
+    </body>
+</html>
