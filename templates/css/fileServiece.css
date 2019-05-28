@@ -53,6 +53,11 @@ body {
     float: right;
 }
 
+hr.horizon {
+    border: solid #dedede;
+    border-width: 1px 0 0;
+}
+
 @media (max-width: 480px) {
     .left-sidebar {
         width: auto;
