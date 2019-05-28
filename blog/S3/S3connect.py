@@ -3,24 +3,14 @@ import boto3
 
 # S3를 연결하기 위한 class
 class bucket:
-    __key_id = "**"
-    __secret_key = "**"
-    __token = "**"
-    __bucket = "**"
+    __bucket = "khu_box"
 
     def __init__(self):
-        self.s3client = boto3.client('s3',
-                                     aws_access_key_id=self.__key_id,
-                                     aws_secret_access_key=self.__secret_key,
-                                     aws_session_token=self.__token)
-        self.s3resource = boto3.resource('s3',
-                                         aws_access_key_id=self.__key_id,
-                                         aws_secret_access_key=self.__secret_key,
-                                         aws_session_token=self.__token)
+        self.s3client = boto3.client('s3')
 
     def put_object(self, userid, filename, file):
         path = userid + "/" + filename
-        self.s3client.put_object(Bucket=self.__bucket, Key=path, Body=file)
+        return self.s3client.generate_presigned_post(self.__bucket, path, ExpiresIn=120)
 
     def delete_object(self, userid, filename):
         path = userid + "/" + filename
@@ -28,4 +18,4 @@ class bucket:
 
     def download_object(self, userid, filename):
         path = userid + "/" + filename
-        self.s3resource.meta.client.download_file(self.__bucket, path, filename)
+        return self.s3client.generate_presigned_url('get_object', Params={'Bucket': self.__bucket, 'Key': path}, ExpiresIn=120)

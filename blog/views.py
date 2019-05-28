@@ -51,7 +51,7 @@ class Regist_View(View):
 
 class Main_View(View):
     nickname = ""
-    mybucket = "초기설정안되어있음"
+    mybucket = bucket()
 
     def get(self, request):
         if Access.getuserstate():
