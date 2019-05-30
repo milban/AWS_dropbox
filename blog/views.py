@@ -52,6 +52,7 @@ class Regist_View(View):
 class Main_View(View):
     nickname = ""
     mybucket = bucket()
+    filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
     def get(self, request):
         if Access.getuserstate():
@@ -70,45 +71,44 @@ class Main_View(View):
             form = DocumentForm(request.POST, request.FILES)
             if form.is_valid():
                 file_name = request.POST.get("file_name")
-                self.mybucket = bucket()  # 버켓 연결
                 self.bucket_put_file(file_name)
         elif request.POST.get("file_delete") is not None:
-            self.mybucket = bucket()  # 버켓 연결
             file_name = request.POST.get("file_name")
             self.bucket_delete_file(file_name)
         elif request.POST.get("file_download") is not None:
-            self.mybucket = bucket()  # 버켓 연결
             file_name = request.POST.get("file_name")
             self.bucket_download_file(file_name)
+        elif request.POST.get("create_directory") is not None:
+            directory_name = request.POST.get("create_directory")
+            self.file_save(directory_name)
+        elif request.POST.get("delete_directory") is not None:
+            directory_name = request.POST.get("delete_directory")
+            self.file_delete(directory_name)
 
         form = DocumentForm()
-        userid = Access.getuserid()
-        filelist = File.objects.filter(Owner__User_Id=userid)
         return render(request, 'blog/main_page.html', {'nickname': self.nickname, 'form': form, 'filelist': filelist})
 
     def bucket_put_file(self, file_name):
-        user = User.objects.get(User_Id=Access.getuserid())
-        self.mybucket.put_object(user.User_Id, file_name)
-        print(flile_name)
+        self.mybucket.put_object(Access.getuserid(), file_name)
+        print(file_name)
         self.file_save(file_name)
+        self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
+
 
     def bucket_delete_file(self, file_name):
-        user = User.objects.get(User_Id=Access.getuserid())
-        self.mybucket.delete_object(user.User_Id, file_name)
+        self.mybucket.delete_object(Access.getuserid(), file_name)
         self.file_delete(file_name)
+        self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
     def bucket_download_file(self, file_name):
-        user = User.objects.get(User_Id=Access.getuserid())
-        self.mybucket.download_object(user.User_Id, file_name)
+        self.mybucket.download_object(Access.getuserid(), file_name)
 
     def file_save(self, file_name):
-        user = User.objects.get(User_Id=Access.getuserid())
-        userfile = File(File_Name=file_name, Owner=user)
+        userfile = File(File_Name=file_name, Owner=User.objects.get(User_Id=Access.getuserid()), upload_date=timezone.now())
         userfile.save()
 
     def file_delete(self, file_name):
-        user = User.objects.get(User_Id=Access.getuserid())
-        userfile = File.objects.get(File_Name=file_name, Owner=user)
+        userfile = File.objects.get(File_Name=file_name, Owner=User.objects.get(User_Id=Access.getuserid()))
         userfile.delete()
 
 
