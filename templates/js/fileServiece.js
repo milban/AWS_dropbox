@@ -68,7 +68,8 @@ function ctBodyClickHandler(e) {
 ctBody.addEventListener('click', ctBodyClickHandler)
 
 // move to past path
-// ...
+// 
+
 var btn = document.querySelector('.button')
 console.log(btn)
 function btnChangeEventHandler(e) {
