@@ -69,9 +69,9 @@ class Main_View(View):
         if request.POST.get("file_upload") is not None:
             form = DocumentForm(request.POST, request.FILES)
             if form.is_valid():
-                file = request.FILES['file']
+                file_name = request.POST.get("file_name")
                 self.mybucket = bucket()  # 버켓 연결
-                self.bucket_put_file(file)
+                self.bucket_put_file(file_name)
         elif request.POST.get("file_delete") is not None:
             self.mybucket = bucket()  # 버켓 연결
             file_name = request.POST.get("file_name")
@@ -86,16 +86,15 @@ class Main_View(View):
         filelist = File.objects.filter(Owner__User_Id=userid)
         return render(request, 'blog/main_page.html', {'nickname': self.nickname, 'form': form, 'filelist': filelist})
 
-    def bucket_put_file(self, file):
+    def bucket_put_file(self, file_name):
         user = User.objects.get(User_Id=Access.getuserid())
-        self.mybucket.put_object(user.User_Id, file.name, file)
-        print(file.name)
-        self.file_save(file.name)
+        self.mybucket.put_object(user.User_Id, file_name)
+        print(flile_name)
+        self.file_save(file_name)
 
     def bucket_delete_file(self, file_name):
         user = User.objects.get(User_Id=Access.getuserid())
         self.mybucket.delete_object(user.User_Id, file_name)
-
         self.file_delete(file_name)
 
     def bucket_download_file(self, file_name):
