@@ -73,5 +73,19 @@ def download_file():
         dstBucket.copy_key(file_name,srcBucket.name,file_name)
         return render_template('index_new.html')
 
+@app.route('/url', methods=['GET', 'POST'])
+def file_url():
+        file_name = request.form['filename']
+        srcBucket = s3.get_bucket('trailbucket2794')
+        dstBucket = s3.get_bucket('newbucket27')
+        dstBucket.copy_key(file_name,srcBucket.name,file_name)
+        return render_template('index_new.html')
+
+def file_delete(self, file_name):
+        user = User.objects.get(User_Id=Access.getuserid())
+        userfile = File.objects.get(File_Name=file_name, Owner=user)
+        userfile.delete()
+
+
 if __name__ == '__main__':
     app.run(port=8000)
