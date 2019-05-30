@@ -1,3 +1,0 @@
-python3 -m venv {내가 지정한 이름}
-source 이름/bin/activate    : 가상환경 들어가기
-deactivate : 가상환경 종료
