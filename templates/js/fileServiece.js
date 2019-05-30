@@ -1,11 +1,11 @@
 var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
-var currentPath // 파일이름 뺀 현재 경로
-var currentFilePath // 파일이름 포함한 현재 경로
+var currentPath
 var pastPathList
 
 window.addEventListener('DOMContentLoaded', function() {
-    currentPath = document.querySelector('#current-dir').innerText+"/"
+    currentPath = document.querySelector('#current-dir').innerText
+    console.log(currentPath)
     printContent(newCtt)
 })
 
@@ -52,12 +52,13 @@ function printContent(newContents) {
 
 // 디렉토리/파일 클릭 시
 function ctBodyClickHandler(e) {
+    console.log('click')
     var userClickRow = e.target.parentElement
     var fileType = userClickRow.querySelector('.file-type').innerText
     var fileName = userClickRow.querySelector('.file-name').innerText
 
     if(fileType=="폴더") {
-        document.querySelector('#current-dir').innerText = currentPath+fileName+"/"
+        document.querySelector('#current-dir').innerText = currentPath+"/"+fileName
         currentPath = document.querySelector('#current-dir').innerText
         console.log(currentPath)
         //ctBody.innerHTML = ""
@@ -66,22 +67,11 @@ function ctBodyClickHandler(e) {
 }
 ctBody.addEventListener('click', ctBodyClickHandler)
 
-// move to past path
-// 
-
-// 유저가 파일 선택시
+// 유저가 업로드할 파일 선택했을 시
 var btn = document.querySelector('.button')
+console.log(btn)
 function btnChangeEventHandler(e) {
-    currentFilePath = currentPath + e.target.files[0].name
-    console.log(currentFilePath)
+    console.log(e.target.files[0].name)
+    console.log(currentPath +'/'+ e.target.files[0].name)
 }
 btn.addEventListener('change', btnChangeEventHandler)
-
-// 유저가 전송버튼 클릭 시
-var form = document.querySelector('.file-form')
- form.onsubmit = function() {
-     
- 
-    return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
- }
-
