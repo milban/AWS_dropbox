@@ -1,5 +1,6 @@
 var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
+filePath = 'khukhubox/'
 
 function testBtnClickHandler() {
     var addElem = document.createElement('ul')
@@ -69,4 +70,21 @@ function fileUpload(file) {
         }
     }    
 }
+function test(){
+    console.log(document.getElementsByName('file_upload_btn').value)
+}
+function fileup(path){
+    // var file_name = document.getElementsByName('file_upload_btn');
+    // console.log(filePath + path + '/' + file_name)
+    // console.log(file_name)
+    
+}
+var btn = document.querySelector('.button')
+console.log(btn)
+function btnChangeEventHandler(e) {
+    console.log(e.target.files[0].name)
+    console.log(filePath + e.target.files[0].name)
+}
+btn.addEventListener('change', btnChangeEventHandler)
+
 
