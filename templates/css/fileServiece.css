@@ -46,14 +46,45 @@ body {
     float: left;
 }
 
+.c-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-property {
+    text-align: left;
+}
+
+.fp-type, fp-name, fp-date {
+    padding: 10px 0;
+}
+
+.file-row {
+    height: 50px;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+.file-row:hover {
+    background: #EFF8FB;
+    cursor: pointer;
+}
+
+.file-type {
+    width: 50px;
+    
+}
+
+.file-name {
+    width: 200px;
+}
+
+.update-date {
+    width: 200px;
+}
+
 .file-control {
     width: 30%;
     padding: 20px;
     margin-bottom: 20px;
     float: right;
-}
-
-hr.horizon {
-    border: solid #dedede;
-    border-width: 1px 0 0;
 }
