@@ -12,7 +12,7 @@ class Login_VIew(View):
     message = ""
 
     def get(self, request):
-        return render(request, 'blog/login_page.html', {'message': self.message})
+        return render(request, 'blog/html/login.html', {'message': self.message})
 
     def post(self, request):
         post = request.POST

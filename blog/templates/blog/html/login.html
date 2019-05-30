@@ -1,18 +1,19 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=3.0">
     <title>KhuKhuBox</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 
 <body>
     <div class="total-container">
         <div class="content">
             <div class="logo">
-                <a href="../html/index.html"><img src="../images/khuCrap.png"></a>
+                <a href="{% static 'html/index.html' %}"><img src="{% static 'images/khuCrap.png' %}"></a>
             </div>
             <form class="userInfo" action="" method="post">
                 <div><input id="userid" type="text" name="userId" placeholder="ID"></div>
@@ -22,7 +23,7 @@
         </div>
     </div>
 
-    <script src="../js/login.js"></script>
+    <script src="{% static 'js/login.js' %}"></script>
 </body>
 
 </html>

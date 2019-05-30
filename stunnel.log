@@ -290,3 +290,1175 @@
 2019.05.30 20:52:26 LOG6[23]: SSL_shutdown successfully sent close_notify alert
 2019.05.30 20:52:26 LOG3[23]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
 2019.05.30 20:52:26 LOG5[23]: Connection closed: 95566 byte(s) sent to TLS, 482 byte(s) sent to socket
+2019.05.30 21:29:28 LOG5[ui]: stunnel 5.44 on x86_64-pc-linux-gnu platform
+2019.05.30 21:29:28 LOG5[ui]: Compiled/running with OpenSSL 1.1.0g  2 Nov 2017
+2019.05.30 21:29:28 LOG5[ui]: Threading:PTHREAD Sockets:POLL,IPv6,SYSTEMD TLS:ENGINE,FIPS,OCSP,PSK,SNI Auth:LIBWRAP
+2019.05.30 21:29:28 LOG5[ui]: Reading configuration from file /home/gagak/cloud_computing/project/project/AWS_dropbox/stunnel/dev_https.conf
+2019.05.30 21:29:28 LOG5[ui]: UTF-8 byte order mark not detected
+2019.05.30 21:29:28 LOG5[ui]: FIPS mode disabled
+2019.05.30 21:29:28 LOG6[ui]: Initializing service [https]
+2019.05.30 21:29:28 LOG6[ui]: Loading certificate from file: /home/gagak/cloud_computing/project/project/AWS_dropbox/stunnel/stunnel.pem
+2019.05.30 21:29:28 LOG6[ui]: Certificate loaded from file: /home/gagak/cloud_computing/project/project/AWS_dropbox/stunnel/stunnel.pem
+2019.05.30 21:29:28 LOG6[ui]: Loading private key from file: /home/gagak/cloud_computing/project/project/AWS_dropbox/stunnel/stunnel.pem
+2019.05.30 21:29:28 LOG4[ui]: Insecure file permissions on /home/gagak/cloud_computing/project/project/AWS_dropbox/stunnel/stunnel.pem
+2019.05.30 21:29:28 LOG6[ui]: Private key loaded from file: /home/gagak/cloud_computing/project/project/AWS_dropbox/stunnel/stunnel.pem
+2019.05.30 21:29:28 LOG6[ui]: Using dynamic DH parameters
+2019.05.30 21:29:28 LOG5[ui]: Configuration successful
+2019.05.30 21:29:32 LOG5[0]: Service [https] accepted connection from 127.0.0.1:60374
+2019.05.30 21:29:32 LOG6[0]: Peer certificate not required
+2019.05.30 21:29:32 LOG5[1]: Service [https] accepted connection from 127.0.0.1:60378
+2019.05.30 21:29:32 LOG6[1]: Peer certificate not required
+2019.05.30 21:29:32 LOG6[0]: TLS accepted: new session negotiated
+2019.05.30 21:29:32 LOG6[0]: No peer certificate received
+2019.05.30 21:29:32 LOG6[0]: Negotiated TLSv1.2 ciphersuite ECDHE-RSA-AES128-GCM-SHA256 (128-bit encryption)
+2019.05.30 21:29:32 LOG6[0]: failover: round-robin, starting at entry #1
+2019.05.30 21:29:32 LOG6[0]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[0]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[0]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[0]: Service [https] connected remote server from 127.0.0.1:53934
+2019.05.30 21:29:32 LOG6[0]: TLS socket closed (SSL_read)
+2019.05.30 21:29:32 LOG5[0]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:32 LOG6[1]: TLS accepted: new session negotiated
+2019.05.30 21:29:32 LOG6[1]: No peer certificate received
+2019.05.30 21:29:32 LOG6[1]: Negotiated TLSv1.2 ciphersuite ECDHE-RSA-AES128-GCM-SHA256 (128-bit encryption)
+2019.05.30 21:29:32 LOG6[1]: failover: round-robin, starting at entry #1
+2019.05.30 21:29:32 LOG6[1]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[1]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[1]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[1]: Service [https] connected remote server from 127.0.0.1:53936
+2019.05.30 21:29:32 LOG6[1]: TLS socket closed (SSL_read)
+2019.05.30 21:29:32 LOG5[1]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:32 LOG5[2]: Service [https] accepted connection from 127.0.0.1:60386
+2019.05.30 21:29:32 LOG6[2]: Peer certificate not required
+2019.05.30 21:29:32 LOG6[2]: TLS accepted: new session negotiated
+2019.05.30 21:29:32 LOG6[2]: No peer certificate received
+2019.05.30 21:29:32 LOG6[2]: Negotiated TLSv1.2 ciphersuite ECDHE-RSA-AES128-GCM-SHA256 (128-bit encryption)
+2019.05.30 21:29:32 LOG6[2]: failover: round-robin, starting at entry #0
+2019.05.30 21:29:32 LOG6[2]: s_connect: connecting ::1:8001
+2019.05.30 21:29:32 LOG3[2]: s_connect: connect ::1:8001: Connection refused (111)
+2019.05.30 21:29:32 LOG6[2]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[2]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[2]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[2]: Service [https] connected remote server from 127.0.0.1:53944
+2019.05.30 21:29:32 LOG6[2]: Read socket closed (readsocket)
+2019.05.30 21:29:32 LOG6[2]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:32 LOG3[2]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:32 LOG5[2]: Connection closed: 1064 byte(s) sent to TLS, 482 byte(s) sent to socket
+2019.05.30 21:29:32 LOG5[3]: Service [https] accepted connection from 127.0.0.1:60394
+2019.05.30 21:29:32 LOG6[3]: Peer certificate not required
+2019.05.30 21:29:32 LOG5[4]: Service [https] accepted connection from 127.0.0.1:60398
+2019.05.30 21:29:32 LOG6[4]: Peer certificate not required
+2019.05.30 21:29:32 LOG6[3]: TLS accepted: previous session reused
+2019.05.30 21:29:32 LOG6[4]: TLS accepted: previous session reused
+2019.05.30 21:29:32 LOG6[3]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:32 LOG6[3]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[4]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:32 LOG6[4]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[4]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[4]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[4]: Service [https] connected remote server from 127.0.0.1:53956
+2019.05.30 21:29:32 LOG6[4]: TLS socket closed (SSL_read)
+2019.05.30 21:29:32 LOG5[3]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[4]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:32 LOG6[3]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[3]: Service [https] connected remote server from 127.0.0.1:53954
+2019.05.30 21:29:32 LOG6[3]: TLS socket closed (SSL_read)
+2019.05.30 21:29:32 LOG5[3]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:32 LOG5[5]: Service [https] accepted connection from 127.0.0.1:60406
+2019.05.30 21:29:32 LOG6[5]: Peer certificate not required
+2019.05.30 21:29:32 LOG6[5]: TLS accepted: previous session reused
+2019.05.30 21:29:32 LOG6[5]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:32 LOG6[5]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[5]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[5]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[5]: Service [https] connected remote server from 127.0.0.1:53962
+2019.05.30 21:29:32 LOG6[5]: TLS socket closed (SSL_read)
+2019.05.30 21:29:32 LOG5[5]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:32 LOG5[6]: Service [https] accepted connection from 127.0.0.1:60412
+2019.05.30 21:29:32 LOG6[6]: Peer certificate not required
+2019.05.30 21:29:32 LOG6[6]: TLS accepted: previous session reused
+2019.05.30 21:29:32 LOG6[6]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:32 LOG5[7]: Service [https] accepted connection from 127.0.0.1:60416
+2019.05.30 21:29:32 LOG5[8]: Service [https] accepted connection from 127.0.0.1:60420
+2019.05.30 21:29:32 LOG6[6]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[8]: Peer certificate not required
+2019.05.30 21:29:32 LOG5[6]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[6]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG6[7]: Peer certificate not required
+2019.05.30 21:29:32 LOG5[6]: Service [https] connected remote server from 127.0.0.1:53976
+2019.05.30 21:29:32 LOG6[8]: TLS accepted: previous session reused
+2019.05.30 21:29:32 LOG6[8]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:32 LOG6[8]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[8]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[8]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[8]: Service [https] connected remote server from 127.0.0.1:53978
+2019.05.30 21:29:32 LOG6[7]: TLS accepted: previous session reused
+2019.05.30 21:29:32 LOG6[7]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:32 LOG6[7]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[7]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[7]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[7]: Service [https] connected remote server from 127.0.0.1:53980
+2019.05.30 21:29:32 LOG6[6]: Read socket closed (read hangup)
+2019.05.30 21:29:32 LOG6[6]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:32 LOG3[6]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:32 LOG5[6]: Connection closed: 626 byte(s) sent to TLS, 444 byte(s) sent to socket
+2019.05.30 21:29:32 LOG6[8]: Read socket closed (readsocket)
+2019.05.30 21:29:32 LOG6[8]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:32 LOG3[8]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:32 LOG5[8]: Connection closed: 2841 byte(s) sent to TLS, 415 byte(s) sent to socket
+2019.05.30 21:29:32 LOG6[7]: Read socket closed (readsocket)
+2019.05.30 21:29:32 LOG6[7]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:32 LOG3[7]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:32 LOG5[7]: Connection closed: 2862 byte(s) sent to TLS, 458 byte(s) sent to socket
+2019.05.30 21:29:32 LOG5[9]: Service [https] accepted connection from 127.0.0.1:60430
+2019.05.30 21:29:32 LOG6[9]: Peer certificate not required
+2019.05.30 21:29:32 LOG6[9]: TLS accepted: previous session reused
+2019.05.30 21:29:32 LOG6[9]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:32 LOG6[9]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[9]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[9]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[9]: Service [https] connected remote server from 127.0.0.1:53986
+2019.05.30 21:29:32 LOG6[9]: TLS socket closed (SSL_read)
+2019.05.30 21:29:32 LOG5[9]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:32 LOG5[10]: Service [https] accepted connection from 127.0.0.1:60436
+2019.05.30 21:29:32 LOG6[10]: Peer certificate not required
+2019.05.30 21:29:32 LOG6[10]: TLS accepted: previous session reused
+2019.05.30 21:29:32 LOG6[10]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:32 LOG6[10]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[10]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[10]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[10]: Service [https] connected remote server from 127.0.0.1:53992
+2019.05.30 21:29:32 LOG6[10]: Read socket closed (read hangup)
+2019.05.30 21:29:32 LOG6[10]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:32 LOG3[10]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:32 LOG5[10]: Connection closed: 1063478 byte(s) sent to TLS, 501 byte(s) sent to socket
+2019.05.30 21:29:32 LOG5[11]: Service [https] accepted connection from 127.0.0.1:60442
+2019.05.30 21:29:32 LOG6[11]: Peer certificate not required
+2019.05.30 21:29:32 LOG6[11]: TLS accepted: previous session reused
+2019.05.30 21:29:32 LOG6[11]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:32 LOG6[11]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[11]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[11]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[11]: Service [https] connected remote server from 127.0.0.1:53998
+2019.05.30 21:29:32 LOG6[11]: TLS socket closed (SSL_read)
+2019.05.30 21:29:32 LOG5[11]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:32 LOG5[12]: Service [https] accepted connection from 127.0.0.1:60448
+2019.05.30 21:29:32 LOG6[12]: Peer certificate not required
+2019.05.30 21:29:32 LOG6[12]: TLS accepted: previous session reused
+2019.05.30 21:29:32 LOG6[12]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:32 LOG6[12]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:32 LOG5[12]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:32 LOG6[12]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:32 LOG5[12]: Service [https] connected remote server from 127.0.0.1:54004
+2019.05.30 21:29:32 LOG6[12]: Read socket closed (readsocket)
+2019.05.30 21:29:32 LOG6[12]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:32 LOG3[12]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:32 LOG5[12]: Connection closed: 2841 byte(s) sent to TLS, 451 byte(s) sent to socket
+2019.05.30 21:29:43 LOG5[13]: Service [https] accepted connection from 127.0.0.1:60534
+2019.05.30 21:29:43 LOG6[13]: Peer certificate not required
+2019.05.30 21:29:43 LOG6[13]: TLS accepted: previous session reused
+2019.05.30 21:29:43 LOG6[13]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:43 LOG6[13]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:43 LOG5[13]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:43 LOG6[13]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:43 LOG5[13]: Service [https] connected remote server from 127.0.0.1:54090
+2019.05.30 21:29:43 LOG6[13]: TLS socket closed (SSL_read)
+2019.05.30 21:29:43 LOG5[13]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:43 LOG5[14]: Service [https] accepted connection from 127.0.0.1:60540
+2019.05.30 21:29:43 LOG6[14]: Peer certificate not required
+2019.05.30 21:29:43 LOG6[14]: TLS accepted: previous session reused
+2019.05.30 21:29:43 LOG6[14]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:43 LOG6[14]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:43 LOG5[14]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:43 LOG6[14]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:43 LOG5[14]: Service [https] connected remote server from 127.0.0.1:54096
+2019.05.30 21:29:43 LOG6[14]: Read socket closed (readsocket)
+2019.05.30 21:29:43 LOG6[14]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:43 LOG3[14]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:43 LOG5[14]: Connection closed: 2853 byte(s) sent to TLS, 531 byte(s) sent to socket
+2019.05.30 21:29:46 LOG5[15]: Service [https] accepted connection from 127.0.0.1:60570
+2019.05.30 21:29:46 LOG6[15]: Peer certificate not required
+2019.05.30 21:29:46 LOG5[18]: Service [https] accepted connection from 127.0.0.1:60582
+2019.05.30 21:29:46 LOG5[19]: Service [https] accepted connection from 127.0.0.1:60586
+2019.05.30 21:29:46 LOG5[17]: Service [https] accepted connection from 127.0.0.1:60578
+2019.05.30 21:29:46 LOG6[19]: Peer certificate not required
+2019.05.30 21:29:46 LOG6[17]: Peer certificate not required
+2019.05.30 21:29:46 LOG5[16]: Service [https] accepted connection from 127.0.0.1:60574
+2019.05.30 21:29:46 LOG6[18]: Peer certificate not required
+2019.05.30 21:29:46 LOG6[16]: Peer certificate not required
+2019.05.30 21:29:46 LOG6[15]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[15]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[15]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[15]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[15]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG5[15]: Service [https] connected remote server from 127.0.0.1:54142
+2019.05.30 21:29:46 LOG6[15]: TLS socket closed (SSL_read)
+2019.05.30 21:29:46 LOG5[15]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:46 LOG6[16]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[16]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[16]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[16]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[16]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG5[16]: Service [https] connected remote server from 127.0.0.1:54144
+2019.05.30 21:29:46 LOG6[16]: TLS socket closed (SSL_read)
+2019.05.30 21:29:46 LOG5[16]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:46 LOG6[19]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[19]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[19]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[19]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[19]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG6[18]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG5[19]: Service [https] connected remote server from 127.0.0.1:54146
+2019.05.30 21:29:46 LOG6[18]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[18]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[19]: TLS socket closed (SSL_read)
+2019.05.30 21:29:46 LOG5[19]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:46 LOG5[18]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[18]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG5[18]: Service [https] connected remote server from 127.0.0.1:54148
+2019.05.30 21:29:46 LOG6[18]: TLS socket closed (SSL_read)
+2019.05.30 21:29:46 LOG5[18]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:46 LOG6[17]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[17]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[17]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[17]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[17]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG5[17]: Service [https] connected remote server from 127.0.0.1:54150
+2019.05.30 21:29:46 LOG6[17]: TLS socket closed (SSL_read)
+2019.05.30 21:29:46 LOG5[17]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:46 LOG5[20]: Service [https] accepted connection from 127.0.0.1:60600
+2019.05.30 21:29:46 LOG6[20]: Peer certificate not required
+2019.05.30 21:29:46 LOG6[20]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[20]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[20]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[20]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[20]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG5[20]: Service [https] connected remote server from 127.0.0.1:54156
+2019.05.30 21:29:46 LOG6[20]: TLS socket closed (SSL_read)
+2019.05.30 21:29:46 LOG5[20]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:46 LOG5[21]: Service [https] accepted connection from 127.0.0.1:60606
+2019.05.30 21:29:46 LOG6[21]: Peer certificate not required
+2019.05.30 21:29:46 LOG6[21]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[21]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[21]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[21]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[21]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG5[21]: Service [https] connected remote server from 127.0.0.1:54162
+2019.05.30 21:29:46 LOG6[21]: Read socket closed (readsocket)
+2019.05.30 21:29:46 LOG6[21]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:46 LOG3[21]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:46 LOG5[21]: Connection closed: 1064 byte(s) sent to TLS, 482 byte(s) sent to socket
+2019.05.30 21:29:46 LOG5[22]: Service [https] accepted connection from 127.0.0.1:60620
+2019.05.30 21:29:46 LOG6[22]: Peer certificate not required
+2019.05.30 21:29:46 LOG5[23]: Service [https] accepted connection from 127.0.0.1:60624
+2019.05.30 21:29:46 LOG6[23]: Peer certificate not required
+2019.05.30 21:29:46 LOG6[22]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[22]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[22]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[22]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[22]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG5[22]: Service [https] connected remote server from 127.0.0.1:54182
+2019.05.30 21:29:46 LOG6[22]: TLS socket closed (SSL_read)
+2019.05.30 21:29:46 LOG5[24]: Service [https] accepted connection from 127.0.0.1:60630
+2019.05.30 21:29:46 LOG5[22]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:46 LOG5[25]: Service [https] accepted connection from 127.0.0.1:60634
+2019.05.30 21:29:46 LOG6[24]: Peer certificate not required
+2019.05.30 21:29:46 LOG5[26]: Service [https] accepted connection from 127.0.0.1:60638
+2019.05.30 21:29:46 LOG6[26]: Peer certificate not required
+2019.05.30 21:29:46 LOG6[23]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[23]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[23]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[24]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[24]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[24]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[23]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[24]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[24]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG6[23]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG5[23]: Service [https] connected remote server from 127.0.0.1:54194
+2019.05.30 21:29:46 LOG5[24]: Service [https] connected remote server from 127.0.0.1:54196
+2019.05.30 21:29:46 LOG6[23]: TLS socket closed (SSL_read)
+2019.05.30 21:29:46 LOG5[23]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:46 LOG6[26]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[26]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[24]: TLS socket closed (SSL_read)
+2019.05.30 21:29:46 LOG6[26]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[24]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:29:46 LOG5[26]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[26]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG5[26]: Service [https] connected remote server from 127.0.0.1:54198
+2019.05.30 21:29:46 LOG5[27]: Service [https] accepted connection from 127.0.0.1:60648
+2019.05.30 21:29:46 LOG6[27]: Peer certificate not required
+2019.05.30 21:29:46 LOG6[27]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[25]: Peer certificate not required
+2019.05.30 21:29:46 LOG6[25]: TLS accepted: previous session reused
+2019.05.30 21:29:46 LOG6[25]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[25]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[25]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[27]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:29:46 LOG6[25]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG6[27]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:29:46 LOG5[25]: Service [https] connected remote server from 127.0.0.1:54204
+2019.05.30 21:29:46 LOG5[27]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:29:46 LOG6[27]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:29:46 LOG5[27]: Service [https] connected remote server from 127.0.0.1:54206
+2019.05.30 21:29:46 LOG6[27]: Read socket closed (read hangup)
+2019.05.30 21:29:46 LOG6[27]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:46 LOG3[27]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:46 LOG5[27]: Connection closed: 626 byte(s) sent to TLS, 444 byte(s) sent to socket
+2019.05.30 21:29:46 LOG6[25]: Read socket closed (read hangup)
+2019.05.30 21:29:46 LOG6[25]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:46 LOG3[25]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:46 LOG5[25]: Connection closed: 2862 byte(s) sent to TLS, 458 byte(s) sent to socket
+2019.05.30 21:29:46 LOG6[26]: Read socket closed (readsocket)
+2019.05.30 21:29:46 LOG6[26]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:29:46 LOG3[26]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:29:46 LOG5[26]: Connection closed: 2841 byte(s) sent to TLS, 415 byte(s) sent to socket
+2019.05.30 21:30:28 LOG6[cron]: Executing cron jobs
+2019.05.30 21:30:28 LOG5[cron]: Updating DH parameters
+2019.05.30 21:30:43 LOG5[28]: Service [https] accepted connection from 127.0.0.1:32876
+2019.05.30 21:30:43 LOG6[28]: Peer certificate not required
+2019.05.30 21:30:43 LOG6[28]: TLS accepted: previous session reused
+2019.05.30 21:30:43 LOG6[28]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:43 LOG6[28]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:43 LOG5[28]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:43 LOG6[28]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:43 LOG5[28]: Service [https] connected remote server from 127.0.0.1:54664
+2019.05.30 21:30:43 LOG6[28]: TLS socket closed (SSL_read)
+2019.05.30 21:30:43 LOG5[28]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:30:43 LOG5[29]: Service [https] accepted connection from 127.0.0.1:32882
+2019.05.30 21:30:43 LOG6[29]: Peer certificate not required
+2019.05.30 21:30:43 LOG6[29]: TLS accepted: previous session reused
+2019.05.30 21:30:43 LOG6[29]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:43 LOG6[29]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:43 LOG5[29]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:43 LOG6[29]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:43 LOG5[29]: Service [https] connected remote server from 127.0.0.1:54670
+2019.05.30 21:30:43 LOG6[29]: Read socket closed (readsocket)
+2019.05.30 21:30:43 LOG6[29]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:30:43 LOG3[29]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:30:43 LOG5[29]: Connection closed: 2715 byte(s) sent to TLS, 671 byte(s) sent to socket
+2019.05.30 21:30:47 LOG5[30]: Service [https] accepted connection from 127.0.0.1:32920
+2019.05.30 21:30:47 LOG5[31]: Service [https] accepted connection from 127.0.0.1:32924
+2019.05.30 21:30:47 LOG6[30]: Peer certificate not required
+2019.05.30 21:30:47 LOG6[31]: Peer certificate not required
+2019.05.30 21:30:47 LOG5[33]: Service [https] accepted connection from 127.0.0.1:32932
+2019.05.30 21:30:47 LOG5[34]: Service [https] accepted connection from 127.0.0.1:32936
+2019.05.30 21:30:47 LOG6[33]: Peer certificate not required
+2019.05.30 21:30:47 LOG6[34]: Peer certificate not required
+2019.05.30 21:30:47 LOG5[32]: Service [https] accepted connection from 127.0.0.1:32928
+2019.05.30 21:30:47 LOG6[32]: Peer certificate not required
+2019.05.30 21:30:47 LOG6[30]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[30]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[30]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[30]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[30]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[30]: Service [https] connected remote server from 127.0.0.1:54724
+2019.05.30 21:30:47 LOG6[31]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[30]: TLS socket closed (SSL_read)
+2019.05.30 21:30:47 LOG6[31]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[31]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[31]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[31]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[31]: Service [https] connected remote server from 127.0.0.1:54726
+2019.05.30 21:30:47 LOG6[31]: TLS socket closed (SSL_read)
+2019.05.30 21:30:47 LOG5[31]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:30:47 LOG5[30]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:30:47 LOG6[33]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[33]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[33]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[33]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[33]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG6[32]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG5[33]: Service [https] connected remote server from 127.0.0.1:54728
+2019.05.30 21:30:47 LOG6[32]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[34]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[33]: TLS socket closed (SSL_read)
+2019.05.30 21:30:47 LOG6[32]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[34]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG5[33]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:30:47 LOG6[34]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[32]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[34]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[32]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG6[34]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[32]: Service [https] connected remote server from 127.0.0.1:54730
+2019.05.30 21:30:47 LOG5[34]: Service [https] connected remote server from 127.0.0.1:54732
+2019.05.30 21:30:47 LOG6[32]: TLS socket closed (SSL_read)
+2019.05.30 21:30:47 LOG6[34]: TLS socket closed (SSL_read)
+2019.05.30 21:30:47 LOG5[32]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:30:47 LOG5[34]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:30:47 LOG5[35]: Service [https] accepted connection from 127.0.0.1:32950
+2019.05.30 21:30:47 LOG6[35]: Peer certificate not required
+2019.05.30 21:30:47 LOG6[35]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[35]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[35]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[35]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[35]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[35]: Service [https] connected remote server from 127.0.0.1:54738
+2019.05.30 21:30:47 LOG6[35]: TLS socket closed (SSL_read)
+2019.05.30 21:30:47 LOG5[35]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:30:47 LOG5[36]: Service [https] accepted connection from 127.0.0.1:32956
+2019.05.30 21:30:47 LOG6[36]: Peer certificate not required
+2019.05.30 21:30:47 LOG6[36]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[36]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[36]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[36]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[36]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[36]: Service [https] connected remote server from 127.0.0.1:54744
+2019.05.30 21:30:47 LOG6[36]: Read socket closed (readsocket)
+2019.05.30 21:30:47 LOG6[36]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:30:47 LOG3[36]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:30:47 LOG5[36]: Connection closed: 1064 byte(s) sent to TLS, 482 byte(s) sent to socket
+2019.05.30 21:30:47 LOG5[37]: Service [https] accepted connection from 127.0.0.1:32962
+2019.05.30 21:30:47 LOG6[37]: Peer certificate not required
+2019.05.30 21:30:47 LOG6[37]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[37]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[37]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[37]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[37]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[37]: Service [https] connected remote server from 127.0.0.1:54758
+2019.05.30 21:30:47 LOG6[37]: TLS socket closed (SSL_read)
+2019.05.30 21:30:47 LOG5[37]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:30:47 LOG5[38]: Service [https] accepted connection from 127.0.0.1:32966
+2019.05.30 21:30:47 LOG6[38]: Peer certificate not required
+2019.05.30 21:30:47 LOG5[39]: Service [https] accepted connection from 127.0.0.1:32970
+2019.05.30 21:30:47 LOG6[38]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[38]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[38]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[39]: Peer certificate not required
+2019.05.30 21:30:47 LOG5[38]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[38]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[38]: Service [https] connected remote server from 127.0.0.1:54764
+2019.05.30 21:30:47 LOG6[38]: TLS socket closed (SSL_read)
+2019.05.30 21:30:47 LOG5[38]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:30:47 LOG6[39]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[39]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[39]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[39]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[39]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[39]: Service [https] connected remote server from 127.0.0.1:54766
+2019.05.30 21:30:47 LOG6[39]: TLS socket closed (SSL_read)
+2019.05.30 21:30:47 LOG5[39]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:30:47 LOG5[40]: Service [https] accepted connection from 127.0.0.1:32976
+2019.05.30 21:30:47 LOG6[40]: Peer certificate not required
+2019.05.30 21:30:47 LOG6[40]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[40]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[40]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[40]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[40]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[40]: Service [https] connected remote server from 127.0.0.1:54768
+2019.05.30 21:30:47 LOG5[41]: Service [https] accepted connection from 127.0.0.1:32986
+2019.05.30 21:30:47 LOG6[41]: Peer certificate not required
+2019.05.30 21:30:47 LOG6[41]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[41]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[41]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[41]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[41]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[41]: Service [https] connected remote server from 127.0.0.1:54778
+2019.05.30 21:30:47 LOG6[40]: Read socket closed (readsocket)
+2019.05.30 21:30:47 LOG6[40]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:30:47 LOG3[40]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:30:47 LOG5[40]: Connection closed: 2862 byte(s) sent to TLS, 458 byte(s) sent to socket
+2019.05.30 21:30:47 LOG6[41]: Read socket closed (read hangup)
+2019.05.30 21:30:47 LOG6[41]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:30:47 LOG3[41]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:30:47 LOG5[41]: Connection closed: 626 byte(s) sent to TLS, 444 byte(s) sent to socket
+2019.05.30 21:30:47 LOG5[42]: Service [https] accepted connection from 127.0.0.1:32990
+2019.05.30 21:30:47 LOG6[42]: Peer certificate not required
+2019.05.30 21:30:47 LOG6[42]: TLS accepted: previous session reused
+2019.05.30 21:30:47 LOG6[42]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:30:47 LOG6[42]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:30:47 LOG5[42]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:30:47 LOG6[42]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:30:47 LOG5[42]: Service [https] connected remote server from 127.0.0.1:54780
+2019.05.30 21:30:47 LOG6[42]: Read socket closed (readsocket)
+2019.05.30 21:30:47 LOG6[42]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:30:47 LOG3[42]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:30:47 LOG5[42]: Connection closed: 2841 byte(s) sent to TLS, 415 byte(s) sent to socket
+2019.05.30 21:30:47 LOG5[cron]: DH parameters updated
+2019.05.30 21:30:47 LOG6[cron]: Cron jobs completed in 19 seconds
+2019.05.30 21:37:11 LOG5[43]: Service [https] accepted connection from 127.0.0.1:36208
+2019.05.30 21:37:11 LOG6[43]: Peer certificate not required
+2019.05.30 21:37:11 LOG5[44]: Service [https] accepted connection from 127.0.0.1:36212
+2019.05.30 21:37:11 LOG6[44]: Peer certificate not required
+2019.05.30 21:37:11 LOG5[47]: Service [https] accepted connection from 127.0.0.1:36224
+2019.05.30 21:37:11 LOG5[46]: Service [https] accepted connection from 127.0.0.1:36220
+2019.05.30 21:37:11 LOG6[47]: Peer certificate not required
+2019.05.30 21:37:11 LOG6[46]: Peer certificate not required
+2019.05.30 21:37:11 LOG5[45]: Service [https] accepted connection from 127.0.0.1:36216
+2019.05.30 21:37:11 LOG6[45]: Peer certificate not required
+2019.05.30 21:37:11 LOG6[44]: TLS accepted: new session negotiated
+2019.05.30 21:37:11 LOG6[44]: No peer certificate received
+2019.05.30 21:37:11 LOG6[44]: Negotiated TLSv1.2 ciphersuite ECDHE-RSA-AES128-GCM-SHA256 (128-bit encryption)
+2019.05.30 21:37:11 LOG6[44]: failover: round-robin, starting at entry #1
+2019.05.30 21:37:11 LOG6[44]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[44]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[44]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[44]: Service [https] connected remote server from 127.0.0.1:58012
+2019.05.30 21:37:11 LOG6[46]: TLS accepted: new session negotiated
+2019.05.30 21:37:11 LOG6[46]: No peer certificate received
+2019.05.30 21:37:11 LOG6[46]: Negotiated TLSv1.2 ciphersuite ECDHE-RSA-AES128-GCM-SHA256 (128-bit encryption)
+2019.05.30 21:37:11 LOG6[46]: failover: round-robin, starting at entry #1
+2019.05.30 21:37:11 LOG6[46]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[46]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[46]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[46]: Service [https] connected remote server from 127.0.0.1:58014
+2019.05.30 21:37:11 LOG6[43]: TLS accepted: new session negotiated
+2019.05.30 21:37:11 LOG6[43]: No peer certificate received
+2019.05.30 21:37:11 LOG6[43]: Negotiated TLSv1.2 ciphersuite ECDHE-RSA-AES128-GCM-SHA256 (128-bit encryption)
+2019.05.30 21:37:11 LOG6[43]: failover: round-robin, starting at entry #1
+2019.05.30 21:37:11 LOG6[43]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[43]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[43]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[43]: Service [https] connected remote server from 127.0.0.1:58016
+2019.05.30 21:37:11 LOG6[47]: TLS accepted: new session negotiated
+2019.05.30 21:37:11 LOG6[47]: No peer certificate received
+2019.05.30 21:37:11 LOG6[47]: Negotiated TLSv1.2 ciphersuite ECDHE-RSA-AES128-GCM-SHA256 (128-bit encryption)
+2019.05.30 21:37:11 LOG6[47]: failover: round-robin, starting at entry #1
+2019.05.30 21:37:11 LOG6[47]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[47]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[47]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[47]: Service [https] connected remote server from 127.0.0.1:58018
+2019.05.30 21:37:11 LOG6[46]: TLS socket closed (SSL_read)
+2019.05.30 21:37:11 LOG5[46]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:37:11 LOG6[43]: TLS socket closed (SSL_read)
+2019.05.30 21:37:11 LOG6[47]: TLS socket closed (SSL_read)
+2019.05.30 21:37:11 LOG6[45]: TLS accepted: new session negotiated
+2019.05.30 21:37:11 LOG6[45]: No peer certificate received
+2019.05.30 21:37:11 LOG5[47]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:37:11 LOG6[45]: Negotiated TLSv1.2 ciphersuite ECDHE-RSA-AES128-GCM-SHA256 (128-bit encryption)
+2019.05.30 21:37:11 LOG6[44]: TLS socket closed (SSL_read)
+2019.05.30 21:37:11 LOG5[43]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:37:11 LOG6[45]: failover: round-robin, starting at entry #1
+2019.05.30 21:37:11 LOG6[45]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[44]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:37:11 LOG5[45]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[45]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[45]: Service [https] connected remote server from 127.0.0.1:58020
+2019.05.30 21:37:11 LOG6[45]: TLS socket closed (SSL_read)
+2019.05.30 21:37:11 LOG5[45]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:37:11 LOG5[48]: Service [https] accepted connection from 127.0.0.1:36238
+2019.05.30 21:37:11 LOG6[48]: Peer certificate not required
+2019.05.30 21:37:11 LOG6[48]: TLS accepted: new session negotiated
+2019.05.30 21:37:11 LOG6[48]: No peer certificate received
+2019.05.30 21:37:11 LOG6[48]: Negotiated TLSv1.2 ciphersuite ECDHE-RSA-AES128-GCM-SHA256 (128-bit encryption)
+2019.05.30 21:37:11 LOG6[48]: failover: round-robin, starting at entry #0
+2019.05.30 21:37:11 LOG6[48]: s_connect: connecting ::1:8001
+2019.05.30 21:37:11 LOG3[48]: s_connect: connect ::1:8001: Connection refused (111)
+2019.05.30 21:37:11 LOG6[48]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[48]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[48]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[48]: Service [https] connected remote server from 127.0.0.1:58028
+2019.05.30 21:37:11 LOG6[48]: Read socket closed (readsocket)
+2019.05.30 21:37:11 LOG6[48]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:37:11 LOG3[48]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:37:11 LOG5[48]: Connection closed: 1064 byte(s) sent to TLS, 508 byte(s) sent to socket
+2019.05.30 21:37:11 LOG5[49]: Service [https] accepted connection from 127.0.0.1:36254
+2019.05.30 21:37:11 LOG6[49]: Peer certificate not required
+2019.05.30 21:37:11 LOG5[50]: Service [https] accepted connection from 127.0.0.1:36258
+2019.05.30 21:37:11 LOG6[49]: TLS accepted: previous session reused
+2019.05.30 21:37:11 LOG6[49]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:37:11 LOG6[50]: Peer certificate not required
+2019.05.30 21:37:11 LOG6[49]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[49]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[50]: TLS accepted: previous session reused
+2019.05.30 21:37:11 LOG6[49]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[49]: Service [https] connected remote server from 127.0.0.1:58046
+2019.05.30 21:37:11 LOG6[49]: TLS socket closed (SSL_read)
+2019.05.30 21:37:11 LOG5[49]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:37:11 LOG6[50]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:37:11 LOG6[50]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[50]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[50]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[50]: Service [https] connected remote server from 127.0.0.1:58048
+2019.05.30 21:37:11 LOG6[50]: TLS socket closed (SSL_read)
+2019.05.30 21:37:11 LOG5[50]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:37:11 LOG5[52]: Service [https] accepted connection from 127.0.0.1:36270
+2019.05.30 21:37:11 LOG6[52]: Peer certificate not required
+2019.05.30 21:37:11 LOG6[52]: TLS accepted: previous session reused
+2019.05.30 21:37:11 LOG6[52]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:37:11 LOG6[52]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[52]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[52]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[52]: Service [https] connected remote server from 127.0.0.1:58058
+2019.05.30 21:37:11 LOG5[51]: Service [https] accepted connection from 127.0.0.1:36266
+2019.05.30 21:37:11 LOG6[51]: Peer certificate not required
+2019.05.30 21:37:11 LOG6[51]: TLS accepted: previous session reused
+2019.05.30 21:37:11 LOG6[51]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:37:11 LOG6[51]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[51]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[51]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[51]: Service [https] connected remote server from 127.0.0.1:58060
+2019.05.30 21:37:11 LOG6[52]: Read socket closed (read hangup)
+2019.05.30 21:37:11 LOG6[52]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:37:11 LOG3[52]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:37:11 LOG5[52]: Connection closed: 1805 byte(s) sent to TLS, 444 byte(s) sent to socket
+2019.05.30 21:37:11 LOG6[51]: Read socket closed (readsocket)
+2019.05.30 21:37:11 LOG6[51]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:37:11 LOG3[51]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:37:11 LOG5[51]: Connection closed: 2862 byte(s) sent to TLS, 458 byte(s) sent to socket
+2019.05.30 21:37:11 LOG5[53]: Service [https] accepted connection from 127.0.0.1:36278
+2019.05.30 21:37:11 LOG6[53]: Peer certificate not required
+2019.05.30 21:37:11 LOG6[53]: TLS accepted: previous session reused
+2019.05.30 21:37:11 LOG6[53]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:37:11 LOG6[53]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[53]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[53]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[53]: Service [https] connected remote server from 127.0.0.1:58066
+2019.05.30 21:37:11 LOG6[53]: TLS socket closed (SSL_read)
+2019.05.30 21:37:11 LOG5[53]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:37:11 LOG5[54]: Service [https] accepted connection from 127.0.0.1:36284
+2019.05.30 21:37:11 LOG6[54]: Peer certificate not required
+2019.05.30 21:37:11 LOG6[54]: TLS accepted: previous session reused
+2019.05.30 21:37:11 LOG6[54]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:37:11 LOG6[54]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:37:11 LOG5[54]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:37:11 LOG6[54]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:37:11 LOG5[54]: Service [https] connected remote server from 127.0.0.1:58072
+2019.05.30 21:37:11 LOG6[54]: Read socket closed (readsocket)
+2019.05.30 21:37:11 LOG6[54]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:37:11 LOG3[54]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:37:11 LOG5[54]: Connection closed: 2841 byte(s) sent to TLS, 415 byte(s) sent to socket
+2019.05.30 21:38:08 LOG5[55]: Service [https] accepted connection from 127.0.0.1:36750
+2019.05.30 21:38:08 LOG6[55]: Peer certificate not required
+2019.05.30 21:38:08 LOG5[57]: Service [https] accepted connection from 127.0.0.1:36758
+2019.05.30 21:38:08 LOG6[57]: Peer certificate not required
+2019.05.30 21:38:08 LOG5[59]: Service [https] accepted connection from 127.0.0.1:36766
+2019.05.30 21:38:08 LOG6[59]: Peer certificate not required
+2019.05.30 21:38:08 LOG5[56]: Service [https] accepted connection from 127.0.0.1:36754
+2019.05.30 21:38:08 LOG6[56]: Peer certificate not required
+2019.05.30 21:38:08 LOG5[58]: Service [https] accepted connection from 127.0.0.1:36762
+2019.05.30 21:38:08 LOG6[58]: Peer certificate not required
+2019.05.30 21:38:08 LOG6[57]: TLS accepted: previous session reused
+2019.05.30 21:38:08 LOG6[57]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:08 LOG6[57]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:08 LOG5[57]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:08 LOG6[59]: TLS accepted: previous session reused
+2019.05.30 21:38:08 LOG6[57]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:08 LOG5[57]: Service [https] connected remote server from 127.0.0.1:58554
+2019.05.30 21:38:08 LOG6[57]: TLS socket closed (SSL_read)
+2019.05.30 21:38:08 LOG5[57]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:08 LOG6[59]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:08 LOG6[59]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:08 LOG5[59]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:08 LOG6[59]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:08 LOG5[59]: Service [https] connected remote server from 127.0.0.1:58556
+2019.05.30 21:38:08 LOG6[59]: TLS socket closed (SSL_read)
+2019.05.30 21:38:08 LOG5[59]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:08 LOG6[56]: TLS accepted: previous session reused
+2019.05.30 21:38:08 LOG6[58]: TLS accepted: previous session reused
+2019.05.30 21:38:08 LOG6[56]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:08 LOG6[56]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:08 LOG5[56]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:08 LOG6[56]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:08 LOG5[56]: Service [https] connected remote server from 127.0.0.1:58558
+2019.05.30 21:38:08 LOG6[56]: TLS socket closed (SSL_read)
+2019.05.30 21:38:08 LOG5[56]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:08 LOG6[58]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:08 LOG6[58]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:08 LOG5[58]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:08 LOG6[58]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:08 LOG5[58]: Service [https] connected remote server from 127.0.0.1:58560
+2019.05.30 21:38:08 LOG6[58]: TLS socket closed (SSL_read)
+2019.05.30 21:38:08 LOG5[58]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:08 LOG6[55]: TLS accepted: previous session reused
+2019.05.30 21:38:08 LOG6[55]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:08 LOG6[55]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:08 LOG5[55]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:08 LOG6[55]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:08 LOG5[55]: Service [https] connected remote server from 127.0.0.1:58562
+2019.05.30 21:38:08 LOG6[55]: TLS socket closed (SSL_read)
+2019.05.30 21:38:08 LOG5[55]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:08 LOG5[60]: Service [https] accepted connection from 127.0.0.1:36780
+2019.05.30 21:38:08 LOG6[60]: Peer certificate not required
+2019.05.30 21:38:08 LOG6[60]: TLS accepted: previous session reused
+2019.05.30 21:38:08 LOG6[60]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:08 LOG6[60]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:08 LOG5[60]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:08 LOG6[60]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:08 LOG5[60]: Service [https] connected remote server from 127.0.0.1:58568
+2019.05.30 21:38:08 LOG6[60]: Read socket closed (readsocket)
+2019.05.30 21:38:08 LOG6[60]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:38:08 LOG3[60]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:38:08 LOG5[60]: Connection closed: 1064 byte(s) sent to TLS, 508 byte(s) sent to socket
+2019.05.30 21:38:09 LOG5[61]: Service [https] accepted connection from 127.0.0.1:36786
+2019.05.30 21:38:09 LOG6[61]: Peer certificate not required
+2019.05.30 21:38:09 LOG5[62]: Service [https] accepted connection from 127.0.0.1:36790
+2019.05.30 21:38:09 LOG6[62]: Peer certificate not required
+2019.05.30 21:38:09 LOG6[61]: TLS accepted: previous session reused
+2019.05.30 21:38:09 LOG6[61]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:09 LOG6[61]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:09 LOG5[61]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:09 LOG6[61]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:09 LOG5[61]: Service [https] connected remote server from 127.0.0.1:58578
+2019.05.30 21:38:09 LOG6[61]: TLS socket closed (SSL_read)
+2019.05.30 21:38:09 LOG5[61]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:09 LOG6[62]: TLS accepted: previous session reused
+2019.05.30 21:38:09 LOG6[62]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:09 LOG6[62]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:09 LOG5[62]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:09 LOG6[62]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:09 LOG5[62]: Service [https] connected remote server from 127.0.0.1:58580
+2019.05.30 21:38:09 LOG6[62]: TLS socket closed (SSL_read)
+2019.05.30 21:38:09 LOG5[62]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:09 LOG5[64]: Service [https] accepted connection from 127.0.0.1:36802
+2019.05.30 21:38:09 LOG5[63]: Service [https] accepted connection from 127.0.0.1:36798
+2019.05.30 21:38:09 LOG6[64]: Peer certificate not required
+2019.05.30 21:38:09 LOG6[63]: Peer certificate not required
+2019.05.30 21:38:09 LOG6[64]: TLS accepted: previous session reused
+2019.05.30 21:38:09 LOG6[64]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:09 LOG6[63]: TLS accepted: previous session reused
+2019.05.30 21:38:09 LOG6[64]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:09 LOG6[63]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:09 LOG6[63]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:09 LOG5[64]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:09 LOG5[63]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:09 LOG6[64]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:09 LOG6[63]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:09 LOG5[64]: Service [https] connected remote server from 127.0.0.1:58590
+2019.05.30 21:38:09 LOG5[63]: Service [https] connected remote server from 127.0.0.1:58592
+2019.05.30 21:38:09 LOG5[65]: Service [https] accepted connection from 127.0.0.1:36810
+2019.05.30 21:38:09 LOG6[65]: Peer certificate not required
+2019.05.30 21:38:09 LOG6[65]: TLS accepted: previous session reused
+2019.05.30 21:38:09 LOG6[65]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:09 LOG6[65]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:09 LOG5[65]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:09 LOG6[65]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:09 LOG5[65]: Service [https] connected remote server from 127.0.0.1:58598
+2019.05.30 21:38:09 LOG6[65]: TLS socket closed (SSL_read)
+2019.05.30 21:38:09 LOG5[65]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:09 LOG5[66]: Service [https] accepted connection from 127.0.0.1:36816
+2019.05.30 21:38:09 LOG6[66]: Peer certificate not required
+2019.05.30 21:38:09 LOG6[66]: TLS accepted: previous session reused
+2019.05.30 21:38:09 LOG6[66]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:09 LOG6[66]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:09 LOG5[66]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:09 LOG6[66]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:09 LOG5[66]: Service [https] connected remote server from 127.0.0.1:58604
+2019.05.30 21:38:09 LOG6[64]: Read socket closed (readsocket)
+2019.05.30 21:38:09 LOG6[64]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:38:09 LOG3[64]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:38:09 LOG5[64]: Connection closed: 1805 byte(s) sent to TLS, 444 byte(s) sent to socket
+2019.05.30 21:38:09 LOG6[63]: Read socket closed (readsocket)
+2019.05.30 21:38:09 LOG6[63]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:38:09 LOG3[63]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:38:09 LOG5[63]: Connection closed: 2862 byte(s) sent to TLS, 458 byte(s) sent to socket
+2019.05.30 21:38:09 LOG6[66]: Read socket closed (read hangup)
+2019.05.30 21:38:09 LOG6[66]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:38:09 LOG3[66]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:38:09 LOG5[66]: Connection closed: 2841 byte(s) sent to TLS, 415 byte(s) sent to socket
+2019.05.30 21:38:11 LOG5[67]: Service [https] accepted connection from 127.0.0.1:36840
+2019.05.30 21:38:11 LOG5[71]: Service [https] accepted connection from 127.0.0.1:36856
+2019.05.30 21:38:11 LOG5[68]: Service [https] accepted connection from 127.0.0.1:36844
+2019.05.30 21:38:11 LOG5[70]: Service [https] accepted connection from 127.0.0.1:36852
+2019.05.30 21:38:11 LOG6[68]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[70]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[67]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[68]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[68]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[68]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[69]: Service [https] accepted connection from 127.0.0.1:36848
+2019.05.30 21:38:11 LOG6[69]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[70]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG5[68]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[70]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[68]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG6[71]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[70]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[68]: Service [https] connected remote server from 127.0.0.1:58644
+2019.05.30 21:38:11 LOG6[68]: TLS socket closed (SSL_read)
+2019.05.30 21:38:11 LOG5[68]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:11 LOG5[70]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[69]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[70]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG6[69]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG5[70]: Service [https] connected remote server from 127.0.0.1:58646
+2019.05.30 21:38:11 LOG6[69]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[70]: TLS socket closed (SSL_read)
+2019.05.30 21:38:11 LOG5[70]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:11 LOG5[69]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[69]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[69]: Service [https] connected remote server from 127.0.0.1:58648
+2019.05.30 21:38:11 LOG6[69]: TLS socket closed (SSL_read)
+2019.05.30 21:38:11 LOG5[69]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:11 LOG6[71]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[71]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[71]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[71]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[71]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[71]: Service [https] connected remote server from 127.0.0.1:58650
+2019.05.30 21:38:11 LOG6[71]: TLS socket closed (SSL_read)
+2019.05.30 21:38:11 LOG5[71]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:11 LOG6[67]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[67]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[67]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[67]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[67]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[67]: Service [https] connected remote server from 127.0.0.1:58656
+2019.05.30 21:38:11 LOG6[67]: TLS socket closed (SSL_read)
+2019.05.30 21:38:11 LOG5[67]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:11 LOG5[72]: Service [https] accepted connection from 127.0.0.1:36868
+2019.05.30 21:38:11 LOG6[72]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[72]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[72]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[72]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[72]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[72]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[72]: Service [https] connected remote server from 127.0.0.1:58658
+2019.05.30 21:38:11 LOG6[72]: TLS socket closed (SSL_read)
+2019.05.30 21:38:11 LOG5[72]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:11 LOG5[73]: Service [https] accepted connection from 127.0.0.1:36876
+2019.05.30 21:38:11 LOG6[73]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[73]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[73]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[73]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[73]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[73]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[73]: Service [https] connected remote server from 127.0.0.1:58664
+2019.05.30 21:38:11 LOG6[73]: Read socket closed (readsocket)
+2019.05.30 21:38:11 LOG6[73]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:38:11 LOG3[73]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:38:11 LOG5[73]: Connection closed: 1064 byte(s) sent to TLS, 482 byte(s) sent to socket
+2019.05.30 21:38:11 LOG5[74]: Service [https] accepted connection from 127.0.0.1:36882
+2019.05.30 21:38:11 LOG6[74]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[74]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[74]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[74]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[74]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[74]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[74]: Service [https] connected remote server from 127.0.0.1:58678
+2019.05.30 21:38:11 LOG6[74]: TLS socket closed (SSL_read)
+2019.05.30 21:38:11 LOG5[74]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:11 LOG5[75]: Service [https] accepted connection from 127.0.0.1:36886
+2019.05.30 21:38:11 LOG5[76]: Service [https] accepted connection from 127.0.0.1:36890
+2019.05.30 21:38:11 LOG6[76]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[75]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[76]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[76]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[76]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[75]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[75]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[75]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[76]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[76]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[76]: Service [https] connected remote server from 127.0.0.1:58680
+2019.05.30 21:38:11 LOG6[76]: TLS socket closed (SSL_read)
+2019.05.30 21:38:11 LOG5[76]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:11 LOG5[75]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[75]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[75]: Service [https] connected remote server from 127.0.0.1:58682
+2019.05.30 21:38:11 LOG6[75]: TLS socket closed (SSL_read)
+2019.05.30 21:38:11 LOG5[75]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:38:11 LOG5[77]: Service [https] accepted connection from 127.0.0.1:36900
+2019.05.30 21:38:11 LOG5[79]: Service [https] accepted connection from 127.0.0.1:36908
+2019.05.30 21:38:11 LOG6[79]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[77]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[77]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[79]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[79]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[79]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[79]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[79]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[79]: Service [https] connected remote server from 127.0.0.1:58696
+2019.05.30 21:38:11 LOG6[77]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[77]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[77]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[77]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[77]: Service [https] connected remote server from 127.0.0.1:58698
+2019.05.30 21:38:11 LOG5[78]: Service [https] accepted connection from 127.0.0.1:36904
+2019.05.30 21:38:11 LOG6[78]: Peer certificate not required
+2019.05.30 21:38:11 LOG6[78]: TLS accepted: previous session reused
+2019.05.30 21:38:11 LOG6[78]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:38:11 LOG6[78]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:38:11 LOG5[78]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:38:11 LOG6[78]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:38:11 LOG5[78]: Service [https] connected remote server from 127.0.0.1:58700
+2019.05.30 21:38:11 LOG6[77]: Read socket closed (readsocket)
+2019.05.30 21:38:11 LOG6[77]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:38:11 LOG3[77]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:38:11 LOG5[77]: Connection closed: 1805 byte(s) sent to TLS, 444 byte(s) sent to socket
+2019.05.30 21:38:11 LOG6[79]: Read socket closed (readsocket)
+2019.05.30 21:38:11 LOG6[79]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:38:11 LOG3[79]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:38:11 LOG5[79]: Connection closed: 2841 byte(s) sent to TLS, 415 byte(s) sent to socket
+2019.05.30 21:38:11 LOG6[78]: Read socket closed (readsocket)
+2019.05.30 21:38:11 LOG6[78]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:38:11 LOG3[78]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:38:11 LOG5[78]: Connection closed: 2862 byte(s) sent to TLS, 458 byte(s) sent to socket
+2019.05.30 21:40:59 LOG5[80]: Service [https] accepted connection from 127.0.0.1:38280
+2019.05.30 21:40:59 LOG5[81]: Service [https] accepted connection from 127.0.0.1:38284
+2019.05.30 21:40:59 LOG5[82]: Service [https] accepted connection from 127.0.0.1:38288
+2019.05.30 21:40:59 LOG6[80]: Peer certificate not required
+2019.05.30 21:40:59 LOG6[81]: Peer certificate not required
+2019.05.30 21:40:59 LOG6[82]: Peer certificate not required
+2019.05.30 21:40:59 LOG5[83]: Service [https] accepted connection from 127.0.0.1:38292
+2019.05.30 21:40:59 LOG6[83]: Peer certificate not required
+2019.05.30 21:40:59 LOG5[84]: Service [https] accepted connection from 127.0.0.1:38296
+2019.05.30 21:40:59 LOG6[84]: Peer certificate not required
+2019.05.30 21:40:59 LOG6[80]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[80]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[80]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[80]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[80]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[80]: Service [https] connected remote server from 127.0.0.1:60084
+2019.05.30 21:40:59 LOG6[80]: TLS socket closed (SSL_read)
+2019.05.30 21:40:59 LOG5[80]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:40:59 LOG6[82]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[82]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[82]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[82]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[82]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[82]: Service [https] connected remote server from 127.0.0.1:60086
+2019.05.30 21:40:59 LOG6[82]: TLS socket closed (SSL_read)
+2019.05.30 21:40:59 LOG5[82]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:40:59 LOG6[84]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[83]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[84]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[83]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[84]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[83]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[81]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[81]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[81]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[84]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[84]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[81]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[84]: Service [https] connected remote server from 127.0.0.1:60088
+2019.05.30 21:40:59 LOG6[81]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[81]: Service [https] connected remote server from 127.0.0.1:60090
+2019.05.30 21:40:59 LOG6[84]: TLS socket closed (SSL_read)
+2019.05.30 21:40:59 LOG6[81]: TLS socket closed (SSL_read)
+2019.05.30 21:40:59 LOG5[84]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:40:59 LOG5[81]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:40:59 LOG5[83]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[83]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[83]: Service [https] connected remote server from 127.0.0.1:60092
+2019.05.30 21:40:59 LOG6[83]: TLS socket closed (SSL_read)
+2019.05.30 21:40:59 LOG5[83]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:40:59 LOG5[85]: Service [https] accepted connection from 127.0.0.1:38310
+2019.05.30 21:40:59 LOG6[85]: Peer certificate not required
+2019.05.30 21:40:59 LOG6[85]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[85]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[85]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[85]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[85]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[85]: Service [https] connected remote server from 127.0.0.1:60098
+2019.05.30 21:40:59 LOG6[85]: TLS socket closed (SSL_read)
+2019.05.30 21:40:59 LOG5[85]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:40:59 LOG5[86]: Service [https] accepted connection from 127.0.0.1:38316
+2019.05.30 21:40:59 LOG6[86]: Peer certificate not required
+2019.05.30 21:40:59 LOG6[86]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[86]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[86]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[86]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[86]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[86]: Service [https] connected remote server from 127.0.0.1:60104
+2019.05.30 21:40:59 LOG6[86]: Read socket closed (read hangup)
+2019.05.30 21:40:59 LOG6[86]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:40:59 LOG3[86]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:40:59 LOG5[86]: Connection closed: 1064 byte(s) sent to TLS, 508 byte(s) sent to socket
+2019.05.30 21:40:59 LOG5[87]: Service [https] accepted connection from 127.0.0.1:38322
+2019.05.30 21:40:59 LOG6[87]: Peer certificate not required
+2019.05.30 21:40:59 LOG5[88]: Service [https] accepted connection from 127.0.0.1:38326
+2019.05.30 21:40:59 LOG6[88]: Peer certificate not required
+2019.05.30 21:40:59 LOG6[88]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[88]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[87]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[88]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[87]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[87]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[88]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[88]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[88]: Service [https] connected remote server from 127.0.0.1:60114
+2019.05.30 21:40:59 LOG5[87]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[88]: TLS socket closed (SSL_read)
+2019.05.30 21:40:59 LOG6[87]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[87]: Service [https] connected remote server from 127.0.0.1:60116
+2019.05.30 21:40:59 LOG6[87]: TLS socket closed (SSL_read)
+2019.05.30 21:40:59 LOG5[87]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:40:59 LOG5[88]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:40:59 LOG5[90]: Service [https] accepted connection from 127.0.0.1:38338
+2019.05.30 21:40:59 LOG5[89]: Service [https] accepted connection from 127.0.0.1:38334
+2019.05.30 21:40:59 LOG6[90]: Peer certificate not required
+2019.05.30 21:40:59 LOG6[89]: Peer certificate not required
+2019.05.30 21:40:59 LOG6[89]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[89]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[89]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[89]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[90]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[89]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[89]: Service [https] connected remote server from 127.0.0.1:60126
+2019.05.30 21:40:59 LOG6[90]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[90]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[90]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[90]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[90]: Service [https] connected remote server from 127.0.0.1:60132
+2019.05.30 21:40:59 LOG5[91]: Service [https] accepted connection from 127.0.0.1:38344
+2019.05.30 21:40:59 LOG6[91]: Peer certificate not required
+2019.05.30 21:40:59 LOG6[91]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[91]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[91]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[91]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[91]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[91]: Service [https] connected remote server from 127.0.0.1:60134
+2019.05.30 21:40:59 LOG6[91]: TLS socket closed (SSL_read)
+2019.05.30 21:40:59 LOG5[91]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:40:59 LOG6[89]: Read socket closed (readsocket)
+2019.05.30 21:40:59 LOG6[89]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:40:59 LOG3[89]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:40:59 LOG5[89]: Connection closed: 1805 byte(s) sent to TLS, 444 byte(s) sent to socket
+2019.05.30 21:40:59 LOG5[92]: Service [https] accepted connection from 127.0.0.1:38352
+2019.05.30 21:40:59 LOG6[90]: Read socket closed (readsocket)
+2019.05.30 21:40:59 LOG6[92]: Peer certificate not required
+2019.05.30 21:40:59 LOG6[90]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:40:59 LOG3[90]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:40:59 LOG5[90]: Connection closed: 2862 byte(s) sent to TLS, 458 byte(s) sent to socket
+2019.05.30 21:40:59 LOG6[92]: TLS accepted: previous session reused
+2019.05.30 21:40:59 LOG6[92]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:40:59 LOG6[92]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:40:59 LOG5[92]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:40:59 LOG6[92]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:40:59 LOG5[92]: Service [https] connected remote server from 127.0.0.1:60140
+2019.05.30 21:40:59 LOG6[92]: Read socket closed (readsocket)
+2019.05.30 21:40:59 LOG6[92]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:40:59 LOG3[92]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:40:59 LOG5[92]: Connection closed: 2841 byte(s) sent to TLS, 415 byte(s) sent to socket
+2019.05.30 21:41:02 LOG5[93]: Service [https] accepted connection from 127.0.0.1:38382
+2019.05.30 21:41:02 LOG6[93]: Peer certificate not required
+2019.05.30 21:41:02 LOG5[96]: Service [https] accepted connection from 127.0.0.1:38394
+2019.05.30 21:41:02 LOG6[96]: Peer certificate not required
+2019.05.30 21:41:02 LOG5[94]: Service [https] accepted connection from 127.0.0.1:38386
+2019.05.30 21:41:02 LOG6[94]: Peer certificate not required
+2019.05.30 21:41:02 LOG6[93]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[93]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[93]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[93]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[93]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[93]: Service [https] connected remote server from 127.0.0.1:60186
+2019.05.30 21:41:02 LOG6[93]: TLS socket closed (SSL_read)
+2019.05.30 21:41:02 LOG5[93]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:41:02 LOG5[95]: Service [https] accepted connection from 127.0.0.1:38390
+2019.05.30 21:41:02 LOG6[95]: Peer certificate not required
+2019.05.30 21:41:02 LOG5[97]: Service [https] accepted connection from 127.0.0.1:38398
+2019.05.30 21:41:02 LOG6[97]: Peer certificate not required
+2019.05.30 21:41:02 LOG6[94]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[94]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[94]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[94]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[94]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[94]: Service [https] connected remote server from 127.0.0.1:60188
+2019.05.30 21:41:02 LOG6[94]: TLS socket closed (SSL_read)
+2019.05.30 21:41:02 LOG5[94]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:41:02 LOG6[96]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[96]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[95]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[95]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[95]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[95]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[95]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[95]: Service [https] connected remote server from 127.0.0.1:60190
+2019.05.30 21:41:02 LOG6[95]: TLS socket closed (SSL_read)
+2019.05.30 21:41:02 LOG5[95]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:41:02 LOG6[97]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[97]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[97]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[97]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[97]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[97]: Service [https] connected remote server from 127.0.0.1:60192
+2019.05.30 21:41:02 LOG6[97]: TLS socket closed (SSL_read)
+2019.05.30 21:41:02 LOG5[97]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:41:02 LOG6[96]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[96]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[96]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[96]: Service [https] connected remote server from 127.0.0.1:60194
+2019.05.30 21:41:02 LOG6[96]: TLS socket closed (SSL_read)
+2019.05.30 21:41:02 LOG5[96]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:41:02 LOG5[98]: Service [https] accepted connection from 127.0.0.1:38412
+2019.05.30 21:41:02 LOG6[98]: Peer certificate not required
+2019.05.30 21:41:02 LOG6[98]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[98]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[98]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[98]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[98]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[98]: Service [https] connected remote server from 127.0.0.1:60200
+2019.05.30 21:41:02 LOG6[98]: TLS socket closed (SSL_read)
+2019.05.30 21:41:02 LOG5[98]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:41:02 LOG5[99]: Service [https] accepted connection from 127.0.0.1:38418
+2019.05.30 21:41:02 LOG6[99]: Peer certificate not required
+2019.05.30 21:41:02 LOG6[99]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[99]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[99]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[99]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[99]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[99]: Service [https] connected remote server from 127.0.0.1:60206
+2019.05.30 21:41:02 LOG6[99]: Read socket closed (readsocket)
+2019.05.30 21:41:02 LOG6[99]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:41:02 LOG3[99]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:41:02 LOG5[99]: Connection closed: 1064 byte(s) sent to TLS, 482 byte(s) sent to socket
+2019.05.30 21:41:02 LOG5[101]: Service [https] accepted connection from 127.0.0.1:38428
+2019.05.30 21:41:02 LOG6[101]: Peer certificate not required
+2019.05.30 21:41:02 LOG5[100]: Service [https] accepted connection from 127.0.0.1:38424
+2019.05.30 21:41:02 LOG6[100]: Peer certificate not required
+2019.05.30 21:41:02 LOG6[101]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[100]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[101]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[101]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[101]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[101]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[101]: Service [https] connected remote server from 127.0.0.1:60216
+2019.05.30 21:41:02 LOG6[101]: TLS socket closed (SSL_read)
+2019.05.30 21:41:02 LOG5[101]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:41:02 LOG6[100]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[100]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[100]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[100]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[100]: Service [https] connected remote server from 127.0.0.1:60218
+2019.05.30 21:41:02 LOG6[100]: TLS socket closed (SSL_read)
+2019.05.30 21:41:02 LOG5[100]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:41:02 LOG5[102]: Service [https] accepted connection from 127.0.0.1:38436
+2019.05.30 21:41:02 LOG6[102]: Peer certificate not required
+2019.05.30 21:41:02 LOG5[103]: Service [https] accepted connection from 127.0.0.1:38440
+2019.05.30 21:41:02 LOG6[103]: Peer certificate not required
+2019.05.30 21:41:02 LOG6[103]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[103]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[103]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[103]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[103]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[103]: Service [https] connected remote server from 127.0.0.1:60228
+2019.05.30 21:41:02 LOG6[102]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[102]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[102]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[102]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[102]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[102]: Service [https] connected remote server from 127.0.0.1:60234
+2019.05.30 21:41:02 LOG5[104]: Service [https] accepted connection from 127.0.0.1:38446
+2019.05.30 21:41:02 LOG6[104]: Peer certificate not required
+2019.05.30 21:41:02 LOG6[104]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[104]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[104]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[104]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[104]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[104]: Service [https] connected remote server from 127.0.0.1:60236
+2019.05.30 21:41:02 LOG6[104]: TLS socket closed (SSL_read)
+2019.05.30 21:41:02 LOG5[104]: Connection closed: 0 byte(s) sent to TLS, 0 byte(s) sent to socket
+2019.05.30 21:41:02 LOG6[103]: Read socket closed (readsocket)
+2019.05.30 21:41:02 LOG6[103]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:41:02 LOG3[103]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:41:02 LOG5[103]: Connection closed: 1805 byte(s) sent to TLS, 444 byte(s) sent to socket
+2019.05.30 21:41:02 LOG5[105]: Service [https] accepted connection from 127.0.0.1:38454
+2019.05.30 21:41:02 LOG6[105]: Peer certificate not required
+2019.05.30 21:41:02 LOG6[105]: TLS accepted: previous session reused
+2019.05.30 21:41:02 LOG6[105]: persistence: 127.0.0.1:8001 reused
+2019.05.30 21:41:02 LOG6[105]: s_connect: connecting 127.0.0.1:8001
+2019.05.30 21:41:02 LOG5[105]: s_connect: connected 127.0.0.1:8001
+2019.05.30 21:41:02 LOG6[105]: persistence: 127.0.0.1:8001 cached
+2019.05.30 21:41:02 LOG5[105]: Service [https] connected remote server from 127.0.0.1:60242
+2019.05.30 21:41:02 LOG6[102]: Read socket closed (read hangup)
+2019.05.30 21:41:02 LOG6[102]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:41:02 LOG3[102]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:41:02 LOG5[102]: Connection closed: 2841 byte(s) sent to TLS, 415 byte(s) sent to socket
+2019.05.30 21:41:02 LOG6[105]: Read socket closed (readsocket)
+2019.05.30 21:41:02 LOG6[105]: SSL_shutdown successfully sent close_notify alert
+2019.05.30 21:41:02 LOG3[105]: transfer: s_poll_wait: TIMEOUTclose exceeded: closing
+2019.05.30 21:41:02 LOG5[105]: Connection closed: 2862 byte(s) sent to TLS, 458 byte(s) sent to socket
