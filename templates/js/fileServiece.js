@@ -68,3 +68,11 @@ function ctBodyClickHandler(e) {
 ctBody.addEventListener('click', ctBodyClickHandler)
 
 // move to past path
+// ...
+var btn = document.querySelector('.button')
+console.log(btn)
+function btnChangeEventHandler(e) {
+    console.log(e.target.files[0].name)
+    console.log(currentPath +'/'+ e.target.files[0].name)
+}
+btn.addEventListener('change', btnChangeEventHandler)
