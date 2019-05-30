@@ -1,17 +1,20 @@
 <!doctype html>
 <html lang="ko">
+{% load staticfiles %}
 
 <head>
     <meta charset="utf-8">
     <title>KhuKhuBox</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/fileServiece.css">
+    <link href="{% static 'blog/css/login.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'blog/css/fileServiece.css' %}">
 </head>
 
 <body>
     <div class="container">
         <div class="left-sidebar">
-            <a href="../html/index.html"><img id="khuCrap" src="../images/khuCrap.png"></a>
+{#            <a href="../html/index.html">#}
+            <a><img id="khuCrap" src={% static "blog/images/khuCrap.png" %}></a>
             <div class="side-list">
                 <div>내 파일</div>
                 <div>공유</div>
@@ -31,7 +34,16 @@
                             <th class="fp-date">날짜</th>
                         </tr>
                     </thead>
-                    <tbody class="ct-body"></tbody>
+                    <tbody class="ct-body">
+                    {% for file in filelist %}
+                        <tr class="file-property">
+                            <th class="fp-type">유형</th>
+                            <th class="fp-name">{{ file.File_Name }}</th>
+                            <th class="fp-date">{{ file.upload_date }}</th>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
                 </table>
             </div>
             <div class="file-control">
@@ -44,7 +56,6 @@
         </div>
     </div>
 
-    <script src="../js/fileServiece.js"></script>
 </body>
 
 </html>

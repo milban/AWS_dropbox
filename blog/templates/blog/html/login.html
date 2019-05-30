@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load staticfiles %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=3.0">
     <title>KhuKhuBox</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <link href="{% static 'blog/css/login.css' %}" rel="stylesheet">
 </head>
-
 <body>
     <div class="total-container">
         <div class="content">
             <div class="logo">
-                <a href="../html/index.html"><img src="../images/khuCrap.png"></a>
+                <a href="{% url 'home_page' %}"><img src="{% static "blog/images/khuCrap.png" %}" /></a>
             </div>
             <form class="userInfo" action="" method="post">
+                {% csrf_token %}
                 <div><input id="userid" type="text" name="userId" placeholder="ID"></div>
                 <div><input id="userpw" type="password" name="password" placeholder="PW"></div>
                 <button type="submit">로그인</button>
+                <div>{{ message }}</div>
             </form>
         </div>
     </div>
 
-    <script src="../js/login.js"></script>
+{#    <script src="../js/login.js"></script>#}
 </body>
 
 </html>
