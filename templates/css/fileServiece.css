@@ -57,23 +57,3 @@ hr.horizon {
     border: solid #dedede;
     border-width: 1px 0 0;
 }
-
-@media (max-width: 480px) {
-    .left-sidebar {
-        width: auto;
-    }
-
-    .container {
-        width: auto;
-    }
-
-    .content {
-        float: none;
-        width: auto;
-    }
-
-    .sidebar {
-        float: none;
-        width: auto;
-    }
-}
