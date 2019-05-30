@@ -122,4 +122,6 @@ USE_L10N = True
 
 USE_TZ = True
 
+SECURE_SSL_REDIRECT = True
+
 STATIC_URL = '/static/'
