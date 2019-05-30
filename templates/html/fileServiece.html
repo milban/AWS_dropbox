@@ -21,37 +21,30 @@
             <div class="header">
                 <h1>쿠쿠박스</h1>
             </div>
-
             <div class="content">
-                <h2>파일리스트</h2>
-                <ul>1</ul>
-                <hr class="horizon">
-                <ul>2</ul>
-                <hr class="horizon">
-                <ul>3</ul>
-                <hr class="horizon">
-                <ul>4</ul>
-                <hr class="horizon">
-                <ul>5</ul>
-                <hr class="horizon">
-                <ul>6</ul>
-                <hr class="horizon">
-                <ul>7</ul>
-                <hr class="horizon">
-                <ul>8</ul>
-                <hr class="horizon">
-                <ul>9</ul>
-                <hr class="horizon">
-                <ul>10</ul>
-                <hr class="horizon">
+                <h2 id="current-dir">KhuKhuBox</h2>
+                <table class="c-table">
+                    <thead>
+                        <tr class="file-property">
+                            <th class="fp-type">유형</th>
+                            <th class="fp-name">이름</th>
+                            <th class="fp-date">날짜</th>
+                        </tr>
+                    </thead>
+                    <tbody class="ct-body"></tbody>
+                </table>
             </div>
             <div class="file-control">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <input type="file" name="파일 업로드" id="">
+                <form class="file-form" action="" method="post" enctype="multipart/form-data">
+                    <input class="button" type="file" name="file_upload_btn">
+                    <progress id="progressBar" max="100" value="0"></progress>
+                    <input type="submit" id="submit_btn" value="전송">
                 </form>
             </div>
         </div>
     </div>
+
+    <script src="../js/fileServiece.js"></script>
 </body>
 
 </html>
