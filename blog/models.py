@@ -7,7 +7,7 @@ from django.utils import timezone
 
 class User(models.Model):
     User_Id = models.CharField(max_length=20, unique=True)
-    User_Password = models.CharField(max_length=20)
+    User_Password = models.CharField(max_length=256)
     User_Nickname = models.CharField(max_length=20, unique=True)
     created_date = models.DateTimeField(default=timezone.now)
 
