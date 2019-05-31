@@ -58,13 +58,22 @@ class Regist_View(View):
 
 class Main_View(View):
     mybucket = bucket()
-    filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
+    fileStorage = File.objects.filter(Owner__User_Id=Access.getuserid())
+    curPath = "/"
+    filelist = ""
 
     def get(self, request):
         if Access.getuserstate():
-            userid = Access.getuserid()
-            filelist = File.objects.filter(Owner__User_Id=userid)
-            return render(request, 'blog/html/fileServiece.html', {'filelist': filelist})
+            fileset = {}
+            for file in self.fileStorage:
+                if file.File_name.find(self.curPath) == 0 :
+                    name = file[len(self.curPath):]
+                    isDir = name.find('/')
+                    if isDir != -1 :
+                        name = name[:(isDir + 1)]
+                    fileset.add(name)
+            self.filelist = list(fileset)
+            return render(request, 'blog/html/fileServiece.html', {'filelist': self.filelist})
         else:
             return redirect('access_fail')
 

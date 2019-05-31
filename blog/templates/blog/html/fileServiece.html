@@ -1,20 +1,20 @@
 <!doctype html>
 <html lang="ko">
-{% load staticfiles %}
+{% load static %}
 
 <head>
     <meta charset="utf-8">
     <title>KhuKhuBox</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{% static 'blog/css/login.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'blog/css/fileServiece.css' %}">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/fileServiece.css' %}">
 </head>
 
 <body>
     <div class="container">
         <div class="left-sidebar">
 {#            <a href="../html/index.html">#}
-            <a><img id="khuCrap" src={% static "blog/images/khuCrap.png" %}></a>
+            <a><img id="khuCrap" src={% static "images/khuCrap.png" %}></a>
             <div class="side-list">
                 <div>내 파일</div>
                 <div>공유</div>
