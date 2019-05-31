@@ -11,12 +11,16 @@ from blog.models import User, File
 
 class Home_View(View):
     def get(self, request):
+        if Access.getuserstate():
+            return redirect('main_page')
         return render(request, 'blog/html/index.html')
 
 
 class Login_VIew(View):
 
     def get(self, request):
+        if Access.getuserstate():
+            return redirect('main_page')
         return render(request, 'blog/html/login.html')
 
     def post(self, request):
@@ -43,6 +47,8 @@ class Regist_View(View):
     message = ""
 
     def get(self, request):
+        if Access.getuserstate():
+            redirect(request, 'main_page')
         form = UserRegistForm()
         return render(request, 'blog/regist_page.html', {'form': form, 'message': self.message})
 
@@ -73,9 +79,9 @@ class Main_View(View):
                         name = name[:(isDir + 1)]
                     fileset.add(name)
             self.filelist = list(fileset)
-            return render(request, 'blog/html/fileServiece.html', {'filelist': self.filelist})
+            return render(request, 'blog/html/fileService.html', {'filelist': self.filelist})
         else:
-            return redirect('access_fail')
+            return redirect('home_page')
 
     def post(self, request):
 
