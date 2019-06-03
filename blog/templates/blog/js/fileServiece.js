@@ -81,13 +81,20 @@ btn.addEventListener('change', btnChangeEventHandler)
 // 유저가 전송버튼 클릭 시
 var form = document.querySelector('.file-form')
 form.onsubmit = function() {
+    console.log(currentFilePath)
+    // 유저가 아무 파일로 선택하지 않고 전송버튼을 눌렀을 경우
+    if(currentFilePath==undefined) {
+        console.log("error: any selec file")
+        return false
+    }
+
     const filePathObj = { filePath: currentFilePath }
     const jsonFileObj = JSON.stringify(filePathObj)
     const url =""
     
     xhr.open('post', url) // 비동기 방식으로 Request 오픈
     xhr.send(jsonFileObj) // Request 전송
-
+    // todo: response 받아서 front에 파일 추가해 보여주기
     xhr.onreadystatechange = function(e) {
         if(xhr.status==200) {
             console.log(xhr.responseText)
