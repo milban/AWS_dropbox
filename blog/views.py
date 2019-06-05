@@ -70,15 +70,12 @@ class Main_View(View):
 
     def get(self, request):
         if Access.getuserstate():
-            fileset = {}
             for file in self.fileStorage:
                 if file.File_name.find(self.curPath) == 0 :
                     name = file[len(self.curPath):]
                     isDir = name.find('/')
-                    if isDir != -1 :
-                        name = name[:(isDir + 1)]
-                    fileset.add(name)
-            self.filelist = list(fileset)
+                    if isDir != -1 and name[len(name) - 1] == '/':
+                        self.filelist.append(file)
             return render(request, 'blog/html/fileService.html', {'filelist': self.filelist})
         else:
             return redirect('home_page')
