@@ -40,6 +40,7 @@ class Login_VIew(View):
         except User.DoesNotExist:
             message = "없는 User입니다."
 
+
         return render(request, 'blog/html/login.html', {'message': message})
 
 
