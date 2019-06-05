@@ -45,7 +45,6 @@ class Login_VIew(View):
 
 class Regist_View(View):
     message = ""
-
     def get(self, request):
         if Access.getuserstate():
             redirect(request, 'main_page')
