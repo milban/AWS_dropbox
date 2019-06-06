@@ -22,7 +22,7 @@ function postContentsOfDir(toRqPath) {
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
-            console.log(xhr.responseType)
+            console.log(xhr.response)
             xhr.onprogress = function(evt) {
             }
         } else {
