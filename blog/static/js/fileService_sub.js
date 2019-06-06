@@ -1,4 +1,12 @@
 const xhr = new XMLHttpRequest()
+
+const AWS = require('aws-sdk')
+
+var BUCKET_NAME = '' //버킷 이름
+const USER_KEY = '' //유저 액세스 키
+const USER_SECRET = '' //비밀키
+
+
 var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
 var currentPath // 파일이름 뺀 현재 경로
@@ -110,17 +118,40 @@ form.onsubmit = function() {
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
 }
 
-function uploadURL(signedUrl)
+//파일 업로드
+function uploadFilewithURL(signedUrl)
 {
+
     xhr.open('PUT', signedUrl, true);
     xhr.setRequestHeader('Content-Type', signedUrlContentType);
     xhr.onload = () => {
     if (xhr.status === 200) {
-
+        console.log("responsed")        
     }
     };
     xhr.onerror = () => {
-
+        console.log("err")
     };
-    xhr.send(file);
+    //xhr.send(file);
+    let s3bucket = new AWS.S3({
+        accessKeyId: USER_KEY,
+        secretAccessKey: USER_SECRET,
+        Bucket: BUCKET_NAME
+      });
+      s3bucket.createBucket(function () {
+          var params = {
+            Bucket: BUCKET_NAME,
+            Key: file.name,
+            Body: file.data
+          };
+          s3bucket.upload(params, function (err, data) {
+            if (err) {
+              console.log('error in callback')
+              console.log("err")
+            }
+            console.log('success')
+            console.log(data)
+          });
+      });   
 }
+
