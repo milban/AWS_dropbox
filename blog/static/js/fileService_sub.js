@@ -121,7 +121,6 @@ form.onsubmit = function() {
 //파일 업로드
 function uploadFilewithURL(signedUrl)
 {
-
     xhr.open('PUT', signedUrl, true);
     xhr.setRequestHeader('Content-Type', signedUrlContentType);
     xhr.onload = () => {

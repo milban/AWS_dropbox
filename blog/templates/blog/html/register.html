@@ -17,7 +17,8 @@
                 {% csrf_token %}
                 <div><input id="userid" type="text" name="userId" placeholder="ID"></div>
                 <div><input id="userpw" type="password" name="password" placeholder="PW"></div>
-                <button type="submit">로그인</button>
+                <div><input id="nickname" type="text" name="Nickname" placeholder="Nickname"></div>
+                <button type="submit">회원가입</button>
                 <div><a href="index.html">돌아가기</a></div>
                 <div>{{ message }}</div>
             </form>
