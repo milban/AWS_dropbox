@@ -16,7 +16,7 @@ function postContentsOfDir(toRqPath) {
     console.log('currentPath: '+toRqPath)
     const filePathObj = { request: toRqPath }
     const jsonFileObj = JSON.stringify(filePathObj)
-    const url ="{% url post %}"
+    const url ="{% url 'post' %}"
     
     xhr.open('post', url) // 비동기 방식으로 Request 오픈
     xhr.setRequestHeader('Content-Type', 'application/json')
