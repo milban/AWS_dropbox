@@ -113,7 +113,7 @@ form.onsubmit = function() {
     console.log(filePathObj)
     const jsonFileObj = JSON.stringify(filePathObj)
     console.log(jsonFileObj)
-    const url =""
+    const url ="{% url 'post:post %}"
     
     xhr.open('post', url) // 비동기 방식으로 Request 오픈
     xhr.setRequestHeader('Content-Type', 'application/json')
