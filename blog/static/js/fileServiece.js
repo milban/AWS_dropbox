@@ -18,7 +18,7 @@ function postContentsOfDir(toRqPath) {
     const jsonFileObj = JSON.stringify(filePathObj)
     const url ="{% url 'post' %}"
     
-    xhr.open('post', url) // 비동기 방식으로 Request 오픈
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
@@ -115,7 +115,7 @@ form.onsubmit = function() {
     console.log(jsonFileObj)
     const url =""
     
-    xhr.open('post', url) // 비동기 방식으로 Request 오픈
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     xhr.setRequestHeader('Content-Type', 'application/json')
     // todo: response 받아서 front에 파일 추가해 보여주기
     xhr.onreadystatechange = function() {
