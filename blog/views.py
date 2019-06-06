@@ -1,12 +1,18 @@
-from django.http import HttpResponseRedirect
+import json
+
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
+from rest_framework.response import Response
 
 from blog.LoginAccess import Access
 from blog.S3.S3connect import bucket
 from blog.forms import UserLoginForm, UserRegistForm, DocumentForm
 from blog.models import User, File
+from blog.serializers import FileSerializer
 
 
 class Home_View(View):
@@ -40,12 +46,12 @@ class Login_VIew(View):
         except User.DoesNotExist:
             message = "없는 User입니다."
 
-
         return render(request, 'blog/html/login.html', {'message': message})
 
 
 class Regist_View(View):
     message = ""
+
     def get(self, request):
         if Access.getuserstate():
             redirect(request, 'main_page')
@@ -87,25 +93,34 @@ class Regist_View(View):
         return render(request, 'blog/html/login.html')
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class Main_View(View):
     mybucket = bucket()
-    fileStorage = File.objects.filter(Owner__User_Id=Access.getuserid())
+    fileStorage = ""
     curPath = "/"
-    filelist = ""
+    filelist = []
 
     def get(self, request):
         if Access.getuserstate():
-            for file in self.fileStorage:
-                if file.File_name.find(self.curPath) == 0 :
-                    name = file[len(self.curPath):]
-                    isDir = name.find('/')
-                    if isDir != -1 and name[len(name) - 1] == '/':
-                        self.filelist.append(file)
-            return render(request, 'blog/html/fileService.html', {'filelist': self.filelist})
+            return render(request, 'blog/html/fileService.html')
         else:
             return redirect('home_page')
 
     def post(self, request):
+
+        if request.POST.get("request") == "request":
+            self.fileStorage = File.objects.filter(Owner__User_Id=Access.getuserid())
+            for file in self.fileStorage:
+                if file.File_Name.find(self.curPath) == 0:
+                    name = file.File_Name[len(self.curPath):]
+                    isDir = name.find('/')
+                    print(isDir)
+                    if isDir == -1 or name[len(name) - 1] == '/':
+                        self.filelist.append(file.File_Name)
+
+            queryset = File.objects.filter(File_Name__in=self.filelist)
+            serializer = FileSerializer(queryset, many=True)
+            return HttpResponse(json.dumps(serializer.data), content_type="application/json")
 
         if request.POST.get("file_upload") is not None:
             form = DocumentForm(request.POST, request.FILES)
@@ -125,7 +140,7 @@ class Main_View(View):
             directory_name = request.POST.get("delete_directory")
             self.file_delete(directory_name)
 
-        return render(request, 'blog/html/fileServiece_sub.html', {'filelist': self.filelist})
+        return render(request, 'blog/html/fileService.html')
 
     def bucket_put_file(self, file_name):
         self.mybucket.put_object(Access.getuserid(), file_name)
