@@ -7,14 +7,14 @@ var pastPathList
 
 window.addEventListener('DOMContentLoaded', function() {
     currentPath = document.querySelector('#current-dir').innerText+"/"
-    //postContentsOfDir(currentPath)
+    postContentsOfDir(currentPath)
     printContent(newCtt)
 })
 
 // dir안의 file, dir 정보 요청하기
 function postContentsOfDir(toRqPath) {
     console.log('currentPath: '+toRqPath)
-    const filePathObj = { filePath: toRqPath }
+    const filePathObj = { request: toRqPath }
     const jsonFileObj = JSON.stringify(filePathObj)
     const url =""
     
@@ -22,7 +22,7 @@ function postContentsOfDir(toRqPath) {
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
-            console.log(xhr.responseText)
+            console.log(xhr.responseType)
             xhr.onprogress = function(evt) {
             }
         } else {
@@ -109,11 +109,11 @@ form.onsubmit = function() {
         return false
     }
 
-    const filePathObj = { filePath: currentFilePath }
+    const filePathObj = { request: currentFilePath }
     console.log(filePathObj)
     const jsonFileObj = JSON.stringify(filePathObj)
     console.log(jsonFileObj)
-    const url ="{% url 'post:post %}"
+    const url =""
     
     xhr.open('post', url) // 비동기 방식으로 Request 오픈
     xhr.setRequestHeader('Content-Type', 'application/json')
