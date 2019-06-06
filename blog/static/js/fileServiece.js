@@ -93,6 +93,7 @@ form.onsubmit = function() {
     }
 
     const filePathObj = { filePath: currentFilePath }
+    console.log(filePathObj)
     const jsonFileObj = JSON.stringify(filePathObj)
     console.log(jsonFileObj)
     const url =""
