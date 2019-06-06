@@ -35,15 +35,17 @@ body {
 
 .header {
     padding: 20px;
-    margin-bottom: 20px;
-    border: 1px solid #bcbcbc;
 }
 
 .content {
     width: 60%;
     padding: 20px;
-    margin-bottom: 20px;
+    padding-top: 0;
     float: left;
+}
+
+#current-dir {
+    text-align: left;
 }
 
 .c-table {

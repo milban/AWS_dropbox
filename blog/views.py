@@ -67,6 +67,31 @@ class Regist_View(View):
             self.message = "Regist Error"
             return render(request, 'blog/regist_page.html', {'form': form, 'message': self.message})
 
+    #회원가입
+    def regist(request):
+        if request.method == "GET":
+            return render(request, 'blog/regist_page.html')
+
+        elif request.method == 'POST':
+            signup_form = UserRegistForm(request.POST)
+            if signup_form.is_valid():
+                #signup_form.signup()
+                new_user = User.objects.create_user(
+                    signup_form.cleaned_data['User_Id'],
+                    signup_form.cleaned_data['User_Password'],
+                    signup_form.cleaned_data['User_Nickname']
+                    )
+                new_user.save()
+
+                return redirect(UserLoginForm)
+        else:
+            signup_form = UserRegistForm()
+
+        context = {
+            'signup_form': signup_form,
+        }
+        return render(request, 'blog/html/login.html')
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class Main_View(View):

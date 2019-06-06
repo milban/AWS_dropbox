@@ -1,4 +1,12 @@
 const xhr = new XMLHttpRequest()
+
+const AWS = require('aws-sdk')
+
+var BUCKET_NAME = '' //버킷 이름
+const USER_KEY = '' //유저 액세스 키
+const USER_SECRET = '' //비밀키
+
+
 var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
 var currentPath // 파일이름 뺀 현재 경로
@@ -7,36 +15,15 @@ var pastPathList
 
 window.addEventListener('DOMContentLoaded', function() {
     currentPath = document.querySelector('#current-dir').innerText+"/"
-    //postContentsOfDir(currentPath)
     printContent(newCtt)
 })
 
-// dir안의 file, dir 정보 요청하기
-function postContentsOfDir(toRqPath) {
-    console.log('currentPath: '+toRqPath)
-    const filePathObj = { filePath: toRqPath }
-    const jsonFileObj = JSON.stringify(filePathObj)
-    const url =""
-    
-    xhr.open('post', url) // 비동기 방식으로 Request 오픈
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.onreadystatechange = function() {
-        if(xhr.status==200) {
-            console.log(xhr.responseText)
-            xhr.onprogress = function(evt) {
-            }
-        } else {
-            console.log("xhr response error")
-        }
-    }
-    xhr.send(jsonFileObj) // Request 전송
-}
-
 // 디렉토리/파일 보여주기
+var cttList = []
 var newCtt = ["abc.txt", "a/", "bcd.txt", "b/"]
 var ctBody = document.querySelector('.ct-body')
 function printContent(newContents) {
-    var cttList = [] // list clear
+    cttList = [] // list clear
     cttList = cttList.concat(newContents)
     cttList.sort()
     for(var i=0; i<cttList.length; i++) {
@@ -91,7 +78,7 @@ ctBody.addEventListener('click', ctBodyClickHandler)
 // move to past path
 // 
 
-// 유저가 업로드할 파일 선택시
+// 유저가 파일 선택시
 var btn = document.querySelector('.button')
 function btnChangeEventHandler(e) {
     currentFilePath = currentPath + e.target.files[0].name
@@ -110,15 +97,13 @@ form.onsubmit = function() {
     }
 
     const filePathObj = { filePath: currentFilePath }
-    console.log(filePathObj)
     const jsonFileObj = JSON.stringify(filePathObj)
-    console.log(jsonFileObj)
     const url =""
     
     xhr.open('post', url) // 비동기 방식으로 Request 오픈
-    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.send(jsonFileObj) // Request 전송
     // todo: response 받아서 front에 파일 추가해 보여주기
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function(e) {
         if(xhr.status==200) {
             console.log(xhr.responseText)
             xhr.onprogress = function(evt) {
@@ -129,7 +114,43 @@ form.onsubmit = function() {
             console.log("xhr response error")
         }
     }
-    xhr.send(jsonFileObj) // Request 전송
 
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
- }
+}
+
+// S3 파일 업로드
+function uploadFilewithURL(signedUrl)
+{
+    xhr.open('PUT', signedUrl, true);
+    xhr.setRequestHeader('Content-Type', signedUrlContentType);
+    xhr.onload = () => {
+    if (xhr.status === 200) {
+        console.log("responsed")        
+    }
+    };
+    xhr.onerror = () => {
+        console.log("err")
+    };
+    //xhr.send(file);
+    let s3bucket = new AWS.S3({
+        accessKeyId: USER_KEY,
+        secretAccessKey: USER_SECRET,
+        Bucket: BUCKET_NAME
+      });
+      s3bucket.createBucket(function () {
+          var params = {
+            Bucket: BUCKET_NAME,
+            Key: file.name,
+            Body: file.data
+          };
+          s3bucket.upload(params, function (err, data) {
+            if (err) {
+              console.log('error in callback')
+              console.log("err")
+            }
+            console.log('success')
+            console.log(data)
+          });
+      });   
+}
+

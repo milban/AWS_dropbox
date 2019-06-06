@@ -14,7 +14,6 @@ class UserRegistForm(forms.ModelForm):
         model = User
         fields = ('User_Id', 'User_Password', 'User_Nickname')
 
-
 class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
