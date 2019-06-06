@@ -20,8 +20,7 @@ function postContentsOfDir(toRqPath) {
     
     xhr.open('post', url) // 비동기 방식으로 Request 오픈
     xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.send(jsonFileObj) // Request 전송
-    xhr.onreadystatechange = function(e) {
+    xhr.onreadystatechange = function() {
         if(xhr.status==200) {
             console.log(xhr.responseText)
             xhr.onprogress = function(evt) {
@@ -30,6 +29,7 @@ function postContentsOfDir(toRqPath) {
             console.log("xhr response error")
         }
     }
+    xhr.send(jsonFileObj) // Request 전송
 }
 
 // 디렉토리/파일 보여주기
@@ -117,9 +117,8 @@ form.onsubmit = function() {
     
     xhr.open('post', url) // 비동기 방식으로 Request 오픈
     xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.send(jsonFileObj) // Request 전송
     // todo: response 받아서 front에 파일 추가해 보여주기
-    xhr.onreadystatechange = function(e) {
+    xhr.onreadystatechange = function() {
         if(xhr.status==200) {
             console.log(xhr.responseText)
             xhr.onprogress = function(evt) {
@@ -130,6 +129,7 @@ form.onsubmit = function() {
             console.log("xhr response error")
         }
     }
+    xhr.send(jsonFileObj) // Request 전송
 
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
  }
