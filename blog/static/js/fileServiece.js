@@ -34,7 +34,7 @@ function postContentsOfDir(toRqPath) {
 
 // 디렉토리/파일 보여주기
 var newCtt = ["abc.txt", "a/", "bcd.txt", "b/"]
-var ctBody = document.querySelector('.ct-body')
+var ctBody = document.querySelector('.c-table')
 function printContent(newContents) {
     var cttList = [] // list clear
     cttList = cttList.concat(newContents)
