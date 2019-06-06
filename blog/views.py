@@ -97,6 +97,7 @@ class Regist_View(View):
 class Main_View(View):
     mybucket = bucket()
     fileStorage = ""
+    rootPath = "KhuKhuBox"
     curPath = "/"
     filelist = []
 
@@ -108,7 +109,9 @@ class Main_View(View):
 
     def post(self, request):
 
-        if request.POST.get("request") == "request":
+        if request.POST.get("request") is not None:
+            self.curPath = request.POST.get("request")
+            self.curPath = self.curPath[len(self.rootPath):]
             self.fileStorage = File.objects.filter(Owner__User_Id=Access.getuserid())
             for file in self.fileStorage:
                 if file.File_Name.find(self.curPath) == 0:
