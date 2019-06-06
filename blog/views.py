@@ -100,7 +100,7 @@ class Main_View(View):
             directory_name = request.POST.get("delete_directory")
             self.file_delete(directory_name)
 
-        return render(request, 'blog/html/fileServiece.html', {'filelist': self.filelist})
+        return render(request, 'blog/html/fileServiece_sub.html', {'filelist': self.filelist})
 
     def bucket_put_file(self, file_name):
         self.mybucket.put_object(Access.getuserid(), file_name)
