@@ -14,9 +14,11 @@ window.addEventListener('DOMContentLoaded', function() {
 // dir안의 file, dir 정보 요청하기
 function postContentsOfDir(toRqPath) {
     console.log('currentPath: '+toRqPath)
+    var formdata = new FormData();
     const filePathObj = { request: toRqPath }
     const jsonFileObj = JSON.stringify(filePathObj)
-    const url ="{% url 'post' %}"
+    formdata.append(jsonFileObj)
+    const url =""
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     xhr.setRequestHeader('Content-Type', 'application/json')
@@ -29,7 +31,7 @@ function postContentsOfDir(toRqPath) {
             console.log("xhr response error")
         }
     }
-    xhr.send(jsonFileObj) // Request 전송
+    xhr.send(formdata) // Request 전송
 }
 
 // 디렉토리/파일 보여주기
