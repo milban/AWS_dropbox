@@ -36,7 +36,6 @@ body {
 .header {
     padding: 20px;
     margin-bottom: 20px;
-    border: 1px solid #bcbcbc;
 }
 
 .content {
@@ -44,6 +43,10 @@ body {
     padding: 20px;
     margin-bottom: 20px;
     float: left;
+}
+
+#current-dir {
+    text-align: left;
 }
 
 .c-table {
