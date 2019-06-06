@@ -118,7 +118,7 @@ form.onsubmit = function() {
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
 }
 
-//파일 업로드
+// S3 파일 업로드
 function uploadFilewithURL(signedUrl)
 {
     xhr.open('PUT', signedUrl, true);

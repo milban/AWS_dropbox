@@ -35,13 +35,12 @@ body {
 
 .header {
     padding: 20px;
-    margin-bottom: 20px;
 }
 
 .content {
     width: 60%;
     padding: 20px;
-    margin-bottom: 20px;
+    padding-top: 0;
     float: left;
 }
 

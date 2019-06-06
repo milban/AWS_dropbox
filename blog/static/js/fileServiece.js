@@ -7,15 +7,36 @@ var pastPathList
 
 window.addEventListener('DOMContentLoaded', function() {
     currentPath = document.querySelector('#current-dir').innerText+"/"
+    //postContentsOfDir(currentPath)
     printContent(newCtt)
 })
 
+// dir안의 file, dir 정보 요청하기
+function postContentsOfDir(toRqPath) {
+    console.log('currentPath: '+toRqPath)
+    const filePathObj = { filePath: toRqPath }
+    const jsonFileObj = JSON.stringify(filePathObj)
+    const url =""
+    
+    xhr.open('post', url) // 비동기 방식으로 Request 오픈
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.send(jsonFileObj) // Request 전송
+    xhr.onreadystatechange = function(e) {
+        if(xhr.status==200) {
+            console.log(xhr.responseText)
+            xhr.onprogress = function(evt) {
+            }
+        } else {
+            console.log("xhr response error")
+        }
+    }
+}
+
 // 디렉토리/파일 보여주기
-var cttList = []
 var newCtt = ["abc.txt", "a/", "bcd.txt", "b/"]
 var ctBody = document.querySelector('.ct-body')
 function printContent(newContents) {
-    cttList = [] // list clear
+    var cttList = [] // list clear
     cttList = cttList.concat(newContents)
     cttList.sort()
     for(var i=0; i<cttList.length; i++) {
@@ -70,7 +91,7 @@ ctBody.addEventListener('click', ctBodyClickHandler)
 // move to past path
 // 
 
-// 유저가 파일 선택시
+// 유저가 업로드할 파일 선택시
 var btn = document.querySelector('.button')
 function btnChangeEventHandler(e) {
     currentFilePath = currentPath + e.target.files[0].name
@@ -89,10 +110,13 @@ form.onsubmit = function() {
     }
 
     const filePathObj = { filePath: currentFilePath }
+    console.log(filePathObj)
     const jsonFileObj = JSON.stringify(filePathObj)
+    console.log(jsonFileObj)
     const url =""
     
     xhr.open('post', url) // 비동기 방식으로 Request 오픈
+    xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.send(jsonFileObj) // Request 전송
     // todo: response 받아서 front에 파일 추가해 보여주기
     xhr.onreadystatechange = function(e) {
