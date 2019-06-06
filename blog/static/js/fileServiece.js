@@ -17,7 +17,8 @@ function postContentsOfDir(toRqPath) {
     var formdata = new FormData();
     const filePathObj = { request: toRqPath }
     const jsonFileObj = JSON.stringify(filePathObj)
-    formdata.append(jsonFileObj)
+    formdata.append("request", toRqPath)
+    console.log('formdata: '+formdata)
     const url =""
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
