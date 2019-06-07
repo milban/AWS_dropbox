@@ -3,6 +3,7 @@ var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
 var currentPath // 파일이름 뺀 현재 경로
 var currentFilePath // 파일이름 포함한 현재 경로
+var uploadFileName // 업로드할 파일 이름
 var pastPathList
 
 window.addEventListener('DOMContentLoaded', function() {
@@ -15,9 +16,8 @@ window.addEventListener('DOMContentLoaded', function() {
 function postContentsOfDir(toRqPath) {
     console.log('currentPath: '+toRqPath)
     var formdata = new FormData();
-    const filePathObj = { request: toRqPath }
-    const jsonFileObj = JSON.stringify(filePathObj)
-    formdata.append("request", toRqPath)
+    formdata.append("request", file_load)
+    formdata.append("curPath", toRqPath)
     console.log('formdata: '+formdata)
     const url =""
     
@@ -97,7 +97,8 @@ ctBody.addEventListener('click', ctBodyClickHandler)
 // 유저가 업로드할 파일 선택시
 var btn = document.querySelector('.button')
 function btnChangeEventHandler(e) {
-    currentFilePath = currentPath + e.target.files[0].name
+    uploadFileName = e.target.files[0].name
+    currentFilePath = currentPath + uploadFileName
     console.log(currentFilePath)
 }
 btn.addEventListener('change', btnChangeEventHandler)
@@ -112,14 +113,18 @@ form.onsubmit = function() {
         return false
     }
 
-    const filePathObj = { request: currentFilePath }
-    console.log(filePathObj)
-    const jsonFileObj = JSON.stringify(filePathObj)
-    console.log(jsonFileObj)
+    /*
+        "request" : "file_upload",
+        "file_name" : "파일이름",  ex > file.txt
+        "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
+    */
+    var formdata = new FormData();
+    formdata.append("request", "file_upload")
+    formdata.append("file_name", uploadFileName)
+    formdata.append("curPath", currentPath)
     const url =""
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
-    xhr.setRequestHeader('Content-Type', 'application/json')
     // todo: response 받아서 front에 파일 추가해 보여주기
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
@@ -132,7 +137,7 @@ form.onsubmit = function() {
             console.log("xhr response error")
         }
     }
-    xhr.send(jsonFileObj) // Request 전송
+    xhr.send(formdata) // Request 전송
 
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
  }
