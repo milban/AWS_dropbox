@@ -97,7 +97,6 @@ class Regist_View(View):
 class Main_View(View):
     mybucket = bucket()
     fileStorage = ""
-    rootPath = "KhuKhuBox"
     curPath = "/"
     filelist = []
 
@@ -109,19 +108,17 @@ class Main_View(View):
 
     def post(self, request):
 
-        print(request.POST.get("request"))
         # 파일 리스트 불러오기
         # form data
         # {  "request" : "file_load",
-        #    "curPath" : "디렉토리 이름"}
+        #    "curPath" : "디렉토리 이름"} ex > KhuKhuBox/
         if request.POST.get("request") == "file_load":
-            self.curPath = request.POST.get("request")
-            self.curPath = self.curPath[len(self.rootPath):]
+            self.curPath = request.POST.get("curPath")
             self.fileStorage = File.objects.filter(Owner__User_Id=Access.getuserid())
             for file in self.fileStorage:
                 if file.File_Name.find(self.curPath) == 0:
                     name = file.File_Name[len(self.curPath):]
-                    isDir = name.find('/')
+                    isDir = name.find("/")
                     if isDir == -1 or name[len(name) - 1] == '/':
                         self.filelist.append(file.File_Name)
 
@@ -148,8 +145,6 @@ class Main_View(View):
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "file_delete":
             file_name = request.POST.get("file_name")
-            # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> /file.txt
-            file_name = file_name[len(self.rootPath):]
             self.file_delete(file_name)  # DB 파일제거
 
             file_name = request.POST.get("file_name")
@@ -181,8 +176,6 @@ class Main_View(View):
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "create_directory":
             directory_name = request.POST.get("create_directory")
-            # KhuKhuBox/bin/ 에서 KhuKhuBox 제거 -> /bin/
-            directory_name = directory_name[len(self.rootPath):]
             self.file_save(directory_name)
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
@@ -193,8 +186,6 @@ class Main_View(View):
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "delete_directory":
             directory_name = request.POST.get("delete_directory")
-            # KhuKhuBox/bin/ 에서 KhuKhuBox 제거 -> /bin/
-            directory_name = directory_name[len(self.rootPath):]
             self.file_delete(directory_name)
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
