@@ -16,10 +16,16 @@ window.addEventListener('DOMContentLoaded', function() {
 function postContentsOfDir(toRqPath) {
     console.log('currentPath: '+toRqPath)
     var formdata = new FormData();
-    formdata.append("request", file_load)
+    /*
+        "request" : "file_load",
+        "curPath" : "디렉토리 이름"    ex > KhuKhuBox/
+    */
+    formdata.append("request", "file_load")
     formdata.append("curPath", toRqPath)
     console.log('formdata: '+formdata)
     const url =""
+
+    console.log("curPath: "+ toRqPath)
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     //xhr.setRequestHeader('Content-Type', 'application/json')
@@ -123,6 +129,9 @@ form.onsubmit = function() {
     formdata.append("file_name", uploadFileName)
     formdata.append("curPath", currentPath)
     const url =""
+
+    console.log("file_name: " + uploadFileName)
+    console.log("curPath: " + currentPath)
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     // todo: response 받아서 front에 파일 추가해 보여주기
