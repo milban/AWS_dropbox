@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ko">
 {% load static %}
+{% csrf_token %}
 
 <head>
     <meta charset="utf-8">
@@ -33,16 +34,6 @@
                             <th class="fp-date">날짜</th>
                         </tr>
                     </thead>
-                    <tbody class="ct-body">
-                    {% for file in filelist %}
-                        <tr class="file-property">
-                            <th class="fp-type">유형</th>
-                            <th class="fp-name">{{ file.File_Name }}</th>
-                            <th class="fp-date">{{ file.upload_date }}</th>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-
                 </table>
             </div>
             <div class="file-control">

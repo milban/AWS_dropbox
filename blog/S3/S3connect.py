@@ -8,7 +8,7 @@ class bucket:
     def __init__(self):
         self.s3client = boto3.client('s3')
 
-    def put_object(self, userid, filename, file):
+    def put_object(self, userid, filename):
         path = userid + "/" + filename
         return self.s3client.generate_presigned_post(self.__bucket, path, ExpiresIn=120)
 
