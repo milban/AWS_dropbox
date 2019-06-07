@@ -8,6 +8,12 @@ from blog.S3.S3connect import bucket
 from blog.forms import UserLoginForm, UserRegistForm, DocumentForm
 from blog.models import User, File
 
+from django.http import HttpResponse
+import hashlib
+import jwt
+import datetime
+import json
+import base64
 
 class Home_View(View):
     def get(self, request):
@@ -26,14 +32,21 @@ class Login_VIew(View):
     def post(self, request):
         message = ""
         post = request.POST
+        hashFunc = hashlib.sha256()
+
         id = post.get("userId")
         pw = post.get("password")
+        #hashFunc.update(pw)
+        #pw = hashFunc.hexdigest().upper()
 
         try:
             user = User.objects.get(User_Id=id)
             if user.User_Password == pw:
                 # Login 성공
-                Access.setaccess(user)
+                token = jwt.encode({'userID': id, 'expire_date': (datetime.datetime.now() + datetime.timedelta(minutes=30)).timetuple()}, pw, algorithm='HS256')
+                token = base64.b64encode(token).encode("utf-8")
+                context = {'token':token}
+                HttpResponse(json.dumps(context), content_type="application/json")
                 return redirect('main_page')
             else:
                 message = "비밀번호가 일치하지 않습니다."
@@ -64,7 +77,7 @@ class Regist_View(View):
 
 class Main_View(View):
     mybucket = bucket()
-    fileStorage = File.objects.filter(Owner__User_Id=Access.getuserid())
+    fileStorage = ""
     curPath = "/"
     filelist = ""
 
