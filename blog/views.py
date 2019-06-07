@@ -67,7 +67,7 @@ class Regist_View(View):
             self.message = "Regist Error"
             return render(request, 'blog/regist_page.html', {'form': form, 'message': self.message})
 
-    #회원가입
+    # 회원가입
     def regist(request):
         if request.method == "GET":
             return render(request, 'blog/regist_page.html')
@@ -75,12 +75,12 @@ class Regist_View(View):
         elif request.method == 'POST':
             signup_form = UserRegistForm(request.POST)
             if signup_form.is_valid():
-                #signup_form.signup()
+                # signup_form.signup()
                 new_user = User.objects.create_user(
                     signup_form.cleaned_data['User_Id'],
                     signup_form.cleaned_data['User_Password'],
                     signup_form.cleaned_data['User_Nickname']
-                    )
+                )
                 new_user.save()
 
                 return redirect(UserLoginForm)
@@ -109,7 +109,12 @@ class Main_View(View):
 
     def post(self, request):
 
-        if request.POST.get("request") is not None:
+        print(request.POST.get("request"))
+        # 파일 리스트 불러오기
+        # form data
+        # {  "request" : "file_load",
+        #    "curPath" : "디렉토리 이름"}
+        if request.POST.get("request") == "file_load":
             self.curPath = request.POST.get("request")
             self.curPath = self.curPath[len(self.rootPath):]
             self.fileStorage = File.objects.filter(Owner__User_Id=Access.getuserid())
@@ -117,47 +122,95 @@ class Main_View(View):
                 if file.File_Name.find(self.curPath) == 0:
                     name = file.File_Name[len(self.curPath):]
                     isDir = name.find('/')
-                    print(isDir)
                     if isDir == -1 or name[len(name) - 1] == '/':
                         self.filelist.append(file.File_Name)
 
             queryset = File.objects.filter(File_Name__in=self.filelist)
             serializer = FileSerializer(queryset, many=True)
             return HttpResponse(json.dumps(serializer.data), content_type="application/json")
+        # 파일 업로드
+        # form data
+        # {  "request" : "file_upload",
+        #    "file_name" : "파일이름",  ex > file.txt
+        #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
+        elif request.POST.get("request") == "file_upload":
+            file_name = request.POST.get("file_name")
+            path = request.POST.get("curPath")
+            self.bucket_put_file(file_name)
+            self.file_save(path + file_name)  # ex > KhuKhuBox/file.txt
+            context = {'status': "ok"}
+            return HttpResponse(json.dumps(context), content_type="application/json")
 
-        if request.POST.get("file_upload") is not None:
-            form = DocumentForm(request.POST, request.FILES)
-            if form.is_valid():
-                file_name = request.POST.get("file_name")
-                self.bucket_put_file(file_name)
-        elif request.POST.get("file_delete") is not None:
+        # 파일 삭제
+        # form data
+        # {  "request" : "file_delete",
+        #    "file_name" : "파일이름",  ex > KhuKhuBox/file.txt
+        #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
+        elif request.POST.get("request") == "file_delete":
             file_name = request.POST.get("file_name")
-            self.bucket_delete_file(file_name)
-        elif request.POST.get("file_download") is not None:
+            # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> /file.txt
+            file_name = file_name[len(self.rootPath):]
+            self.file_delete(file_name)  # DB 파일제거
+
             file_name = request.POST.get("file_name")
-            self.bucket_download_file(file_name)
-        elif request.POST.get("create_directory") is not None:
+            path = request.POST.get("curPath")
+            # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
+            file_name = file_name[len(path):]
+            self.bucket_delete_file(file_name)  # S3 파일제거
+            context = {'status': "ok"}
+            return HttpResponse(json.dumps(context), content_type="application/json")
+
+        # 파일 다운로드 URL받아오기
+        # form data
+        # {  "request" : "file_download",
+        #    "file_name" : "파일이름",  ex > KhuKhuBox/file.txt
+        #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
+        elif request.POST.get("request") == "file_download":
+            file_name = request.POST.get("file_name")
+            path = request.POST.get("curPath")
+            # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
+            file_name = file_name[len(path):]
+            file_url = self.bucket_download_file(file_name)  # url 받아오기
+
+            context = {'file_url': file_url}
+            return HttpResponse(json.dumps(context), content_type="application/json")
+
+        # 디렉토리 생성
+        # form data
+        # {  "request" : "create_directory",
+        #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
+        elif request.POST.get("request") == "create_directory":
             directory_name = request.POST.get("create_directory")
+            # KhuKhuBox/bin/ 에서 KhuKhuBox 제거 -> /bin/
+            directory_name = directory_name[len(self.rootPath):]
             self.file_save(directory_name)
-        elif request.POST.get("delete_directory") is not None:
-            directory_name = request.POST.get("delete_directory")
-            self.file_delete(directory_name)
+            context = {'status': "ok"}
+            return HttpResponse(json.dumps(context), content_type="application/json")
 
-        return render(request, 'blog/html/fileService.html')
+        # 디렉토리 삭제
+        # form data
+        # {  "request" : "delete_directory",
+        #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
+        elif request.POST.get("request") == "delete_directory":
+            directory_name = request.POST.get("delete_directory")
+            # KhuKhuBox/bin/ 에서 KhuKhuBox 제거 -> /bin/
+            directory_name = directory_name[len(self.rootPath):]
+            self.file_delete(directory_name)
+            context = {'status': "ok"}
+            return HttpResponse(json.dumps(context), content_type="application/json")
 
     def bucket_put_file(self, file_name):
         self.mybucket.put_object(Access.getuserid(), file_name)
-        print(file_name)
-        self.file_save(file_name)
-        self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
+        # view 요청이 끝나면 Main_View의 object가 소멸해서 filelist에 설정해도 사라짐.
+        # self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
     def bucket_delete_file(self, file_name):
         self.mybucket.delete_object(Access.getuserid(), file_name)
-        self.file_delete(file_name)
-        self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
+        # view 요청이 끝나면 Main_View의 object가 소멸해서 filelist에 설정해도 사라짐.
+        # self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
     def bucket_download_file(self, file_name):
-        self.mybucket.download_object(Access.getuserid(), file_name)
+        return self.mybucket.download_object(Access.getuserid(), file_name)
 
     def file_save(self, file_name):
         userfile = File(File_Name=file_name, Owner=User.objects.get(User_Id=Access.getuserid()),
