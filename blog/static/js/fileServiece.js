@@ -1,4 +1,3 @@
-const xhr = new XMLHttpRequest()
 var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
 var currentPath // 파일이름 뺀 현재 경로
@@ -14,6 +13,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 // dir안의 file, dir 정보 요청하기
 function postContentsOfDir(toRqPath) {
+    const xhr = new XMLHttpRequest()
     console.log('currentPath: '+toRqPath)
     var formdata = new FormData();
     /*
@@ -112,6 +112,7 @@ btn.addEventListener('change', btnChangeEventHandler)
 // 유저가 전송버튼 클릭 시
 var form = document.querySelector('.file-form')
 form.onsubmit = function() {
+    const xhr = new XMLHttpRequest()
     console.log(currentFilePath)
     // 유저가 아무 파일로 선택하지 않고 전송버튼을 눌렀을 경우
     if(currentFilePath==undefined) {
