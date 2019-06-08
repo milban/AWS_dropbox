@@ -57,7 +57,11 @@ body {
     text-align: left;
 }
 
-.fp-select, fp-type, fp-name, fp-date {
+.fp-select {
+    width: 50px;
+}
+
+.fp-type, fp-name, fp-date {
     padding: 10px 0;
 }
 

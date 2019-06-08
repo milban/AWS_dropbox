@@ -113,14 +113,16 @@ function printContent(newContents) {
         addElemTdType.classList.add('file-type')
         addElemTdName.classList.add('file-name')
         addElemTdDate.classList.add('file-date')
+
+        addElemTr.appendChild(addElemTdSelect)
+        addElemTdDate.innerText = uploadDate
+        addElemTr.appendChild(addElemTdDate)
         if(contentName[contentName.length - 1] != "/") {
             var fileName = splitPathList[splitPathList.length - 1]
             addElemTdType.innerText = "파일"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = fileName
             addElemTr.appendChild(addElemTdName)
-            addElemTdDate.innerText = uploadDate
-            addElemTr.appendChild(addElemTdDate)
             htmlFileList.appendChild(addElemTr)
         }
         else {
