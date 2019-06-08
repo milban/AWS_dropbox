@@ -1,12 +1,14 @@
-var form = document.querySelector('.userInfo')
-form.onsubmit = function() {
+// var form = document.querySelector('.userInfo')
+// form.onsubmit = function() {
+//     var userId = document.querySelector('#userid')
+//     console.log(userId)
+//     //document.cookie = "userId="+userId
+//     return true;
+// }
+
+var btn = document.querySelector('.submit-btn')
+function submitBtnHandler() {
     var userId = document.querySelector('#userid')
     console.log(userId)
-    //document.cookie = "userId="+userId
-    return true;
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log(form)
-    console.log(document.querySelector('#userid'))
-})
+btn.addEventListener('click', submitBtnHandler)
