@@ -337,11 +337,10 @@ function btnDelClickEventHandler() {
             xhr.open('POST', url) // 비동기 방식으로 Request 오픈
             xhr.onreadystatechange = function() {
                 if(xhr.status==200) {
-                    console.log(xhr.responseText)
                     if(xhr.readyState==4) {
                         console.log(xhr.response)
                         if(i==chkArr.length-1) {
-                          postContentsOfDirAndPrint(currentPath)
+                          //postContentsOfDirAndPrint(currentPath)
                         }
                     }
                 } else {
