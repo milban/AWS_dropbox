@@ -32,12 +32,19 @@ function postContentsOfDir(toRqPath) {
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     //xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.onreadystatechange = function() {
-        if(xhr.status==200 && xhr.readyState == 4) {
-            console.log(xhr.response)
-            return xhr.response
-            xhr.onprogress = function(evt) {
-                var progressBar = document.querySelector('#progressBar')
-                progressBar.value = evt.loaded/evt.total*100;
+        if(xhr.readyState == 0) {
+            console.log("객체 생성, open()메서드 호출 X")
+        } else if(xhr.readyState == 1) {
+            console.log("open() 메서드 호출, send()메서드 호출 X")
+        } else if(xhr.readyState == 2) {
+            console.log("send() 호출")
+        } else if(xhr.readyState == 3) {
+            console.log("데이터 처리중")
+        } else if(xhr.readyState == 4) {
+            console.log("데이터 전부 받음")
+            if(xhr.status == 200) {
+                console.log(xhr.response)
+                return xhr.response
             }
         } else {
             console.log("xhr response error")
