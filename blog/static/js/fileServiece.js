@@ -57,6 +57,7 @@ var ctBody = document.querySelector('.c-table')
     parameter: [{"File_Name": "KhuKhuBox/Q1_score.pdf", "upload_date": "2019-06-08T13:33:43.785442+09:00"}, {...}, ...]
 */
 function printContent(newContents) {
+    console.log(newContents)
     for(var content in newContents) {
         console.log(content)
         var contentName = content['File_Name']
