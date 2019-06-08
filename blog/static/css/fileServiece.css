@@ -54,16 +54,20 @@ body {
 }
 
 .file-property {
+    display: flex;
     text-align: left;
 }
 
 .fp-select {
-    width: 50px;
     padding: 10px 0;
 }
 
 .fp-type, fp-name, fp-date {
     padding: 10px 0;
+}
+
+.file-list {
+    display: flex;
 }
 
 .file-row {
