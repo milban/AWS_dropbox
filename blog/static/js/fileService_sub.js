@@ -16,6 +16,9 @@ var pastPathList
 window.addEventListener('DOMContentLoaded', function() {
     currentPath = document.querySelector('#current-dir').innerText+"/"
     printContent(newCtt)
+
+    //토큰 저장
+    localStorage.setItem('token', _token)
 })
 
 // 디렉토리/파일 보여주기
@@ -154,3 +157,116 @@ function uploadFilewithURL(signedUrl)
       });   
 }
 
+function putFileURL(presignedURL){
+    if(!presignedURL.length){
+        return alert('No such URL')
+    }
+    //url 처리
+    var bucket = new AWS.S3({params: {}})
+}
+
+
+//===========================
+//===========================
+/*
+var albumBucketName = 'beanuploadtestbucket';
+var bucketRegion = 'ap-northeast-2';
+var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
+
+AWS.config.update({
+  region: bucketRegion,
+  credentials: new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: IdentityPoolId
+  })
+});
+
+var s3 = new AWS.S3({
+  apiVersion: '2006-03-01',
+  params: {Bucket: albumBucketName}
+});
+*/
+function downloadFile(filekey){
+    window.location.assign("https://" + albumBucketName + ".s3." + bucketRegion
+        + ".amazonaws.com/" + filekey)
+}
+
+function addFile(albumName) {    
+    var files = document.getElementById('photoupload').files;
+    if (!files.length) {
+      return alert('Please choose a file to upload first.');
+    }
+    var file = files[0];
+    var fileName = file.name;
+    var albumPhotosKey = encodeURIComponent(albumName) + '//';
+
+    var photoKey = albumPhotosKey + fileName;
+    
+    s3.upload({
+      Key: photoKey,
+      Body: file,
+      ACL: 'public-read'
+    }, function(err, data) {
+      if (err) {
+        return alert('There was an error uploading your file: ', err.message);
+      }
+      alert('Successfully uploaded file.');
+      viewAlbum(albumName);
+    });
+  }  
+
+  function deleteFile(albumName, photoKey) {
+    s3.deleteObject({Key: photoKey}, function(err, data) {
+      if (err) {
+        return alert('There was an error deleting your file: ', err.message);
+      }
+      alert('Successfully deleted file.');
+      viewAlbum(albumName);
+    });
+  }
+
+  function createdir(albumName) {
+    albumName = albumName.trim();
+    if (!albumName) {
+      return alert('Dir names must contain at least one non-space character.');
+    }
+    if (albumName.indexOf('/') !== -1) {
+      return alert('Dir names cannot contain slashes.');
+    }
+    var albumKey = encodeURIComponent(albumName) + '/';
+    s3.headObject({Key: albumKey}, function(err, data) {
+      if (!err) {
+        return alert('Album already exists.');
+      }
+      if (err.code !== 'NotFound') {
+        return alert('There was an error creating your dir: ' + err.message);
+      }
+      s3.putObject({Key: albumKey}, function(err, data) {
+        if (err) {
+          return alert('There was an error creating your dir: ' + err.message);
+        }
+        alert('Successfully created dir.');
+        viewAlbum(albumName);
+      });
+    });
+  }
+
+  function deletedir(albumName) {
+    var albumKey = encodeURIComponent(albumName) + '/';
+    s3.listObjects({Prefix: albumKey}, function(err, data) {
+      if (err) {
+        return alert('There was an error deleting your dir: ', err.message);
+      }
+      var objects = data.Contents.map(function(object) {
+        return {Key: object.Key};
+      });
+      s3.deleteObjects({
+        Delete: {Objects: objects, Quiet: true}
+      }, function(err, data) {
+        if (err) {
+          return alert('There was an error deleting your dir: ', err.message);
+        }
+        alert('Successfully deleted dir.');
+        listAlbums();
+      });
+    });
+  }
