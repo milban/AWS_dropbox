@@ -135,3 +135,8 @@ body {
 .delete {
     background-color: #f44336;
 }
+
+.share {
+    background-color: #e7e7e7;
+    color: black;
+}
