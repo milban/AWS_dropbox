@@ -112,6 +112,7 @@ body {
 }
 
 .fc-btn {
+    margin-top: 20px;
     width: 70%;
     border: none;
     color: white;
