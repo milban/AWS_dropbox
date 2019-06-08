@@ -141,7 +141,7 @@ class Main_View(View):
         # 파일 삭제
         # form data
         # {  "request" : "file_delete",
-        #    "file_name" : "파일이름",  ex > KhuKhuBox/file.txt
+        #    "file_name" : "파일이름",  ex > file.txt
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "file_delete":
             path = request.POST.get("curPath")

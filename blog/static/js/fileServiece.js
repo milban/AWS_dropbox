@@ -326,9 +326,6 @@ function btnDelClickEventHandler() {
             console.log(chkArr[i])
             //filepaths[i]에는 쿠쿠박스/ 다음이 들어있어야 함
             //ex) 선택한 파일이 khukhubox/gagak/a/b/image/jpg 일 경우, filepaths에는 gagak/a/b/image/jpg가 있어야 함
-            
-    
-            
             formdata.append("request", "file_delete")
             formdata.append("file_name", chkArr[i].value)
             formdata.append("curPath", currentPath)
@@ -343,7 +340,9 @@ function btnDelClickEventHandler() {
                     console.log(xhr.responseText)
                     if(xhr.readyState==4) {
                         console.log(xhr.response)
-                        postContentsOfDirAndPrint(currentPath)
+                        if(i==chkArr.length-1) {
+                          postContentsOfDirAndPrint(currentPath)
+                        }
                     }
                 } else {
                     console.log("xhr response error")
