@@ -60,14 +60,22 @@ body {
 
 .fp-select {
     padding: 10px 0;
+    width: 50px
 }
 
-.fp-type, fp-name, fp-date {
+.fp-type {
     padding: 10px 0;
+    width: 50px
 }
 
-.file-list {
-    display: flex;
+.fp-name {
+    padding: 10px 0;
+    width: 200px
+}
+
+.fp-date {
+    padding: 10px 0;
+    width: 200px
 }
 
 .file-row {
