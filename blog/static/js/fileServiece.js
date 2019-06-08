@@ -107,8 +107,8 @@ function printContent(newContents) {
         addElemTr.classList.add('file-row')
         var addElemTdSelect = document.createElement('td')
         var addElemChBox = document.createElement('input')
-        addElemChBox.classList.add('not-check')
         addElemChBox.setAttribute('type', 'checkbox')
+        addElemChBox.setAttribute('name', 'check-file')
         addElemTdSelect.appendChild(addElemChBox)
         var addElemTdType = document.createElement('td')
         var addElemTdName = document.createElement('td')
@@ -118,9 +118,10 @@ function printContent(newContents) {
         addElemTdName.classList.add('file-name')
         addElemTdDate.classList.add('file-date')
 
-        addElemTr.appendChild(addElemTdSelect)
         if(contentName[contentName.length - 1] != "/") {
             var fileName = splitPathList[splitPathList.length - 1]
+            addElemChBox.setAttribute('value', fileName)
+            addElemTr.appendChild(addElemTdSelect)
             addElemTdType.innerText = "파일"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = fileName
@@ -131,6 +132,8 @@ function printContent(newContents) {
         }
         else {
             var dirName = splitPathList[splitPathList.length - 1].replace("/", "")
+            addElemChBox.setAttribute('value', dirName)
+            addElemTr.appendChild(addElemTdSelect)
             addElemTdType.innerText = "폴더"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = dirName
