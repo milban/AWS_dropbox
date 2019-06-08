@@ -109,3 +109,21 @@ body {
     margin-bottom: 20px;
     float: right;
 }
+
+.fc-btn {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.download {
+    background-color: #008CBA;
+}
+
+.delete {
+    background-color: #f44336;
+}
