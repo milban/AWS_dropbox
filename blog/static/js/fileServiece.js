@@ -321,7 +321,7 @@ function btnDelClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
     const xhr = new XMLHttpRequest()
     var formdata = new FormData()
-    for(var i=0; i < chkArr.length; i++){
+    for(let i=0; i < chkArr.length; i++){
         if(chkArr[i].checked == true){
             console.log(chkArr[i])
             //filepaths[i]에는 쿠쿠박스/ 다음이 들어있어야 함
