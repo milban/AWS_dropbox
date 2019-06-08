@@ -151,7 +151,7 @@ class Main_View(View):
             path = request.POST.get("curPath")
             # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
             file_name = file_name[len(path):]
-            self.bucket_delete_file(file_name)  # S3 파일제거
+            #self.bucket_delete_file(file_name)  # S3 파일제거
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
