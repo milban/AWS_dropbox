@@ -21,8 +21,13 @@ var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
 var pastPathList
 
+var getCookie = function(name) {
+  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  return value? value[2] : null;
+};
 
 window.addEventListener('DOMContentLoaded', function() {
+    console.log(getCookie('userId'))
     currentPath = document.querySelector('#current-dir').innerText+"/"
     postContentsOfDirAndPrint(currentPath)
 })
