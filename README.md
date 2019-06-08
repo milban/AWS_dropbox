@@ -11,6 +11,8 @@
 * 유저가 업로드시, 파일 경로 REST로 보내기
 * S3
   * upload file, download file, delete file, create dir, delete dir
+* 유저 쿠키
+ * 유저 쿠키 설정 및 유저 쿠키 ID 
 ## Backend
 * ...
 # To do
