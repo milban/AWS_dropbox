@@ -112,6 +112,7 @@ body {
 }
 
 .fc-btn {
+    margin-top: 20px;
     width: 70%;
     border: none;
     color: white;
@@ -120,6 +121,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border-radius: 12px;
 }
 
 .fc-btn:hover {
@@ -134,4 +136,9 @@ body {
 
 .delete {
     background-color: #f44336;
+}
+
+.share {
+    background-color: #e7e7e7;
+    color: black;
 }
