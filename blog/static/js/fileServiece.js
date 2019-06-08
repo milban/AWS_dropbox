@@ -92,7 +92,8 @@ var ctBody = document.querySelector('.c-table')
     parameter: [{"File_Name": "KhuKhuBox/Q1_score.pdf", "upload_date": "2019-06-08T13:33:43.785442+09:00"}, {...}, ...]
 */
 function printContent(newContents) {
-    ctBody.innerHTML = ""
+    var htmlFileList = document.querySelector('.file-list')
+    htmlFileList.innerHTML = ""
     console.log(newContents)
     console.log(typeof(newContents))
     for(var idx in newContents) {
