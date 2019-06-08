@@ -22,10 +22,19 @@ var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
 var pastPathList
 
-var getCookie = function(name) {
-  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-  return value? value[2] : null;
-};
+function getCookie(cName) {
+  cName = cName + '=';
+  var cookieData = document.cookie;
+  var start = cookieData.indexOf(cName);
+  var cValue = '';
+  if(start != -1){
+      start += cName.length;
+      var end = cookieData.indexOf(';', start);
+      if(end == -1)end = cookieData.length;
+      cValue = cookieData.substring(start, end);
+  }
+  return unescape(cValue);
+}
 
 window.addEventListener('DOMContentLoaded', function() {
     console.log(getCookie('userId'))
