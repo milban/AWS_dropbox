@@ -120,6 +120,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border-radius: 12px;
 }
 
 .fc-btn:hover {
