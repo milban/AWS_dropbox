@@ -8,6 +8,8 @@ var pastPathList
 window.addEventListener('DOMContentLoaded', function() {
     currentPath = document.querySelector('#current-dir').innerText+"/"
     var fileList = postContentsOfDir(currentPath)
+    console.log("fileList: ")
+    console.log(fileList)
     printContent(fileList)
 })
 
@@ -51,6 +53,7 @@ var ctBody = document.querySelector('.c-table')
 */
 function printContent(newContents) {
     for(var content in newContents) {
+        console.log(content)
         var contentName = content['File_Name']
         var uploadDate = content['upload_date']
         var splitPathList = contentName.split('/')
