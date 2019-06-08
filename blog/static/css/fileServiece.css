@@ -54,11 +54,27 @@ body {
 }
 
 .file-property {
-    text-align: left;
+    display: flex;
 }
 
-.fp-type, fp-name, fp-date {
+.fp-select {
     padding: 10px 0;
+    width: 10%;
+}
+
+.fp-type {
+    padding: 10px 0;
+    width: 10%;
+}
+
+.fp-name {
+    padding: 10px 0;
+    width: 50%;
+}
+
+.fp-date {
+    padding: 10px 0;
+    width: 30%;
 }
 
 .file-row {
@@ -71,22 +87,58 @@ body {
     cursor: pointer;
 }
 
+.file-select {
+    width: 10%;
+}
+
 .file-type {
-    width: 50px;
-    
+    width: 10%;
 }
 
 .file-name {
-    width: 200px;
+    width: 50%;
 }
 
 .update-date {
-    width: 200px;
+    width: 30%;
 }
 
 .file-control {
+    text-align: center;
     width: 30%;
     padding: 20px;
     margin-bottom: 20px;
     float: right;
+}
+
+.fc-btn {
+    margin-top: 20px;
+    width: 70%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+}
+
+.fc-btn:hover {
+    background-color: #4CAF50;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.download {
+    background-color: #008CBA;
+}
+
+.delete {
+    background-color: #f44336;
+}
+
+.share {
+    background-color: #e7e7e7;
+    color: black;
 }
