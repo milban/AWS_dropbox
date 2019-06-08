@@ -17,6 +17,7 @@ function setCookie(cName, cValue, cDay){
 var btn = document.querySelector('.submit-btn')
 function submitBtnHandler() {
     var userId = document.querySelector('#userid').textContent
+    alert(userId)
     setCookie('userId', userId, 1)
 }
 btn.addEventListener('click', submitBtnHandler)
