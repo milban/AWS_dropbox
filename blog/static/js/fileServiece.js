@@ -139,6 +139,7 @@ function printContent(newContents) {
 
 // 디렉토리/파일 클릭 시
 function ctBodyClickHandler(e) {
+    if(!e.target.parentElement.classList.contains('file-row')) return
     var htmlFileList = document.querySelector('.file-list')
     var userClickRow = e.target.parentElement
     var fileType = userClickRow.querySelector('.file-type').innerText
