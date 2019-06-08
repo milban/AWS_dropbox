@@ -18,4 +18,5 @@ class bucket:
 
     def download_object(self, userid, filename):
         path = userid + "/" + filename
-        return self.s3client.generate_presigned_url('get_object', Params={'Bucket': self.__bucket, 'Key': path}, ExpiresIn=120)
+        return self.s3client.generate_presigned_url('get_object', Params={'Bucket': self.__bucket, 'Key': path},
+                                                    ExpiresIn=120)
