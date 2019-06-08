@@ -319,46 +319,37 @@ downbtn.addEventListener('click', btnDownClickEventHandler)
 var delbtn = document.querySelector('.delete')
 function btnDelClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
+    var filenameArr = []
     const xhr = new XMLHttpRequest()
     var formdata = new FormData()
     for(var i=0; i < chkArr.length; i++){
         if(chkArr[i].checked == true){
-            console.log(chkArr[i])
-            //filepaths[i]에는 쿠쿠박스/ 다음이 들어있어야 함
-            //ex) 선택한 파일이 khukhubox/gagak/a/b/image/jpg 일 경우, filepaths에는 gagak/a/b/image/jpg가 있어야 함
-            
-    
-            
-            formdata.append("request", "file_delete")
-            formdata.append("file_name", chkArr[i].value)
-            formdata.append("curPath", currentPath)
-            const url =""
+            console.log(chkArr[i])  
+            filenameArr.append(chkArr[i].value)
+        }    
+    }
+    formdata.append("request", "file_delete")
+    formdata.append("file_name", filenameArr)
+    formdata.append("curPath", currentPath)
+    const url =""
 
-            console.log("file_name: " + chkArr[i].value)
-            console.log("curPath: " + currentPath)
-            
-            xhr.open('POST', url) // 비동기 방식으로 Request 오픈
-            xhr.onreadystatechange = function() {
-                if(xhr.status==200) {
-                    console.log(xhr.responseText)
-                    if(xhr.readyState==4) {
-                        console.log(xhr.response)
-                        postContentsOfDirAndPrint(currentPath)
-                    }
-                } else {
-                    console.log("xhr response error")
-                    console.log(xhr.statusText)
-                }
+    console.log("file_name: " + chkArr[i].value)
+    console.log("curPath: " + currentPath)
+        
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈
+    xhr.onreadystatechange = function() {
+        if(xhr.status==200) {
+            console.log(xhr.responseText)
+            if(xhr.readyState==4) {
+                console.log(xhr.response)
+                postContentsOfDirAndPrint(currentPath)
             }
-            xhr.send(formdata) // Request 전송
-            //삭제요청
-            //삭제된 후 파일리스트 불러오기
-            //currentDir = document.querySelector('#current-dir')
-            //currentDir.innerText = getCookie('userId')
-            //currentPath = currentDir.innerText+"/"
-            postContentsOfDirAndPrint(currentPath)
-            }    
-        } 
+        } else {
+            console.log("xhr response error")
+            console.log(xhr.statusText)
+        }
+    }
+    xhr.send(formdata) // Request 전송
 }
 delbtn.addEventListener('click', btnDelClickEventHandler)
 
