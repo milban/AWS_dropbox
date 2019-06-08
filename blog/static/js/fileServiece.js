@@ -32,7 +32,10 @@ function postContentsOfDir(toRqPath) {
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
             console.log(xhr.response)
+            return xhr.response
             xhr.onprogress = function(evt) {
+                var progressBar = document.querySelector('#progressBar')
+                progressBar.value = evt.loaded/evt.total*100;
             }
         } else {
             console.log("xhr response error")
