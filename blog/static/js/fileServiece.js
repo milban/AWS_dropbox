@@ -38,7 +38,9 @@ function getCookie(cName) {
 
 window.addEventListener('DOMContentLoaded', function() {
     console.log("userId: " + getCookie('userId'))
-    currentPath = document.querySelector('#current-dir').innerText+"/"
+    currentDir = document.querySelector('#current-dir')
+    currentDir.innerText = getCookie('userId')
+    currentPath = currentDir.innerText+"/"
     postContentsOfDirAndPrint(currentPath)
 })
 
