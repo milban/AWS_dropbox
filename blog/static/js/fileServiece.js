@@ -110,8 +110,8 @@ function ctBodyClickHandler(e) {
         document.querySelector('#current-dir').innerText = currentPath+fileName+"/"
         currentPath = document.querySelector('#current-dir').innerText
         console.log(currentPath)
-        //ctBody.innerHTML = ""
-        //printContent...
+        ctBody.innerHTML = ""
+        postContentsOfDirAndPrint(currentPath)
     }
 }
 ctBody.addEventListener('click', ctBodyClickHandler)
@@ -161,6 +161,9 @@ form.onsubmit = function() {
             xhr.onprogress = function(evt) {
                 var progressBar = document.querySelector('#progressBar')
                 progressBar.value = evt.loaded/evt.total*100;
+            }
+            if(xhr.readyState==4) {
+                postContentsOfDirAndPrint(currentPath)
             }
         } else {
             console.log("xhr response error")
