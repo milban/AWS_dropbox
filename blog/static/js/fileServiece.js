@@ -7,8 +7,8 @@ var pastPathList
 
 window.addEventListener('DOMContentLoaded', function() {
     currentPath = document.querySelector('#current-dir').innerText+"/"
-    postContentsOfDir(currentPath)
-    printContent(newCtt)
+    var fileList = postContentsOfDir(currentPath)
+    printContent(fileList)
 })
 
 // dir안의 file, dir 정보 요청하기
@@ -45,14 +45,15 @@ function postContentsOfDir(toRqPath) {
 }
 
 // 디렉토리/파일 보여주기
-var newCtt = ["abc.txt", "a/", "bcd.txt", "b/"]
 var ctBody = document.querySelector('.c-table')
+/*
+    parameter: [{"File_Name": "KhuKhuBox/Q1_score.pdf", "upload_date": "2019-06-08T13:33:43.785442+09:00"}, {...}, ...]
+*/
 function printContent(newContents) {
-    var cttList = [] // list clear
-    cttList = cttList.concat(newContents)
-    cttList.sort()
-    for(var i=0; i<cttList.length; i++) {
-        contentItem = cttList[i]
+    for(var content in newContents) {
+        var contentName = content['File_Name']
+        var uploadDate = content['upload_date']
+        var splitPathList = contentName.split('/')
         var addElemTr = document.createElement('tr')
         addElemTr.classList.add('file-row')
         var addElemTdType = document.createElement('td')
@@ -61,23 +62,23 @@ function printContent(newContents) {
         addElemTdType.classList.add('file-type')
         addElemTdName.classList.add('file-name')
         addElemTdDate.classList.add('file-date')
-        if(contentItem.search("/")==-1) {
-            var fileName = contentItem
+        if(contentName[contentName.length - 1] != "/") {
+            var fileName = splitPathList[splitPathList.length - 1]
             addElemTdType.innerText = "파일"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = fileName
             addElemTr.appendChild(addElemTdName)
-            addElemTdDate.innerText = "0000.00.00"
+            addElemTdDate.innerText = uploadDate
             addElemTr.appendChild(addElemTdDate)
             ctBody.appendChild(addElemTr)
         }
         else {
-            var dirName = contentItem.replace("/", "")
+            var dirName = splitPathList[splitPathList.length - 1].replace("/", "")
             addElemTdType.innerText = "폴더"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = dirName
             addElemTr.appendChild(addElemTdName)
-            addElemTdDate.innerText = "0000.00.00"
+            addElemTdDate.innerText = uploadDate
             addElemTr.appendChild(addElemTdDate)
             ctBody.appendChild(addElemTr)
         }
