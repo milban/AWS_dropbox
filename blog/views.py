@@ -25,8 +25,8 @@ class Home_View(View):
 class Login_VIew(View):
 
     def get(self, request):
-        if Access.getuserstate():
-            return redirect('main_page')
+        #if Access.getuserstate():
+            #return redirect('main_page')
         return render(request, 'blog/html/login.html')
 
     def post(self, request):
@@ -46,7 +46,7 @@ class Login_VIew(View):
         except User.DoesNotExist:
             message = "없는 User입니다."
 
-        return render(request, 'blog/html/login.html', {'message': message})
+        #return render(request, 'blog/html/login.html', {'message': message})
 
 
 class Regist_View(View):
