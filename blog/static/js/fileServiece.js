@@ -1,7 +1,6 @@
 var albumBucketName = 'beanuploadtestbucket';
 var bucketRegion = 'ap-northeast-2';
 var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
-// const AWS = require('aws-sdk')
 
 // AWS.config.update({
 //   region: bucketRegion,
@@ -38,7 +37,9 @@ function getCookie(cName) {
 
 window.addEventListener('DOMContentLoaded', function() {
     console.log("userId: " + getCookie('userId'))
-    currentPath = document.querySelector('#current-dir').innerText+"/"
+    currentDir = document.querySelector('#current-dir')
+    currentDir.innerText = getCookie('userId')
+    currentPath = currentDir.innerText+"/"
     postContentsOfDirAndPrint(currentPath)
 })
 
@@ -91,7 +92,8 @@ var ctBody = document.querySelector('.c-table')
     parameter: [{"File_Name": "KhuKhuBox/Q1_score.pdf", "upload_date": "2019-06-08T13:33:43.785442+09:00"}, {...}, ...]
 */
 function printContent(newContents) {
-    ctBody.innerHTML = ""
+    var htmlFileList = document.querySelector('.file-list')
+    htmlFileList.innerHTML = ""
     console.log(newContents)
     console.log(typeof(newContents))
     for(var idx in newContents) {
@@ -103,31 +105,42 @@ function printContent(newContents) {
         var splitPathList = contentName.split('/')
         var addElemTr = document.createElement('tr')
         addElemTr.classList.add('file-row')
+        var addElemTdSelect = document.createElement('td')
+        var addElemChBox = document.createElement('input')
+        addElemChBox.setAttribute('type', 'checkbox')
+        addElemChBox.setAttribute('name', 'check-file')
+        addElemTdSelect.appendChild(addElemChBox)
         var addElemTdType = document.createElement('td')
         var addElemTdName = document.createElement('td')
         var addElemTdDate = document.createElement('td')
+        addElemTdSelect.classList.add('file-select')
         addElemTdType.classList.add('file-type')
         addElemTdName.classList.add('file-name')
         addElemTdDate.classList.add('file-date')
+
         if(contentName[contentName.length - 1] != "/") {
             var fileName = splitPathList[splitPathList.length - 1]
+            addElemChBox.setAttribute('value', fileName)
+            addElemTr.appendChild(addElemTdSelect)
             addElemTdType.innerText = "파일"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = fileName
             addElemTr.appendChild(addElemTdName)
             addElemTdDate.innerText = uploadDate
             addElemTr.appendChild(addElemTdDate)
-            ctBody.appendChild(addElemTr)
+            htmlFileList.appendChild(addElemTr)
         }
         else {
             var dirName = splitPathList[splitPathList.length - 1].replace("/", "")
+            addElemChBox.setAttribute('value', dirName)
+            addElemTr.appendChild(addElemTdSelect)
             addElemTdType.innerText = "폴더"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = dirName
             addElemTr.appendChild(addElemTdName)
             addElemTdDate.innerText = uploadDate
             addElemTr.appendChild(addElemTdDate)
-            ctBody.appendChild(addElemTr)
+            htmlFileList.appendChild(addElemTr)
         }
     }
 }
