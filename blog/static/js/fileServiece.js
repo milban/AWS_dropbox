@@ -42,7 +42,10 @@ function postContentsOfDirAndPrint(toRqPath) {
             console.log("데이터 전부 받음")
             if(xhr.status == 200) {
                 console.log(xhr.response)
-                printContent(xhr.response)
+                var strFileList = xhr.response
+                var arrayFileList = JSON.parse(strFileList)
+                console.log(strFileList)
+                //printContent(xhr.response)
             }
         } else {
             console.log("xhr response error")
