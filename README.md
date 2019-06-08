@@ -6,6 +6,15 @@
 * 파일 업로드
   * db에 등록
   * 새로 등록한 파일까지 파일 리스트 띄우기
+* 파일 삭제
+  * 파일 삭제 Event 만들기
+  * Event 발생 시 서버에 파일 삭제 요청하기
+  * Response 받기
+  * Response 받은 후, 프론트 파일리스트에서도 지우기
+* 파일 다운로드, 공유
+  * 서버에 해당 경로 preSignedURL 요청
+  * Response 받기
+  * url 사용해서 다운로드 구현
 * 로그인
 * 회원가입
 * 유저가 업로드시, 파일 경로 REST로 보내기
@@ -19,15 +28,10 @@
 ## Front
 * S3
  * multipart upload
-* 파일 다운로드, 공유
-  * 서버에 해당 경로 preSignedURL 요청
-  * Response 받기
-  * url 사용해서 다운로드 구현
 * 파일 삭제
-  * 파일 삭제 Event 만들기
-  * Event 발생 시 서버에 파일 삭제 요청하기
-  * Response 받기
-  * Response 받은 후, 프론트 파일리스트에서도 지우기
-* jwt token 처리
+  * 다중 파일 삭제 (백엔드와 협업 필요)
 ## Backend
-* 중복 파일 upload시 db 에
+* 중복 파일 upload시 에러 발생 처리
+* 다중 파일 delete 처리
+  * 프론트에서 파일 네임을 리스트로 묶어서 줌
+* 버켓 만들어주기
