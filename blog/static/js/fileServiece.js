@@ -2,17 +2,17 @@ var albumBucketName = 'beanuploadtestbucket';
 var bucketRegion = 'ap-northeast-2';
 var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
 
-AWS.config.update({
-  region: bucketRegion,
-  credentials: new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: IdentityPoolId
-  })
-});
+// AWS.config.update({
+//   region: bucketRegion,
+//   credentials: new AWS.CognitoIdentityCredentials({
+//     IdentityPoolId: IdentityPoolId
+//   })
+// });
 
-var s3 = new AWS.S3({
-  apiVersion: '2006-03-01',
-  params: {Bucket: albumBucketName}
-});
+// var s3 = new AWS.S3({
+//   apiVersion: '2006-03-01',
+//   params: {Bucket: albumBucketName}
+// });
 
 //var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
