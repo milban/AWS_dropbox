@@ -122,6 +122,12 @@ body {
     font-size: 16px;
 }
 
+.fc-btn:hover {
+    background-color: #4CAF50;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
 .download {
     background-color: #008CBA;
 }
