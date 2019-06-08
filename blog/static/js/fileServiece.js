@@ -58,8 +58,8 @@ var ctBody = document.querySelector('.c-table')
 */
 function printContent(newContents) {
     console.log(newContents)
-    for(var content in newContents) {
-        console.log(content)
+    for(var idx in newContents) {
+        var content = newContents[idx]
         var contentName = content['File_Name']
         var uploadDate = content['upload_date']
         var splitPathList = contentName.split('/')
