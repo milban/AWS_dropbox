@@ -3,6 +3,7 @@ var content = document.querySelector('.content')
 var currentPath // 파일이름 뺀 현재 경로
 var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
+var returned_data
 var fileListFromServer
 var pastPathList
 
