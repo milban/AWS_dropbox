@@ -3,18 +3,23 @@ var content = document.querySelector('.content')
 var currentPath // 파일이름 뺀 현재 경로
 var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
+var fileListFromServer
 var pastPathList
+
+var saveFileList = function(returned_data) {
+    fileListFromServer = returned_data
+}
 
 window.addEventListener('DOMContentLoaded', function() {
     currentPath = document.querySelector('#current-dir').innerText+"/"
-    var fileList = postContentsOfDir(currentPath)
+    postContentsOfDir(currentPath, saveFileList)
     console.log("fileList: ")
-    console.log(fileList)
-    printContent(fileList)
+    console.log(fileListFromServer)
+    //printContent(fileList)
 })
 
 // dir안의 file, dir 정보 요청하기
-function postContentsOfDir(toRqPath) {
+function postContentsOfDir(toRqPath, callback) {
     const xhr = new XMLHttpRequest()
     console.log('currentPath: '+toRqPath)
     var formdata = new FormData();
@@ -44,7 +49,7 @@ function postContentsOfDir(toRqPath) {
             console.log("데이터 전부 받음")
             if(xhr.status == 200) {
                 console.log(xhr.response)
-                return xhr.response
+                callback.apply(this, xhr.response)
             }
         } else {
             console.log("xhr response error")
