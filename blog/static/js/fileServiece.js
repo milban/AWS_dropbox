@@ -32,7 +32,7 @@ function postContentsOfDir(toRqPath) {
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     //xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.onreadystatechange = function() {
-        if(xhr.status==200 && xhr.readystate == 4) {
+        if(xhr.status==200 && xhr.readyState == 4) {
             console.log(xhr.response)
             return xhr.response
             xhr.onprogress = function(evt) {
