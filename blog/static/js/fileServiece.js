@@ -155,7 +155,6 @@ form.onsubmit = function() {
     console.log("curPath: " + currentPath)
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
-    // todo: response 받아서 front에 파일 추가해 보여주기
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
             console.log(xhr.responseText)
