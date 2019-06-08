@@ -6,6 +6,8 @@ var BUCKET_NAME = '' //버킷 이름
 const USER_KEY = '' //유저 액세스 키
 const USER_SECRET = '' //비밀키
 
+var loc = localStorage('userID', userID)
+loc.getElementById('userID')
 
 var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
