@@ -44,8 +44,8 @@ function postContentsOfDirAndPrint(toRqPath) {
                 console.log(xhr.response)
                 var strFileList = xhr.response
                 var arrayFileList = JSON.parse(strFileList)
-                console.log(strFileList)
-                //printContent(xhr.response)
+                console.log(arrayFileList)
+                printContent(arrayFileList)
             }
         } else {
             console.log("xhr response error")
