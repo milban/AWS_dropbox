@@ -49,7 +49,7 @@ function postContentsOfDir(toRqPath, callback) {
             console.log("데이터 전부 받음")
             if(xhr.status == 200) {
                 console.log(xhr.response)
-                callback.apply(this, xhr.response)
+                callback.apply(this, [xhr.response])
             }
         } else {
             console.log("xhr response error")
