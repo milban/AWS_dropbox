@@ -140,6 +140,7 @@ function printContent(newContents) {
 // 디렉토리/파일 클릭 시
 function ctBodyClickHandler(e) {
     if(!e.target.parentElement.classList.contains('file-row')) return
+    console.log("file-row click!")
     var htmlFileList = document.querySelector('.file-list')
     var userClickRow = e.target.parentElement
     var fileType = userClickRow.querySelector('.file-type').innerText
@@ -154,25 +155,6 @@ function ctBodyClickHandler(e) {
     }
 }
 ctBody.addEventListener('click', ctBodyClickHandler)
-
-// 유저가 체크박스 선택 시
-var checkBoxs = document.getElementsByName('check-file')
-function checkBoxEventHandler() {
-  var checked = false
-  for(var i=0; i<checkBoxs.length; i++) {
-    if(checkBoxs[i].checked) {
-      checked = true
-      break
-    }
-  }
-  if(checked) {
-    console.log("file checked")
-    // todo: 다운로드, 삭제 등 버튼 생성
-  } else {
-    console.log("any file checked")
-  }
-}
-checkBoxs.addEventListener('click', checkBoxEventHandler)
 
 // 유저가 업로드할 파일 선택시
 var btn = document.querySelector('.button')
