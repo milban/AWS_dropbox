@@ -144,11 +144,10 @@ class Main_View(View):
         #    "file_name" : "파일이름",  ex > KhuKhuBox/file.txt
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "file_delete":
-            file_name = request.POST.get("file_name")
-            self.file_delete(file_name)  # DB 파일제거
-
-            file_name = request.POST.get("file_name")
             path = request.POST.get("curPath")
+            file_name = path+request.POST.get("file_name")
+            self.file_delete(file_name)  # DB 파일제거
+            
             # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
             file_name = file_name[len(path):]
             #self.bucket_delete_file(file_name)  # S3 파일제거
