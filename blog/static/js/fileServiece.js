@@ -105,9 +105,11 @@ function printContent(newContents) {
         var splitPathList = contentName.split('/')
         var addElemTr = document.createElement('tr')
         addElemTr.classList.add('file-row')
+        var addElemTdSelect = document.createElement('td')
         var addElemTdType = document.createElement('td')
         var addElemTdName = document.createElement('td')
         var addElemTdDate = document.createElement('td')
+        addElemTdSelect.classList.add('file-select')
         addElemTdType.classList.add('file-type')
         addElemTdName.classList.add('file-name')
         addElemTdDate.classList.add('file-date')
@@ -119,7 +121,7 @@ function printContent(newContents) {
             addElemTr.appendChild(addElemTdName)
             addElemTdDate.innerText = uploadDate
             addElemTr.appendChild(addElemTdDate)
-            ctBody.appendChild(addElemTr)
+            htmlFileList.appendChild(addElemTr)
         }
         else {
             var dirName = splitPathList[splitPathList.length - 1].replace("/", "")
@@ -129,7 +131,7 @@ function printContent(newContents) {
             addElemTr.appendChild(addElemTdName)
             addElemTdDate.innerText = uploadDate
             addElemTr.appendChild(addElemTdDate)
-            ctBody.appendChild(addElemTr)
+            htmlFileList.appendChild(addElemTr)
         }
     }
 }
