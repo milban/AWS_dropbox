@@ -17,16 +17,16 @@ from blog.serializers import FileSerializer
 
 class Home_View(View):
     def get(self, request):
-        if Access.getuserstate():
-            return redirect('main_page')
+        #if Access.getuserstate():
+            #return redirect('main_page')
         return render(request, 'blog/html/index.html')
 
 
 class Login_VIew(View):
 
     def get(self, request):
-        if Access.getuserstate():
-            return redirect('main_page')
+        #if Access.getuserstate():
+            #return redirect('main_page')
         return render(request, 'blog/html/login.html')
 
     def post(self, request):
@@ -133,7 +133,7 @@ class Main_View(View):
         elif request.POST.get("request") == "file_upload":
             file_name = request.POST.get("file_name")
             path = request.POST.get("curPath")
-            #self.bucket_put_file(file_name)
+            # self.bucket_put_file(file_name)
             self.file_save(path + file_name)  # ex > KhuKhuBox/file.txt
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")

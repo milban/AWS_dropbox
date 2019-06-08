@@ -192,6 +192,10 @@ function downloadFile(filekey){
         + ".amazonaws.com/" + filekey)
 }
 
+function downloadFileFromURL(url){
+    window.location.assign(url)
+}
+
 function addFile(albumName) {    
     var files = document.getElementById('photoupload').files;
     if (!files.length) {
