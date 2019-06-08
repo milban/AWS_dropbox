@@ -60,7 +60,9 @@ function printContent(newContents) {
     console.log(newContents)
     for(var idx in newContents) {
         var content = newContents[idx]
+        console.log(content)
         var contentName = content['File_Name']
+        console.log(contentName)
         var uploadDate = content['upload_date']
         var splitPathList = contentName.split('/')
         var addElemTr = document.createElement('tr')
