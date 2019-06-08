@@ -58,6 +58,7 @@ var ctBody = document.querySelector('.c-table')
 */
 function printContent(newContents) {
     console.log(newContents)
+    console.log(typeof(newContents))
     for(var idx in newContents) {
         var content = newContents[idx]
         console.log(content)
