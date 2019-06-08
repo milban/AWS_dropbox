@@ -145,6 +145,7 @@ form.onsubmit = function() {
             }
         } else {
             console.log("xhr response error")
+            console.log(xhr.statusText)
         }
     }
     xhr.send(formdata) // Request 전송
