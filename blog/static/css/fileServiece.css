@@ -104,6 +104,7 @@ body {
 }
 
 .file-control {
+    text-align: center;
     width: 30%;
     padding: 20px;
     margin-bottom: 20px;
@@ -111,6 +112,7 @@ body {
 }
 
 .fc-btn {
+    width: 70%;
     border: none;
     color: white;
     padding: 15px 32px;
