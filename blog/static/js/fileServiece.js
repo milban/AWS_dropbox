@@ -321,8 +321,7 @@ function btnDelClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
     var filenameArr = []
     const xhr = new XMLHttpRequest()
-    var formdata = new FormData()
-    for(var i=0; i < chkArr.length; i++){
+    for(let i=0; i < chkArr.length; i++){
         if(chkArr[i].checked == true){
             console.log(chkArr[i])  
             filenameArr.append(chkArr[i].value)
@@ -350,6 +349,7 @@ function btnDelClickEventHandler() {
         }
     }
     xhr.send(formdata) // Request 전송
+
 }
 delbtn.addEventListener('click', btnDelClickEventHandler)
 
