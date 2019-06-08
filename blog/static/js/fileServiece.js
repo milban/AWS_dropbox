@@ -356,7 +356,6 @@ function btnDelClickEventHandler() {
             //currentDir = document.querySelector('#current-dir')
             //currentDir.innerText = getCookie('userId')
             //currentPath = currentDir.innerText+"/"
-            postContentsOfDirAndPrint(currentPath)
             }    
         } 
 }
