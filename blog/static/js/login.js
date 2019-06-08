@@ -5,3 +5,8 @@ form.onsubmit = function() {
     //document.cookie = "userId="+userId
     return true;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log(form)
+    console.log(document.querySelector('#userid'))
+})
