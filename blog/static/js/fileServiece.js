@@ -5,14 +5,14 @@ var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
 var pastPathList
 
+
 window.addEventListener('DOMContentLoaded', function() {
     currentPath = document.querySelector('#current-dir').innerText+"/"
-    postContentsOfDir(currentPath)
-    printContent(newCtt)
+    postContentsOfDirAndPrint(currentPath)
 })
 
-// dir안의 file, dir 정보 요청하기
-function postContentsOfDir(toRqPath) {
+// dir안의 file, dir 정보 요청하고, 파일리스트 프린트
+function postContentsOfDirAndPrint(toRqPath) {
     const xhr = new XMLHttpRequest()
     console.log('currentPath: '+toRqPath)
     var formdata = new FormData();
@@ -30,9 +30,22 @@ function postContentsOfDir(toRqPath) {
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     //xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.onreadystatechange = function() {
-        if(xhr.status==200) {
-            console.log(xhr.response)
-            xhr.onprogress = function(evt) {
+        if(xhr.readyState == 0) {
+            console.log("객체 생성, open()메서드 호출 X")
+        } else if(xhr.readyState == 1) {
+            console.log("open() 메서드 호출, send()메서드 호출 X")
+        } else if(xhr.readyState == 2) {
+            console.log("send() 호출")
+        } else if(xhr.readyState == 3) {
+            console.log("데이터 처리중")
+        } else if(xhr.readyState == 4) {
+            console.log("데이터 전부 받음")
+            if(xhr.status == 200) {
+                console.log(xhr.response)
+                var strFileList = xhr.response
+                var arrayFileList = JSON.parse(strFileList)
+                console.log(arrayFileList)
+                printContent(arrayFileList)
             }
         } else {
             console.log("xhr response error")
@@ -42,14 +55,21 @@ function postContentsOfDir(toRqPath) {
 }
 
 // 디렉토리/파일 보여주기
-var newCtt = ["abc.txt", "a/", "bcd.txt", "b/"]
 var ctBody = document.querySelector('.c-table')
+/*
+    parameter: [{"File_Name": "KhuKhuBox/Q1_score.pdf", "upload_date": "2019-06-08T13:33:43.785442+09:00"}, {...}, ...]
+*/
 function printContent(newContents) {
-    var cttList = [] // list clear
-    cttList = cttList.concat(newContents)
-    cttList.sort()
-    for(var i=0; i<cttList.length; i++) {
-        contentItem = cttList[i]
+    ctBody.innerHTML = ""
+    console.log(newContents)
+    console.log(typeof(newContents))
+    for(var idx in newContents) {
+        var content = newContents[idx]
+        console.log(content)
+        var contentName = content['File_Name']
+        console.log(contentName)
+        var uploadDate = content['upload_date']
+        var splitPathList = contentName.split('/')
         var addElemTr = document.createElement('tr')
         addElemTr.classList.add('file-row')
         var addElemTdType = document.createElement('td')
@@ -58,23 +78,23 @@ function printContent(newContents) {
         addElemTdType.classList.add('file-type')
         addElemTdName.classList.add('file-name')
         addElemTdDate.classList.add('file-date')
-        if(contentItem.search("/")==-1) {
-            var fileName = contentItem
+        if(contentName[contentName.length - 1] != "/") {
+            var fileName = splitPathList[splitPathList.length - 1]
             addElemTdType.innerText = "파일"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = fileName
             addElemTr.appendChild(addElemTdName)
-            addElemTdDate.innerText = "0000.00.00"
+            addElemTdDate.innerText = uploadDate
             addElemTr.appendChild(addElemTdDate)
             ctBody.appendChild(addElemTr)
         }
         else {
-            var dirName = contentItem.replace("/", "")
+            var dirName = splitPathList[splitPathList.length - 1].replace("/", "")
             addElemTdType.innerText = "폴더"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = dirName
             addElemTr.appendChild(addElemTdName)
-            addElemTdDate.innerText = "0000.00.00"
+            addElemTdDate.innerText = uploadDate
             addElemTr.appendChild(addElemTdDate)
             ctBody.appendChild(addElemTr)
         }
@@ -91,8 +111,8 @@ function ctBodyClickHandler(e) {
         document.querySelector('#current-dir').innerText = currentPath+fileName+"/"
         currentPath = document.querySelector('#current-dir').innerText
         console.log(currentPath)
-        //ctBody.innerHTML = ""
-        //printContent...
+        ctBody.innerHTML = ""
+        postContentsOfDirAndPrint(currentPath)
     }
 }
 ctBody.addEventListener('click', ctBodyClickHandler)
@@ -143,8 +163,12 @@ form.onsubmit = function() {
                 var progressBar = document.querySelector('#progressBar')
                 progressBar.value = evt.loaded/evt.total*100;
             }
+            if(xhr.readyState==4) {
+                postContentsOfDirAndPrint(currentPath)
+            }
         } else {
             console.log("xhr response error")
+            console.log(xhr.statusText)
         }
     }
     xhr.send(formdata) // Request 전송
