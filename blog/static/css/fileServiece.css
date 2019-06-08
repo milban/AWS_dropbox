@@ -55,27 +55,26 @@ body {
 
 .file-property {
     display: flex;
-    text-align: left;
 }
 
 .fp-select {
     padding: 10px 0;
-    width: 50px
+    width: 10%;
 }
 
 .fp-type {
     padding: 10px 0;
-    width: 50px
+    width: 10%;
 }
 
 .fp-name {
     padding: 10px 0;
-    width: 200px
+    width: 50%;
 }
 
 .fp-date {
     padding: 10px 0;
-    width: 200px
+    width: 30%;
 }
 
 .file-row {
@@ -89,19 +88,19 @@ body {
 }
 
 .file-select {
-    width: 50px;
+    width: 10%;
 }
 
 .file-type {
-    width: 50px;
+    width: 10%;
 }
 
 .file-name {
-    width: 200px;
+    width: 50%;
 }
 
 .update-date {
-    width: 200px;
+    width: 30%;
 }
 
 .file-control {
