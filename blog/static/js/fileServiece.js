@@ -320,10 +320,10 @@ var delbtn = document.querySelector('.delete')
 function btnDelClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
     const xhr = new XMLHttpRequest()
-    var formdata = new FormData()
     for(let i=0; i < chkArr.length; i++){
         if(chkArr[i].checked == true){
             console.log(chkArr[i])
+            var formdata = new FormData()
             //filepaths[i]에는 쿠쿠박스/ 다음이 들어있어야 함
             //ex) 선택한 파일이 khukhubox/gagak/a/b/image/jpg 일 경우, filepaths에는 gagak/a/b/image/jpg가 있어야 함
             formdata.append("request", "file_delete")
