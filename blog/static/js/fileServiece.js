@@ -106,6 +106,10 @@ function printContent(newContents) {
         var addElemTr = document.createElement('tr')
         addElemTr.classList.add('file-row')
         var addElemTdSelect = document.createElement('td')
+        var addElemChBox = document.createElement('input')
+        addElemChBox.classList.add('not-check')
+        addElemChBox.setAttribute('type', 'checkbox')
+        addElemTdSelect.appendChild(addElemChBox)
         var addElemTdType = document.createElement('td')
         var addElemTdName = document.createElement('td')
         var addElemTdDate = document.createElement('td')
@@ -115,14 +119,14 @@ function printContent(newContents) {
         addElemTdDate.classList.add('file-date')
 
         addElemTr.appendChild(addElemTdSelect)
-        addElemTdDate.innerText = uploadDate
-        addElemTr.appendChild(addElemTdDate)
         if(contentName[contentName.length - 1] != "/") {
             var fileName = splitPathList[splitPathList.length - 1]
             addElemTdType.innerText = "파일"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = fileName
             addElemTr.appendChild(addElemTdName)
+            addElemTdDate.innerText = uploadDate
+            addElemTr.appendChild(addElemTdDate)
             htmlFileList.appendChild(addElemTr)
         }
         else {

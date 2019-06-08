@@ -59,6 +59,7 @@ body {
 
 .fp-select {
     width: 50px;
+    padding: 10px 0;
 }
 
 .fp-type, fp-name, fp-date {
