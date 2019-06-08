@@ -1,4 +1,7 @@
+<<<<<<< HEAD
     
+=======
+>>>>>>> 32369225986802c96e388cc9557bd649bcde2ffb
 // var form = document.querySelector('.userInfo')
 // form.onsubmit = function() {
 //     var userId = document.querySelector('#userid').textContent
