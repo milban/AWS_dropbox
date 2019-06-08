@@ -62,26 +62,18 @@ function postContentsOfDirAndPrint(toRqPath) {
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     //xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.onreadystatechange = function() {
-        if(xhr.readyState == 0) {
-            console.log("객체 생성, open()메서드 호출 X")
-        } else if(xhr.readyState == 1) {
-            console.log("open() 메서드 호출, send()메서드 호출 X")
-        } else if(xhr.readyState == 2) {
-            console.log("send() 호출")
-        } else if(xhr.readyState == 3) {
-            console.log("데이터 처리중")
-        } else if(xhr.readyState == 4) {
-            console.log("데이터 전부 받음")
-            if(xhr.status == 200) {
-                console.log(xhr.response)
-                var strFileList = xhr.response
-                var arrayFileList = JSON.parse(strFileList)
-                console.log(arrayFileList)
-                printContent(arrayFileList)
-            }
-        } else {
-            console.log("xhr response error")
+      if (xhr.readyState == 4) {
+        console.log("데이터 전부 받음")
+        if (xhr.status == 200) {
+          console.log(xhr.response)
+          var strFileList = xhr.response
+          var arrayFileList = JSON.parse(strFileList)
+          console.log(arrayFileList)
+          printContent(arrayFileList)
         }
+      } else {
+        console.log("xhr response error")
+      }
     }
     xhr.send(formdata) // Request 전송
 }
@@ -147,6 +139,9 @@ function printContent(newContents) {
 
 // 디렉토리/파일 클릭 시
 function ctBodyClickHandler(e) {
+    if(!e.target.parentElement.classList.contains('file-row')) return
+    console.log("file-row click!")
+    var htmlFileList = document.querySelector('.file-list')
     var userClickRow = e.target.parentElement
     var fileType = userClickRow.querySelector('.file-type').innerText
     var fileName = userClickRow.querySelector('.file-name').innerText
@@ -155,14 +150,11 @@ function ctBodyClickHandler(e) {
         document.querySelector('#current-dir').innerText = currentPath+fileName+"/"
         currentPath = document.querySelector('#current-dir').innerText
         console.log(currentPath)
-        ctBody.innerHTML = ""
+        htmlFileList.innerHTML = ""
         postContentsOfDirAndPrint(currentPath)
     }
 }
 ctBody.addEventListener('click', ctBodyClickHandler)
-
-// move to past path
-// 
 
 // 유저가 업로드할 파일 선택시
 var btn = document.querySelector('.button')
