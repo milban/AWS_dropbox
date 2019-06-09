@@ -128,7 +128,8 @@ function printContent(newContents) {
             htmlFileList.appendChild(addElemTr)
         }
         else {
-            var dirName = splitPathList[splitPathList.length - 1].replace("/", "")
+
+            var dirName = splitPathList[splitPathList.length - 2]
             addElemChBox.setAttribute('value', dirName)
             addElemTr.appendChild(addElemTdSelect)
             
@@ -392,6 +393,7 @@ function btnMkdir(dirname) {
 }
 function mkdirPopup(){
     var dirname = prompt( '생성할 폴더명을 입력해주세요', '' );
+    console.log(dirname)
     if(dirname != null){
         btnMkdir(dirname)
     }else{
