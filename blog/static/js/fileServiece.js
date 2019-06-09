@@ -35,7 +35,9 @@ function getCookie(cName) {
       cValue = cookieData.substring(start, end);
   }
   return unescape(cValue);
+  return 'test'
 }
+
 
 window.addEventListener('DOMContentLoaded', function() {
     console.log("userId: " + getCookie('userId'))
