@@ -62,6 +62,11 @@ class Regist_View(View):
         form = UserRegistForm(request.POST)
         if form.is_valid():
             form.save()
+            user_id = form.cleaned_data['User_Id']
+            userfile = File(File_Name=user_id + "/",
+                            Owner=User.objects.get(User_Id=user_id),
+                            upload_date=timezone.now())
+            userfile.save()
             return redirect('login_page')
         else:
             self.message = "Regist Error"
@@ -115,7 +120,6 @@ class Main_View(View):
         #    "curPath" : "디렉토리 이름"} ex > KhuKhuBox/
         if request.POST.get("request") == "file_load":
             self.curPath = request.POST.get("curPath")
-            print(self.curPath)
             user_id = request.POST.get("user_id")
             self.fileStorage = File.objects.filter(Owner__User_Id=user_id)
             print(self.fileStorage)
@@ -140,8 +144,8 @@ class Main_View(View):
             file_name = request.POST.get("file_name")
             user_id = request.POST.get("user_id")
             path = request.POST.get("curPath")
-            self.bucket_put_file(file_name, user_id)
-            self.file_save(path + file_name)  # ex > KhuKhuBox/file.txt
+            # self.bucket_put_file(file_name, user_id)
+            self.file_save(path + file_name, user_id)  # ex > KhuKhuBox/file.txt
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
@@ -156,7 +160,7 @@ class Main_View(View):
             user_id = request.POST.get("user_id")
             filelist = file_name.split(",")
             for file in filelist:
-                self.file_delete(file,user_id)  # DB 파일제거
+                self.file_delete(file, user_id)  # DB 파일제거
 
             file_name = request.POST.get("file_name")
             path = request.POST.get("curPath")
@@ -179,7 +183,7 @@ class Main_View(View):
             path = request.POST.get("curPath")
             # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
             file_name = file_name[len(path):]
-            file_url = self.bucket_download_file(file_name,user_id)  # url 받아오기
+            file_url = self.bucket_download_file(file_name, user_id)  # url 받아오기
             print(file_url)
 
             context = {'file_url': file_url}
@@ -191,9 +195,9 @@ class Main_View(View):
         #    "user_id" : "유저이름", ex > user
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "create_directory":
-            directory_name = request.POST.get("create_directory")
+            directory_name = request.POST.get("curPath")
             user_id = request.POST.get("user_id")
-            self.file_save(directory_name,user_id)
+            self.file_save(directory_name, user_id)
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
@@ -205,7 +209,7 @@ class Main_View(View):
         elif request.POST.get("request") == "delete_directory":
             directory_name = request.POST.get("delete_directory")
             user_id = request.POST.get("user_id")
-            self.file_delete(directory_name,user_id)
+            self.file_delete(directory_name, user_id)
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
@@ -229,7 +233,7 @@ class Main_View(View):
                         upload_date=timezone.now())
         userfile.save()
 
-    def file_delete(self, file_name,user_id):
+    def file_delete(self, file_name, user_id):
         userfile = File.objects.get(File_Name=file_name, Owner=User.objects.get(User_Id=user_id))
         userfile.delete()
 

@@ -4,10 +4,6 @@
 {% csrf_token %}
 
 <head>
-    <script language="javascript">
-        function showPopup() { window.open("popup.html", "mkdirpopup", "width=400, height=300, left=100, top=50"); }
-    </script>
-
     <meta charset="utf-8">
     <title>KhuKhuBox</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,8 +48,8 @@
                 </form>
                 <div><button class="fc-btn download" type="button">DOWNLOAD</button></div>
                 <div><button class="fc-btn delete" type="button">DELETE</button></div>
-                <div><button class="fc-btn share" type="button">SHARE</button></div>
-                <div><button class="fc-btn mkdir" type="button">NEW FOLDER</button></div>
+                <div><button class="fc-btn share" type="button" onclick = sharePopup()>SHARE</button></div>
+                <div><button class="fc-btn mkdir" type="button" onclick = mkdirPopup()>NEW FOLDER</button></div>
             </div>
         </div>
     </div>

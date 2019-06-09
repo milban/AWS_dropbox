@@ -324,12 +324,14 @@ function btnDelClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
     var filenameArr = []
     const xhr = new XMLHttpRequest()
+    var formdata = new FormData();
     for(let i=0; i < chkArr.length; i++){
         if(chkArr[i].checked == true){
             console.log(chkArr[i])  
             filenameArr.append(chkArr[i].value)
         }    
     }
+    
     formdata.append("request", "file_delete")
     formdata.append("file_name", filenameArr)
     formdata.append("curPath", currentPath)
@@ -357,25 +359,17 @@ function btnDelClickEventHandler() {
 delbtn.addEventListener('click', btnDelClickEventHandler)
 
 //폴더생성버튼 클릭시
-var mkdirbtn = document.querySelector('.mkdir')
-function btnMkdirClickEventHandler() {
-    var chkArr = document.getElementsByName("check-file")
-    var filenameArr = []
+function btnMkdir(dirname) {
     const xhr = new XMLHttpRequest()
-    for(let i=0; i < chkArr.length; i++){
-        if(chkArr[i].checked == true){
-            console.log(chkArr[i])  
-            filenameArr.append(chkArr[i].value)
-        }    
-    }
-    formdata.append("request", "file_delete")
-    formdata.append("file_name", filenameArr)
-    formdata.append("curPath", currentPath)
+    var formdata = new FormData();
+    formdata.append("request", "create_directory")
+    formdata.append("user_id", getCookie('userId'))
+    formdata.append("curPath", currentPath + dirname + '/')
     const url =""
 
-    console.log("file_name: " + chkArr[i].value)
-    console.log("curPath: " + currentPath)
-        
+    console.log("user_id" + ':' + getCookie('userId'))
+    console.log("curPath: " + currentPath + dirname + '/') 
+    
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
@@ -390,10 +384,54 @@ function btnMkdirClickEventHandler() {
         }
     }
     xhr.send(formdata) // Request 전송
-
 }
-mkdirbtn.addEventListener('click', btnMkdirClickEventHandler)
+function mkdirPopup(){
+    var dirname = prompt( '생성할 폴더명을 입력해주세요', '' );
+    btnMkdir(dirname)
+}
 
+//URL공유버튼 클릭시
+function btnShare() {
+    var chkArr = document.getElementsByName("check-file")
+    var filenameArr = []
+    const xhr = new XMLHttpRequest()
+    var formdata = new FormData();
+    for(let i=0; i < chkArr.length; i++){
+        if(chkArr[i].checked == true){
+            console.log(chkArr[i])  
+            filenameArr.append(currentPath + chkArr[i].value)
+        }    
+    }
+    if(chkArr.length == 0 || chkArr.length > 1){
+        return 'Please select one file'
+    }
+    formdata.append("request", "file_download")
+    formdata.append("file_name", filenameArr[0])
+    formdata.append("user_id", getCookie('userId'))
+    formdata.append("curPath", currentPath)
+    const url =""
+
+    console.log("file_name: " + filenameArr[0])
+    console.log("curPath: " + currentPath)
+        
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈
+    xhr.onreadystatechange = function() {
+        if(xhr.status==200) {
+            console.log(xhr.responseText)
+            if(xhr.readyState==4) {
+                console.log(xhr.response)
+            }
+        } else {
+            console.log("xhr response error")
+            console.log(xhr.statusText)
+        }
+    }
+    xhr.send(formdata) // Request 전송
+    return 'sample url'
+}
+function sharePopup(){    
+    alert( btnShare(), '' );
+}
 
 //===========================
 //===========================
