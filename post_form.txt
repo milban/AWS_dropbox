@@ -3,6 +3,7 @@ POST ~/main/
 form data
 {
   "request" : "file_load",
+  "user_id" : "유저이름", ex > user
   "curPath" : "디렉토리 이름"    ex > KhuKhuBox/
 }
 
@@ -37,6 +38,7 @@ form data
 {
   "request" : "file_upload",
   "file_name" : "파일이름",  ex > file.txt
+  "user_id" : "유저이름", ex > user
   "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
 }
 
@@ -62,6 +64,7 @@ form data
 {
   "request" : "file_delete",
   "file_name" : "파일이름",  ex > file.txt
+  "user_id" : "유저이름", ex > user
   "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
 }
 
@@ -87,6 +90,7 @@ form data
 {
   "request" : "file_download",
   "file_name" : "파일이름",  ex > KhuKhuBox/file.txt
+  "user_id" : "유저이름", ex > user
   "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
 }
 
@@ -111,6 +115,7 @@ POST ~/main/
 form data
 {
   "request" : "create_directory",
+  "user_id" : "유저이름", ex > user
   "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
 }
 
@@ -136,6 +141,7 @@ POST ~/main/
 form data
 {
   "request" : "delete_directory",
+  "user_id" : "유저이름", ex > user
   "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
 }
 
