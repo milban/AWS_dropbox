@@ -16,10 +16,12 @@ var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
 
 //var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
-var currentPath // 파일이름 뺀 현재 경로
+var currentPath  = null// 파일이름 뺀 현재 경로
 var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
-var pastPathList
+
+var pastPathListDropdown = document.getElementById('locDropdown')
+var pastPathList = []
 
 function getCookie(cName) {
     console.log(cName)
@@ -38,7 +40,7 @@ function getCookie(cName) {
 }
 
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function() {    
     console.log("userId: " + getCookie('userId'))
     currentDir = document.querySelector('#current-dir')
     currentDir.innerText = getCookie('userId') + '/'
@@ -148,6 +150,13 @@ function printContent(newContents) {
 function ctBodyClickHandler(e) {
     if(!e.target.parentElement.classList.contains('file-row')) return
     console.log("file-row click!")
+    if(currentPath != null){
+        var option = document.createElement('option')
+        option.text = currentPath
+        option.id = 'locationItem'
+        option.value = currentPath
+        pastPathListDropdown.add(option)
+    }
     var htmlFileList = document.querySelector('.file-list')
     var userClickRow = e.target.parentElement
     var fileType = userClickRow.querySelector('.file-type').innerText
@@ -208,6 +217,7 @@ form.onsubmit = function() {
             }
             if(xhr.readyState==4) {
                 postContentsOfDirAndPrint(currentPath)
+                console.log(xhr.responseText)
             }
         } else {
             console.log("xhr response error")
@@ -332,6 +342,10 @@ function btnDownClickEventHandler() {
             if(xhr.readyState==4) {
                 console.log(xhr.response)
                 postContentsOfDirAndPrint(currentPath)
+                var urllist = xhr.response['file_url'] //응답으로부터 url리스트 가져옴
+                for(let i=0; i < urllist.length; i++){
+                    window.location.assign(urllist[i])
+                }               
             }
         } else {
             console.log("xhr response error")
@@ -449,7 +463,7 @@ function btnShare() {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
                 console.log(xhr.response)
-                
+                alert("url link : " + xhr.response['file_url'])
             }
         } else {
             console.log("xhr response error")
@@ -463,5 +477,17 @@ function sharePopup(){
     alert( btnShare(), '' );
 }
 
+//드롭다운으로 디렉토리 이동
+var locationbtn = document.querySelector('#locDropdown')
+function btnMoveEventHandler() {
+    if(locationbtn.value != 'location1'){
+        currentDir = document.querySelector('#current-dir')
+        currentDir.innerText = locationbtn.value
+        postContentsOfDirAndPrint(locationbtn.value)
+        console.log('moved to ' + locationbtn.value)
+        locationbtn.value = 'location1'        
+    }    
+}
+locationbtn.addEventListener('click', btnMoveEventHandler)
 //===========================
 //===========================
