@@ -111,10 +111,14 @@ class Main_View(View):
         # 파일 리스트 불러오기
         # form data
         # {  "request" : "file_load",
+        #    "user_id" : "유저이름", ex > user
         #    "curPath" : "디렉토리 이름"} ex > KhuKhuBox/
         if request.POST.get("request") == "file_load":
             self.curPath = request.POST.get("curPath")
-            self.fileStorage = File.objects.filter(Owner__User_Id=Access.getuserid())
+            print(self.curPath)
+            user_id = request.POST.get("user_id")
+            self.fileStorage = File.objects.filter(Owner__User_Id=user_id)
+            print(self.fileStorage)
             for file in self.fileStorage:
                 if file.File_Name.find(self.curPath) == 0:
                     name = file.File_Name[len(self.curPath):]
@@ -130,11 +134,13 @@ class Main_View(View):
         # form data
         # {  "request" : "file_upload",
         #    "file_name" : "파일이름",  ex > file.txt
+        #    "user_id" : "유저이름", ex > user
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "file_upload":
             file_name = request.POST.get("file_name")
+            user_id = request.POST.get("user_id")
             path = request.POST.get("curPath")
-            # self.bucket_put_file(file_name)
+            self.bucket_put_file(file_name, user_id)
             self.file_save(path + file_name)  # ex > KhuKhuBox/file.txt
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
@@ -143,20 +149,21 @@ class Main_View(View):
         # form data
         # {  "request" : "file_delete",
         #    "file_name" : "파일이름",  ex > file.txt
+        #    "user_id" : "유저이름", ex > user
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "file_delete":
             file_name = request.POST.get("file_name")
+            user_id = request.POST.get("user_id")
             filelist = file_name.split(",")
             for file in filelist:
-                print(file)
-                self.file_delete(file)  # DB 파일제거
+                self.file_delete(file,user_id)  # DB 파일제거
 
             file_name = request.POST.get("file_name")
             path = request.POST.get("curPath")
 
             # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
             file_name = file_name[len(path):]
-            # self.bucket_delete_file(file_name)  # S3 파일제거
+            # self.bucket_delete_file(file_name, user_id)  # S3 파일제거
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
@@ -164,13 +171,15 @@ class Main_View(View):
         # form data
         # {  "request" : "file_download",
         #    "file_name" : "파일이름",  ex > KhuKhuBox/file.txt
+        #    "user_id" : "유저이름", ex > user
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "file_download":
             file_name = request.POST.get("file_name")
+            user_id = request.POST.get("user_id")
             path = request.POST.get("curPath")
             # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
             file_name = file_name[len(path):]
-            file_url = self.bucket_download_file(file_name)  # url 받아오기
+            file_url = self.bucket_download_file(file_name,user_id)  # url 받아오기
             print(file_url)
 
             context = {'file_url': file_url}
@@ -179,45 +188,49 @@ class Main_View(View):
         # 디렉토리 생성
         # form data
         # {  "request" : "create_directory",
+        #    "user_id" : "유저이름", ex > user
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "create_directory":
             directory_name = request.POST.get("create_directory")
-            self.file_save(directory_name)
+            user_id = request.POST.get("user_id")
+            self.file_save(directory_name,user_id)
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
         # 디렉토리 삭제
         # form data
         # {  "request" : "delete_directory",
+        #    "user_id" : "유저이름", ex > user
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "delete_directory":
             directory_name = request.POST.get("delete_directory")
-            self.file_delete(directory_name)
+            user_id = request.POST.get("user_id")
+            self.file_delete(directory_name,user_id)
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
         return render(request, 'blog/html/fileService.html')
 
-    def bucket_put_file(self, file_name):
-        print(self.mybucket.put_object(Access.getuserid(), file_name))
+    def bucket_put_file(self, file_name, user_id):
+        print(self.mybucket.put_object(user_id, file_name))
         # view 요청이 끝나면 Main_View의 object가 소멸해서 filelist에 설정해도 사라짐.
         # self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
-    def bucket_delete_file(self, file_name):
-        self.mybucket.delete_object(Access.getuserid(), file_name)
+    def bucket_delete_file(self, file_name, user_id):
+        self.mybucket.delete_object(user_id, file_name)
         # view 요청이 끝나면 Main_View의 object가 소멸해서 filelist에 설정해도 사라짐.
         # self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
-    def bucket_download_file(self, file_name):
-        return self.mybucket.download_object(Access.getuserid(), file_name)
+    def bucket_download_file(self, file_name, user_id):
+        return self.mybucket.download_object(user_id, file_name)
 
-    def file_save(self, file_name):
-        userfile = File(File_Name=file_name, Owner=User.objects.get(User_Id=Access.getuserid()),
+    def file_save(self, file_name, user_id):
+        userfile = File(File_Name=file_name, Owner=User.objects.get(User_Id=user_id),
                         upload_date=timezone.now())
         userfile.save()
 
-    def file_delete(self, file_name):
-        userfile = File.objects.get(File_Name=file_name, Owner=User.objects.get(User_Id=Access.getuserid()))
+    def file_delete(self, file_name,user_id):
+        userfile = File.objects.get(File_Name=file_name, Owner=User.objects.get(User_Id=user_id))
         userfile.delete()
 
 
