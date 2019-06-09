@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-    
-=======
 // var form = document.querySelector('.userInfo')
 // form.onsubmit = function() {
 //     var userId = document.querySelector('#userid').textContent
