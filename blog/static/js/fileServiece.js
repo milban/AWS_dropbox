@@ -344,7 +344,7 @@ function btnDownClickEventHandler() {
                 postContentsOfDirAndPrint(currentPath)
                 var urllist = xhr.response['file_url'] //응답으로부터 url리스트 가져옴
                 for(let i=0; i < urllist.length; i++){
-                    window.location.assign(urllist[i])
+                    window.open(urllist[i])
                 }               
             }
         } else {
@@ -483,6 +483,7 @@ function btnMoveEventHandler() {
     if(locationbtn.value != 'location1'){
         currentDir = document.querySelector('#current-dir')
         currentDir.innerText = locationbtn.value
+        currentPath=locationbtn.value
         postContentsOfDirAndPrint(locationbtn.value)
         console.log('moved to ' + locationbtn.value)
         locationbtn.value = 'location1'        
