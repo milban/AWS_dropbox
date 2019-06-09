@@ -129,7 +129,7 @@ function printContent(newContents) {
         }
         else {
 
-            var dirName = splitPathList[splitPathList.length - 2]
+            var dirName = splitPathList[splitPathList.length - 2] + '/'
             addElemChBox.setAttribute('value', dirName)
             addElemTr.appendChild(addElemTdSelect)
             
@@ -339,7 +339,7 @@ function btnDelClickEventHandler() {
     formdata.append("request", "file_delete")
     formdata.append("file_name", filenameArr)
     formdata.append("user_id", getCookie('userId'))
-    formdata.append("curPath", currentPath)  
+    formdata.append("curPath", currentPath)
     
     const url =""
 
