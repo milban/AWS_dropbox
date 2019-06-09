@@ -35,7 +35,6 @@ function getCookie(cName) {
       cValue = cookieData.substring(start, end);
   }
   return unescape(cValue);
-  return 'test'
 }
 
 
