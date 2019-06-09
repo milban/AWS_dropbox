@@ -17,16 +17,16 @@ from blog.serializers import FileSerializer
 
 class Home_View(View):
     def get(self, request):
-        #if Access.getuserstate():
-            #return redirect('main_page')
+        # if Access.getuserstate():
+        # return redirect('main_page')
         return render(request, 'blog/html/index.html')
 
 
 class Login_VIew(View):
 
     def get(self, request):
-        #if Access.getuserstate():
-            #return redirect('main_page')
+        # if Access.getuserstate():
+        # return redirect('main_page')
         return render(request, 'blog/html/login.html')
 
     def post(self, request):
@@ -145,7 +145,6 @@ class Main_View(View):
         #    "file_name" : "파일이름",  ex > file.txt
         #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
         elif request.POST.get("request") == "file_delete":
-<<<<<<< HEAD
             file_name = request.POST.get("file_name")
             filelist = file_name.split(",")
             for file in filelist:
@@ -153,15 +152,11 @@ class Main_View(View):
                 self.file_delete(file)  # DB 파일제거
 
             file_name = request.POST.get("file_name")
-=======
->>>>>>> efbb55f9f26dbd977eb6ffa322b9b4de3e0b8fcb
             path = request.POST.get("curPath")
-            file_name = path+request.POST.get("file_name")
-            self.file_delete(file_name)  # DB 파일제거
-            
+
             # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
             file_name = file_name[len(path):]
-            #self.bucket_delete_file(file_name)  # S3 파일제거
+            # self.bucket_delete_file(file_name)  # S3 파일제거
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
