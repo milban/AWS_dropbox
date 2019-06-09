@@ -102,7 +102,6 @@ class Regist_View(View):
 class Main_View(View):
     mybucket = bucket()
 
-
     def get(self, request):
         if Access.getuserstate():
             return render(request, 'blog/html/fileService.html')
@@ -158,11 +157,11 @@ class Main_View(View):
             user_id = request.POST.get("user_id")
             curPath = request.POST.get("curPath")
 
-            if file_name.find(",") == -1 :
-                self.file_delete(curPath +file_name, user_id)  # DB 파일제거
+            if file_name.find(",") == -1:
+                self.file_delete(curPath + file_name, user_id)  # DB 파일제거
                 if file_name[-1] != "/":
                     self.bucket_delete_file(file_name, user_id)  # S3 파일제거
-            else :
+            else:
                 filelist = file_name.split(",")
                 for file in filelist:
                     self.file_delete(curPath + file, user_id)  # DB 파일제거
