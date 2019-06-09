@@ -22,10 +22,12 @@ var uploadFileName // 업로드할 파일 이름
 var pastPathList
 
 function getCookie(cName) {
+    console.log(cName)
   cName = cName + '=';
   var cookieData = document.cookie;
   var start = cookieData.indexOf(cName);
   var cValue = '';
+  console.log(start)
   if(start != -1){
       start += cName.length;
       var end = cookieData.indexOf(';', start);
@@ -315,7 +317,7 @@ function btnDownClickEventHandler() {
 }
 downbtn.addEventListener('click', btnDownClickEventHandler)
 
-
+//삭제버튼 클릭시
 var delbtn = document.querySelector('.delete')
 function btnDelClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
@@ -352,6 +354,45 @@ function btnDelClickEventHandler() {
 
 }
 delbtn.addEventListener('click', btnDelClickEventHandler)
+
+//폴더생성버튼 클릭시
+var mkdirbtn = document.querySelector('.mkdir')
+function btnMkdirClickEventHandler() {
+    var chkArr = document.getElementsByName("check-file")
+    var filenameArr = []
+    const xhr = new XMLHttpRequest()
+    for(let i=0; i < chkArr.length; i++){
+        if(chkArr[i].checked == true){
+            console.log(chkArr[i])  
+            filenameArr.append(chkArr[i].value)
+        }    
+    }
+    formdata.append("request", "file_delete")
+    formdata.append("file_name", filenameArr)
+    formdata.append("curPath", currentPath)
+    const url =""
+
+    console.log("file_name: " + chkArr[i].value)
+    console.log("curPath: " + currentPath)
+        
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈
+    xhr.onreadystatechange = function() {
+        if(xhr.status==200) {
+            console.log(xhr.responseText)
+            if(xhr.readyState==4) {
+                console.log(xhr.response)
+                postContentsOfDirAndPrint(currentPath)
+            }
+        } else {
+            console.log("xhr response error")
+            console.log(xhr.statusText)
+        }
+    }
+    xhr.send(formdata) // Request 전송
+
+}
+mkdirbtn.addEventListener('click', btnMkdirClickEventHandler)
+
 
 //===========================
 //===========================
