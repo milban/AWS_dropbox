@@ -101,9 +101,7 @@ class Regist_View(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class Main_View(View):
     mybucket = bucket()
-    fileStorage = ""
-    curPath = "/"
-    filelist = []
+
 
     def get(self, request):
         if Access.getuserstate():
@@ -119,19 +117,19 @@ class Main_View(View):
         #    "user_id" : "유저이름", ex > user
         #    "curPath" : "디렉토리 이름"} ex > KhuKhuBox/
         if request.POST.get("request") == "file_load":
-            self.curPath = request.POST.get("curPath")
+            filelist = []
+            curPath = request.POST.get("curPath")
             user_id = request.POST.get("user_id")
-            self.fileStorage = File.objects.filter(Owner__User_Id=user_id)
-            print(self.fileStorage)
-            for file in self.fileStorage:
-                if file.File_Name.find(self.curPath) == 0:
-                    name = file.File_Name[len(self.curPath):]
+            fileStorage = File.objects.filter(Owner__User_Id=user_id)
+            for file in fileStorage:
+                if file.File_Name.find(curPath) == 0:
+                    name = file.File_Name[len(curPath):]
                     isDir = name.find("/")
-                    if file.File_Name != self.curPath:
+                    if file.File_Name != curPath:
                         if isDir == -1 or name[len(name) - 1] == '/':
-                            self.filelist.append(file.File_Name)
+                            filelist.append(file.File_Name)
 
-            queryset = File.objects.filter(File_Name__in=self.filelist)
+            queryset = File.objects.filter(File_Name__in=filelist)
             serializer = FileSerializer(queryset, many=True)
             return HttpResponse(json.dumps(serializer.data), content_type="application/json")
         # 파일 업로드
@@ -159,7 +157,6 @@ class Main_View(View):
             file_name = request.POST.get("file_name")
             user_id = request.POST.get("user_id")
             curPath = request.POST.get("curPath")
-            print(file_name, user_id)
 
             if file_name.find(",") == -1 :
                 self.file_delete(curPath +file_name, user_id)  # DB 파일제거
