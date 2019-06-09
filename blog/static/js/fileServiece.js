@@ -56,6 +56,7 @@ function postContentsOfDirAndPrint(toRqPath) {
         "curPath" : "디렉토리 이름"    ex > KhuKhuBox/
     */
     formdata.append("request", "file_load")
+    formdata.append("user_id", getCookie('userId'))
     formdata.append("curPath", toRqPath)
     console.log('formdata: '+formdata)
     const url =""
@@ -328,16 +329,17 @@ function btnDelClickEventHandler() {
     for(let i=0; i < chkArr.length; i++){
         if(chkArr[i].checked == true){
             console.log(chkArr[i])  
-            filenameArr.append(chkArr[i].value)
+            filenameArr.push(chkArr[i].value)
         }    
     }
     
     formdata.append("request", "file_delete")
-    formdata.append("file_name", filenameArr)
+    formdata.append("file_name", filenameArr[0])
+    formdata.append("user_id", getCookie('userId'))
     formdata.append("curPath", currentPath)
     const url =""
 
-    console.log("file_name: " + chkArr[i].value)
+    console.log("file_name: " + filenameArr[0])
     console.log("curPath: " + currentPath)
         
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
@@ -387,7 +389,11 @@ function btnMkdir(dirname) {
 }
 function mkdirPopup(){
     var dirname = prompt( '생성할 폴더명을 입력해주세요', '' );
-    btnMkdir(dirname)
+    if(dirname != null){
+        btnMkdir(dirname)
+    }else{
+        alert('err!')
+    }
 }
 
 //URL공유버튼 클릭시
@@ -399,10 +405,10 @@ function btnShare() {
     for(let i=0; i < chkArr.length; i++){
         if(chkArr[i].checked == true){
             console.log(chkArr[i])  
-            filenameArr.append(currentPath + chkArr[i].value)
+            filenameArr.push(currentPath + chkArr[i].value)
         }    
     }
-    if(chkArr.length == 0 || chkArr.length > 1){
+    if(filenameArr.length == 0 || filenameArr.length > 1){
         return 'Please select one file'
     }
     formdata.append("request", "file_download")
@@ -414,7 +420,7 @@ function btnShare() {
     console.log("file_name: " + filenameArr[0])
     console.log("curPath: " + currentPath)
         
-    xhr.open('POST', url) // 비동기 방식으로 Request 오픈
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈 
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
             console.log(xhr.responseText)
