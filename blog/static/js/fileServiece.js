@@ -118,6 +118,7 @@ function printContent(newContents) {
             var fileName = splitPathList[splitPathList.length - 1]
             addElemChBox.setAttribute('value', fileName)
             addElemTr.appendChild(addElemTdSelect)
+
             addElemTdType.innerText = "파일"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = fileName
@@ -130,6 +131,7 @@ function printContent(newContents) {
             var dirName = splitPathList[splitPathList.length - 1].replace("/", "")
             addElemChBox.setAttribute('value', dirName)
             addElemTr.appendChild(addElemTdSelect)
+            
             addElemTdType.innerText = "폴더"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = dirName
@@ -188,6 +190,7 @@ form.onsubmit = function() {
     var formdata = new FormData();
     formdata.append("request", "file_upload")
     formdata.append("file_name", uploadFileName)
+    formdata.append("user_id", getCookie('userId'))
     formdata.append("curPath", currentPath)
     const url =""
 
@@ -332,11 +335,11 @@ function btnDelClickEventHandler() {
             filenameArr.push(chkArr[i].value)
         }    
     }
-    
     formdata.append("request", "file_delete")
-    formdata.append("file_name", filenameArr[0])
+    formdata.append("file_name", filenameArr)
     formdata.append("user_id", getCookie('userId'))
-    formdata.append("curPath", currentPath)
+    formdata.append("curPath", currentPath)  
+    
     const url =""
 
     console.log("file_name: " + filenameArr[0])
