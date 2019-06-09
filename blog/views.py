@@ -142,7 +142,7 @@ class Main_View(View):
             file_name = request.POST.get("file_name")
             user_id = request.POST.get("user_id")
             path = request.POST.get("curPath")
-            # self.bucket_put_file(file_name, user_id)
+            self.bucket_put_file(file_name, user_id)
             self.file_save(path + file_name, user_id)  # ex > KhuKhuBox/file.txt
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
@@ -161,23 +161,13 @@ class Main_View(View):
             if file_name.find(",") == -1 :
                 self.file_delete(curPath +file_name, user_id)  # DB 파일제거
                 if file_name[-1] != "/":
-                    file_name = request.POST.get("file_name")
-                    path = request.POST.get("curPath")
-
-                    # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
-                    file_name = file_name[len(path):]
-                    # self.bucket_delete_file(file_name, user_id)  # S3 파일제거
+                    self.bucket_delete_file(file_name, user_id)  # S3 파일제거
             else :
                 filelist = file_name.split(",")
                 for file in filelist:
                     self.file_delete(curPath + file, user_id)  # DB 파일제거
                     if file != "/":
-                        file_name = request.POST.get("file_name")
-                        path = request.POST.get("curPath")
-
-                        # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
-                        file_name = file_name[len(path):]
-                        # self.bucket_delete_file(file_name, user_id)  # S3 파일제거
+                        self.bucket_delete_file(file, user_id)  # S3 파일제거
 
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")

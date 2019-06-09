@@ -41,8 +41,8 @@ function getCookie(cName) {
 window.addEventListener('DOMContentLoaded', function() {
     console.log("userId: " + getCookie('userId'))
     currentDir = document.querySelector('#current-dir')
-    currentDir.innerText = getCookie('userId')
-    currentPath = currentDir.innerText+"/"
+    currentDir.innerText = getCookie('userId') + '/'
+    currentPath = currentDir.innerText
     postContentsOfDirAndPrint(currentPath)
 })
 
@@ -154,7 +154,7 @@ function ctBodyClickHandler(e) {
     var fileName = userClickRow.querySelector('.file-name').innerText
 
     if(fileType=="폴더") {
-        document.querySelector('#current-dir').innerText = currentPath+fileName+"/"
+        document.querySelector('#current-dir').innerText = currentPath+fileName
         currentPath = document.querySelector('#current-dir').innerText
         console.log(currentPath)
         htmlFileList.innerHTML = ""
