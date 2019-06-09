@@ -41,8 +41,8 @@ function getCookie(cName) {
 window.addEventListener('DOMContentLoaded', function() {
     console.log("userId: " + getCookie('userId'))
     currentDir = document.querySelector('#current-dir')
-    currentDir.innerText = getCookie('userId')
-    currentPath = currentDir.innerText+"/"
+    currentDir.innerText = getCookie('userId') + '/'
+    currentPath = currentDir.innerText
     postContentsOfDirAndPrint(currentPath)
 })
 
@@ -154,7 +154,7 @@ function ctBodyClickHandler(e) {
     var fileName = userClickRow.querySelector('.file-name').innerText
 
     if(fileType=="폴더") {
-        document.querySelector('#current-dir').innerText = currentPath+fileName+"/"
+        document.querySelector('#current-dir').innerText = currentPath+fileName
         currentPath = document.querySelector('#current-dir').innerText
         console.log(currentPath)
         htmlFileList.innerHTML = ""
@@ -306,20 +306,39 @@ form.onsubmit = function() {
 var downbtn = document.querySelector('.download')
 function btnDownClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
-    if(chkArr.length == 0){
-        alert("Select files first")
-    }else{
-        for(var i=0; i < chkArr.length; i++){
-            if(chkArr[i].checked == true){
-            var downloadPath = "https://" + BucketName + ".s3." + bucketRegion + ".amazonaws.com/" 
-                    + getCookie('userId') + '/' + chkArr[i].value
-            //filepaths[i]에는 쿠쿠박스/ 다음이 들어있어야 함
-            //ex) 선택한 파일이 khukhubox/gagak/a/b/image/jpg 일 경우, filepaths에는 gagak/a/b/image/jpg가 있어야 함
-            window.location.assign(downloadPath)
-            console.log(downloadPath)
-            }    
-        }  
-    }    
+    var filenameArr = []
+    const xhr = new XMLHttpRequest()
+    var formdata = new FormData();
+    for(let i=0; i < chkArr.length; i++){
+        if(chkArr[i].checked == true){
+            console.log(chkArr[i])  
+            filenameArr.push(currentPath + chkArr[i].value)
+        }    
+    }
+    formdata.append("request", "file_download")
+    formdata.append("file_name", filenameArr)
+    formdata.append("user_id", getCookie('userId'))
+    formdata.append("curPath", currentPath)
+    
+    const url =""
+
+    console.log("file_name: " + filenameArr[0])
+    console.log("curPath: " + currentPath)
+        
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈
+    xhr.onreadystatechange = function() {
+        if(xhr.status==200) {
+            console.log(xhr.responseText)
+            if(xhr.readyState==4) {
+                console.log(xhr.response)
+                postContentsOfDirAndPrint(currentPath)
+            }
+        } else {
+            console.log("xhr response error")
+            console.log(xhr.statusText)
+        }
+    }
+    xhr.send(formdata) // Request 전송
 }
 downbtn.addEventListener('click', btnDownClickEventHandler)
 
@@ -360,7 +379,6 @@ function btnDelClickEventHandler() {
         }
     }
     xhr.send(formdata) // Request 전송
-
 }
 delbtn.addEventListener('click', btnDelClickEventHandler)
 
@@ -431,6 +449,7 @@ function btnShare() {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
                 console.log(xhr.response)
+                
             }
         } else {
             console.log("xhr response error")
