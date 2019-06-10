@@ -25,8 +25,6 @@ class Home_View(View):
 class Login_VIew(View):
 
     def get(self, request):
-        # if Access.getuserstate():
-        # return redirect('main_page')
         return render(request, 'blog/html/login.html')
 
     def post(self, request):
@@ -144,8 +142,8 @@ class Main_View(View):
             user_id = request.POST.get("user_id")
             path = request.POST.get("curPath")
 
-            try :
-                file = File.objects.get(File_Name = path + file_name, Owner__User_Id=user_id)
+            try:
+                file = File.objects.get(File_Name=path + file_name, Owner__User_Id=user_id)
                 self.bucket_delete_file(file_name, user_id)
                 file.delete()
             except File.DoesNotExist:
@@ -192,7 +190,23 @@ class Main_View(View):
             # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
             file_name = file_name[len(path):]
             file_url = self.bucket_download_file(file_name, user_id)  # url 받아오기
-            print(file_url)
+
+            context = {'file_url': file_url}
+            return HttpResponse(json.dumps(context), content_type="application/json")
+
+        # 파일 URL받아오기
+        # form data
+        # {  "request" : "file_url",
+        #    "file_name" : "파일이름",  ex > KhuKhuBox/file.txt
+        #    "user_id" : "유저이름", ex > user
+        #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
+        elif request.POST.get("request") == "file_url":
+            file_name = request.POST.get("file_name")
+            user_id = request.POST.get("user_id")
+            path = request.POST.get("curPath")
+            # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
+            file_name = file_name[len(path):]
+            file_url = self.bucket_download_file(file_name, user_id)  # url 받아오기
 
             context = {'file_url': file_url}
             return HttpResponse(json.dumps(context), content_type="application/json")
@@ -230,7 +244,7 @@ class Main_View(View):
         userfile.save()
 
     def file_delete(self, file_name, user_id, fileStorage):
-        if(file_name[-1] == '/'):
+        if (file_name[-1] == '/'):
             for file in fileStorage:
                 if file.File_Name.find(file_name) == 0:
                     name = file.File_Name[len(file_name):]
