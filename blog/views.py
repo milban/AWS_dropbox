@@ -151,6 +151,7 @@ class Main_View(View):
                 pass
 
             file_url = self.bucket_put_file(file_name, user_id)
+
             self.file_save(path + file_name, user_id)  # ex > KhuKhuBox/file.txt
             context = {'file_url': file_url}
             return HttpResponse(json.dumps(context), content_type="application/json")
