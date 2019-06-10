@@ -14,6 +14,10 @@ from blog.forms import UserLoginForm, UserRegistForm, DocumentForm
 from blog.models import User, File
 from blog.serializers import FileSerializer
 
+import hashlib
+import jwt
+import datetime
+import json
 
 class Home_View(View):
     def get(self, request):
@@ -34,13 +38,18 @@ class Login_VIew(View):
         post = request.POST
         id = post.get("userId")
         pw = post.get("password")
+        #hashfunc.update(pw)
+        #pw = hashFunc.hexdigest().upper()
 
         try:
             user = User.objects.get(User_Id=id)
             if user.User_Password == pw:
+                token = jwt.encode({'userID': id, 'expire_date': (datetime.datetime.now() + datetime.timedelta(minutes=30)).timetuple()}, pw, algorithm='HS256')
+                token = token.decode('utf-8')
+                context = {'token': token}
+                return HttpResponse(json.dumps(context), content_type='application/json')
                 # Login 성공
-                Access.setaccess(user)
-                return redirect('main_page')
+                #return redirect('main_page')
             else:
                 message = "비밀번호가 일치하지 않습니다."
         except User.DoesNotExist:
@@ -103,6 +112,7 @@ class Main_View(View):
     mybucket = bucket()
 
     def get(self, request):
+        jwt = request.META.get('HTTP_AUTHORIZATION')
         if Access.getuserstate():
             return render(request, 'blog/html/fileService.html')
         else:
