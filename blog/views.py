@@ -130,7 +130,7 @@ class Main_View(View):
                     if (isDir == -1 or isDir == (len(name) - 1)):
                         filelist.append(file.File_Name)
 
-            queryset = File.objects.filter(File_Name__in=list(filelist))
+            queryset = File.objects.filter(File_Name__in=filelist)
             serializer = FileSerializer(queryset, many=True)
             return HttpResponse(json.dumps(serializer.data), content_type="application/json")
         # 파일 업로드
@@ -143,10 +143,18 @@ class Main_View(View):
             file_name = request.POST.get("file_name")
             user_id = request.POST.get("user_id")
             path = request.POST.get("curPath")
+
+            try :
+                file = File.objects.get(File_Name = path + file_name, Owner__User_Id=user_id)
+                self.bucket_delete_file(file_name, user_id)
+                file.delete()
+            except File.DoesNotExist:
+                pass
+
             file_url = self.bucket_put_file(file_name, user_id)
-            print(file_url)
+
             self.file_save(path + file_name, user_id)  # ex > KhuKhuBox/file.txt
-            context = {'status': "ok"}
+            context = {'file_url': file_url}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
         # 파일 삭제
