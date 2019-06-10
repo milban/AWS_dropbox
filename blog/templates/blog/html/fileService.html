@@ -26,6 +26,11 @@
             </div>
             <div class="content">
                 <h2 id="current-dir"></h2>
+                <div>
+                    <select name="locations" id="locDropdown">
+                        <option id="locTitle" value="location1">이동할 위치를 선택해주세요</option>
+                    </select>
+                </div>
                 <table class="c-table">
                     <thead>
                         <tr class="file-property">
@@ -48,7 +53,8 @@
                 </form>
                 <div><button class="fc-btn download" type="button">DOWNLOAD</button></div>
                 <div><button class="fc-btn delete" type="button">DELETE</button></div>
-                <div><button class="fc-btn share" type="button">SHARE</button></div>
+                <div><button class="fc-btn share" type="button" onclick = sharePopup()>SHARE</button></div>
+                <div><button class="fc-btn mkdir" type="button" onclick = mkdirPopup()>NEW FOLDER</button></div>
             </div>
         </div>
     </div>

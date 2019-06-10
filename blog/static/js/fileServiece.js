@@ -16,16 +16,20 @@ var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
 
 //var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
-var currentPath // 파일이름 뺀 현재 경로
+var currentPath  = null// 파일이름 뺀 현재 경로
 var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
-var pastPathList
+
+var pastPathListDropdown = document.getElementById('locDropdown')
+var pastPathList = []
 
 function getCookie(cName) {
+    console.log(cName)
   cName = cName + '=';
   var cookieData = document.cookie;
   var start = cookieData.indexOf(cName);
   var cValue = '';
+  console.log(start)
   if(start != -1){
       start += cName.length;
       var end = cookieData.indexOf(';', start);
@@ -35,11 +39,12 @@ function getCookie(cName) {
   return unescape(cValue);
 }
 
-window.addEventListener('DOMContentLoaded', function() {
+
+window.addEventListener('DOMContentLoaded', function() {    
     console.log("userId: " + getCookie('userId'))
     currentDir = document.querySelector('#current-dir')
-    currentDir.innerText = getCookie('userId')
-    currentPath = currentDir.innerText+"/"
+    currentDir.innerText = getCookie('userId') + '/'
+    currentPath = currentDir.innerText
     postContentsOfDirAndPrint(currentPath)
 })
 
@@ -53,6 +58,7 @@ function postContentsOfDirAndPrint(toRqPath) {
         "curPath" : "디렉토리 이름"    ex > KhuKhuBox/
     */
     formdata.append("request", "file_load")
+    formdata.append("user_id", getCookie('userId'))
     formdata.append("curPath", toRqPath)
     console.log('formdata: '+formdata)
     const url =""
@@ -114,6 +120,7 @@ function printContent(newContents) {
             var fileName = splitPathList[splitPathList.length - 1]
             addElemChBox.setAttribute('value', fileName)
             addElemTr.appendChild(addElemTdSelect)
+
             addElemTdType.innerText = "파일"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = fileName
@@ -123,9 +130,11 @@ function printContent(newContents) {
             htmlFileList.appendChild(addElemTr)
         }
         else {
-            var dirName = splitPathList[splitPathList.length - 1].replace("/", "")
+
+            var dirName = splitPathList[splitPathList.length - 2] + '/'
             addElemChBox.setAttribute('value', dirName)
             addElemTr.appendChild(addElemTdSelect)
+            
             addElemTdType.innerText = "폴더"
             addElemTr.appendChild(addElemTdType)
             addElemTdName.innerText = dirName
@@ -141,13 +150,20 @@ function printContent(newContents) {
 function ctBodyClickHandler(e) {
     if(!e.target.parentElement.classList.contains('file-row')) return
     console.log("file-row click!")
+    if(currentPath != null){
+        var option = document.createElement('option')
+        option.text = currentPath
+        option.id = 'locationItem'
+        option.value = currentPath
+        pastPathListDropdown.add(option)
+    }
     var htmlFileList = document.querySelector('.file-list')
     var userClickRow = e.target.parentElement
     var fileType = userClickRow.querySelector('.file-type').innerText
     var fileName = userClickRow.querySelector('.file-name').innerText
 
     if(fileType=="폴더") {
-        document.querySelector('#current-dir').innerText = currentPath+fileName+"/"
+        document.querySelector('#current-dir').innerText = currentPath+fileName
         currentPath = document.querySelector('#current-dir').innerText
         console.log(currentPath)
         htmlFileList.innerHTML = ""
@@ -184,6 +200,7 @@ form.onsubmit = function() {
     var formdata = new FormData();
     formdata.append("request", "file_upload")
     formdata.append("file_name", uploadFileName)
+    formdata.append("user_id", getCookie('userId'))
     formdata.append("curPath", currentPath)
     const url =""
 
@@ -200,6 +217,7 @@ form.onsubmit = function() {
             }
             if(xhr.readyState==4) {
                 postContentsOfDirAndPrint(currentPath)
+                console.log(xhr.responseText)
             }
         } else {
             console.log("xhr response error")
@@ -298,66 +316,179 @@ form.onsubmit = function() {
 var downbtn = document.querySelector('.download')
 function btnDownClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
-    if(chkArr.length == 0){
-        alert("Select files first")
-    }else{
-        for(var i=0; i < chkArr.length; i++){
-            if(chkArr[i].checked == true){
-            var downloadPath = "https://" + BucketName + ".s3." + bucketRegion + ".amazonaws.com/" 
-                    + getCookie('userId') + '/' + chkArr[i].value
-            //filepaths[i]에는 쿠쿠박스/ 다음이 들어있어야 함
-            //ex) 선택한 파일이 khukhubox/gagak/a/b/image/jpg 일 경우, filepaths에는 gagak/a/b/image/jpg가 있어야 함
-            window.location.assign(downloadPath)
-            console.log(downloadPath)
-            }    
-        }  
-    }    
+    var filenameArr = []
+    const xhr = new XMLHttpRequest()
+    var formdata = new FormData();
+    for(let i=0; i < chkArr.length; i++){
+        if(chkArr[i].checked == true){
+            console.log(chkArr[i])  
+            filenameArr.push(currentPath + chkArr[i].value)
+        }    
+    }
+    formdata.append("request", "file_download")
+    formdata.append("file_name", filenameArr)
+    formdata.append("user_id", getCookie('userId'))
+    formdata.append("curPath", currentPath)
+    
+    const url =""
+
+    console.log("file_name: " + filenameArr[0])
+    console.log("curPath: " + currentPath)
+        
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈
+    xhr.onreadystatechange = function() {
+        if(xhr.status==200) {
+            console.log(xhr.responseText)
+            if(xhr.readyState==4) {
+                console.log(xhr.response)
+                postContentsOfDirAndPrint(currentPath)
+                var urllist = xhr.response['file_url'] //응답으로부터 url리스트 가져옴
+                for(let i=0; i < urllist.length; i++){
+                    window.open(urllist[i])
+                }               
+            }
+        } else {
+            console.log("xhr response error")
+            console.log(xhr.statusText)
+        }
+    }
+    xhr.send(formdata) // Request 전송
 }
 downbtn.addEventListener('click', btnDownClickEventHandler)
 
-
+//삭제버튼 클릭시
 var delbtn = document.querySelector('.delete')
 function btnDelClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
+    var filenameArr = []
     const xhr = new XMLHttpRequest()
+    var formdata = new FormData();
     for(let i=0; i < chkArr.length; i++){
         if(chkArr[i].checked == true){
-            console.log(chkArr[i])
-            var formdata = new FormData()
-            //filepaths[i]에는 쿠쿠박스/ 다음이 들어있어야 함
-            //ex) 선택한 파일이 khukhubox/gagak/a/b/image/jpg 일 경우, filepaths에는 gagak/a/b/image/jpg가 있어야 함
-            formdata.append("request", "file_delete")
-            formdata.append("file_name", chkArr[i].value)
-            formdata.append("curPath", currentPath)
-            const url =""
+            console.log(chkArr[i])  
+            filenameArr.push(chkArr[i].value)
+        }    
+    }
+    formdata.append("request", "file_delete")
+    formdata.append("file_name", filenameArr)
+    formdata.append("user_id", getCookie('userId'))
+    formdata.append("curPath", currentPath)
+    
+    const url =""
 
-            console.log("file_name: " + chkArr[i].value)
-            console.log("curPath: " + currentPath)
-            
-            xhr.open('POST', url) // 비동기 방식으로 Request 오픈
-            xhr.onreadystatechange = function() {
-                if(xhr.status==200) {
-                    if(xhr.readyState==4) {
-                        console.log(xhr.response)
-                        if(i==chkArr.length-1) {
-                          //postContentsOfDirAndPrint(currentPath)
-                        }
-                    }
-                } else {
-                    console.log("xhr response error")
-                    console.log(xhr.statusText)
-                }
+    console.log("file_name: " + filenameArr[0])
+    console.log("curPath: " + currentPath)
+        
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈
+    xhr.onreadystatechange = function() {
+        if(xhr.status==200) {
+            console.log(xhr.responseText)
+            if(xhr.readyState==4) {
+                console.log(xhr.response)
+                postContentsOfDirAndPrint(currentPath)
             }
-            xhr.send(formdata) // Request 전송
-            //삭제요청
-            //삭제된 후 파일리스트 불러오기
-            //currentDir = document.querySelector('#current-dir')
-            //currentDir.innerText = getCookie('userId')
-            //currentPath = currentDir.innerText+"/"
-            }    
-        } 
+        } else {
+            console.log("xhr response error")
+            console.log(xhr.statusText)
+        }
+    }
+    xhr.send(formdata) // Request 전송
 }
 delbtn.addEventListener('click', btnDelClickEventHandler)
 
+//폴더생성버튼 클릭시
+function btnMkdir(dirname) {
+    const xhr = new XMLHttpRequest()
+    var formdata = new FormData();
+    formdata.append("request", "create_directory")
+    formdata.append("user_id", getCookie('userId'))
+    formdata.append("curPath", currentPath + dirname + '/')
+    const url =""
+
+    console.log("user_id" + ':' + getCookie('userId'))
+    console.log("curPath: " + currentPath + dirname + '/') 
+    
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈
+    xhr.onreadystatechange = function() {
+        if(xhr.status==200) {
+            console.log(xhr.responseText)
+            if(xhr.readyState==4) {
+                console.log(xhr.response)
+                postContentsOfDirAndPrint(currentPath)
+            }
+        } else {
+            console.log("xhr response error")
+            console.log(xhr.statusText)
+        }
+    }
+    xhr.send(formdata) // Request 전송
+}
+function mkdirPopup(){
+    var dirname = prompt( '생성할 폴더명을 입력해주세요', '' );
+    console.log(dirname)
+    if(dirname != null){
+        btnMkdir(dirname)
+    }else{
+        alert('err!')
+    }
+}
+
+//URL공유버튼 클릭시
+function btnShare() {
+    var chkArr = document.getElementsByName("check-file")
+    var filenameArr = []
+    const xhr = new XMLHttpRequest()
+    var formdata = new FormData();
+    for(let i=0; i < chkArr.length; i++){
+        if(chkArr[i].checked == true){
+            console.log(chkArr[i])  
+            filenameArr.push(currentPath + chkArr[i].value)
+        }    
+    }
+    if(filenameArr.length == 0 || filenameArr.length > 1){
+        return 'Please select one file'
+    }
+    formdata.append("request", "file_download")
+    formdata.append("file_name", filenameArr[0])
+    formdata.append("user_id", getCookie('userId'))
+    formdata.append("curPath", currentPath)
+    const url =""
+
+    console.log("file_name: " + filenameArr[0])
+    console.log("curPath: " + currentPath)
+        
+    xhr.open('POST', url) // 비동기 방식으로 Request 오픈 
+    xhr.onreadystatechange = function() {
+        if(xhr.status==200) {
+            console.log(xhr.responseText)
+            if(xhr.readyState==4) {
+                console.log(xhr.response)
+                alert("url link : " + xhr.response['file_url'])
+            }
+        } else {
+            console.log("xhr response error")
+            console.log(xhr.statusText)
+        }
+    }
+    xhr.send(formdata) // Request 전송
+    return 'sample url'
+}
+function sharePopup(){    
+    alert( btnShare(), '' );
+}
+
+//드롭다운으로 디렉토리 이동
+var locationbtn = document.querySelector('#locDropdown')
+function btnMoveEventHandler() {
+    if(locationbtn.value != 'location1'){
+        currentDir = document.querySelector('#current-dir')
+        currentDir.innerText = locationbtn.value
+        currentPath=locationbtn.value
+        postContentsOfDirAndPrint(locationbtn.value)
+        console.log('moved to ' + locationbtn.value)
+        locationbtn.value = 'location1'        
+    }    
+}
+locationbtn.addEventListener('click', btnMoveEventHandler)
 //===========================
 //===========================
