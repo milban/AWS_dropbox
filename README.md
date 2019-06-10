@@ -22,6 +22,12 @@
   * upload file, download file, delete file, create dir, delete dir
 * 유저 쿠키
  * 유저 쿠키 설정 및 유저 쿠키 ID 
+* 파일 삭제
+  * 다중 파일 삭제 (백엔드와 협업 필요)
+* 디렉토리
+  * 만들기
+  * 삭제하기
+  * 이동
 ## Backend
 * 파일리스트 보내주기
 * 파일 업로드 DB까지 저장
@@ -31,12 +37,8 @@
 ## Front
 * S3
  * multipart upload
-* 파일 삭제
-  * 다중 파일 삭제 (백엔드와 협업 필요)
-* 디렉토리
-  * 만들기
-  * 삭제하기
-  * 이동
+ * html헤더에 인증토큰 넣기
+
 ## Backend
 * 중복 파일 upload시 에러 발생 처리
 * 버켓 만들어주기
