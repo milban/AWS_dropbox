@@ -3,12 +3,12 @@ import boto3
 
 # S3를 연결하기 위한 class
 class bucket:
-    __bucket = "khu_box"
-    # __bucket = "my-django-bucket"
-    #
-    # access_key = ""
-    # secret_key = ""
-    # token = ""
+    # __bucket = "khu_box"
+    __bucket = "my-django-bucket"
+
+    access_key = ""
+    secret_key = ""
+    token = ""
 
     def __init__(self):
         self.s3client = boto3.client('s3')
