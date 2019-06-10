@@ -36,9 +36,11 @@ class Login_VIew(View):
     def post(self, request):
         message = ""
         post = request.POST
+        hashFunc = hashlib.sha256()
+
         id = post.get("userId")
         pw = post.get("password")
-        #hashfunc.update(pw)
+        #hashFunc.update(pw)
         #pw = hashFunc.hexdigest().upper()
 
         try:
@@ -49,7 +51,11 @@ class Login_VIew(View):
                 context = {'token': token}
                 return HttpResponse(json.dumps(context), content_type='application/json')
                 # Login 성공
-                #return redirect('main_page')
+                token = jwt.encode({'userID': id, 'expire_date': (datetime.datetime.now() + datetime.timedelta(minutes=30)).timetuple()}, pw, algorithm='HS256')
+                token = base64.b64encode(token).encode("utf-8")
+                context = {'token':token}
+                HttpResponse(json.dumps(context), content_type="application/json")
+                return redirect('main_page')
             else:
                 message = "비밀번호가 일치하지 않습니다."
         except User.DoesNotExist:
@@ -110,6 +116,9 @@ class Regist_View(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class Main_View(View):
     mybucket = bucket()
+    fileStorage = ""
+    curPath = "/"
+    filelist = ""
 
     def get(self, request):
         jwt = request.META.get('HTTP_AUTHORIZATION')
