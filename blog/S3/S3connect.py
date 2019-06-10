@@ -3,7 +3,7 @@ import boto3
 
 # S3를 연결하기 위한 class
 class bucket:
-    __bucket = "khu_box"
+    __bucket = "khu-box"
     # __bucket = "my-django-bucket"
     #
     # access_key = ""
@@ -17,7 +17,7 @@ class bucket:
 
     def put_object(self, userid, filename):
         path = userid + "/" + filename
-        return self.s3client.generate_presigned_post(self.__bucket, path, ExpiresIn=120)
+        return self.s3client.generate_presigned_url('put_object', Params={'Bucket':self.__bucket, 'Key':path}, ExpiresIn=120, HttpMethod = 'PUT')
 
     def delete_object(self, userid, filename):
         path = userid + "/" + filename
@@ -25,5 +25,4 @@ class bucket:
 
     def download_object(self, userid, filename):
         path = userid + "/" + filename
-        return self.s3client.generate_presigned_url('get_object', Params={'Bucket': self.__bucket, 'Key': path},
-                                                    ExpiresIn=1800)
+        return self.s3client.generate_presigned_url('get_object', Params={'Bucket': self.__bucket, 'Key': path}, ExpiresIn=120, HttpMethod = 'GET')

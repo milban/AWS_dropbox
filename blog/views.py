@@ -141,7 +141,8 @@ class Main_View(View):
             file_name = request.POST.get("file_name")
             user_id = request.POST.get("user_id")
             path = request.POST.get("curPath")
-            self.bucket_put_file(file_name, user_id)
+            file_url = self.bucket_put_file(file_name, user_id)
+            print(file_url)
             self.file_save(path + file_name, user_id)  # ex > KhuKhuBox/file.txt
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
@@ -216,7 +217,7 @@ class Main_View(View):
         return render(request, 'blog/html/fileService.html')
 
     def bucket_put_file(self, file_name, user_id):
-        print(self.mybucket.put_object(user_id, file_name))
+        return self.mybucket.put_object(user_id, file_name)
         # view 요청이 끝나면 Main_View의 object가 소멸해서 filelist에 설정해도 사라짐.
         # self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
