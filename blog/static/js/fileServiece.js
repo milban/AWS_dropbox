@@ -213,6 +213,8 @@ form.onsubmit = function() {
 
     console.log("file_name: " + uploadFileName)
     console.log("curPath: " + currentPath)
+
+    var file = document.querySelector('.button').files[0]
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     xhr.onreadystatechange = function() {
@@ -223,9 +225,9 @@ form.onsubmit = function() {
                 progressBar.value = evt.loaded/evt.total*100;
             }
             if(xhr.readyState==4) {
+                addFile(currentPath, file)
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
-                addFile(currentPath)
             }
         } else {
             console.log("xhr response error")
@@ -243,7 +245,7 @@ function downloadFile(filekey){
         + ".amazonaws.com/" + filekey)
 }
 
-function addFile(albumName) {
+function addFile(albumName, file) {
     var fileName = uploadFileName;
     var albumPhotosKey = encodeURIComponent(albumName) + '/';
 
