@@ -207,6 +207,9 @@ function uploadFileToS3(url) {
         console.log(xhr.response)
       }
     }
+    else {
+      console.log("s3 upload error")
+    }
   }
   xhr.send(formData)
 }
