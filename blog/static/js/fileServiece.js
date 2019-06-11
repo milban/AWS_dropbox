@@ -248,21 +248,6 @@ form.onsubmit = function() {
                 uploadFileToS3(xhr.response)
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
-                //
-                if (file) {
-                    var params = {
-                        Key: file.name,
-                        ContentType: file.type,
-                        Body: file,
-                        ACL: 'public-read' // 접근 권한
-                    }
-
-                    bucket.putObject(params, function (err, data) {
-                        // 업로드 성공
-                    })
-                //
-                //바꾼부분
-                //
             }
         } else {
             console.log("xhr response error")
