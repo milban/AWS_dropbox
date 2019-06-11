@@ -39,6 +39,15 @@ function getCookie(cName) {
   return unescape(cValue);
 }
 
+function deleteCookie( cookieName )
+ {
+  var expireDate = new Date();
+  
+  //어제 날짜를 쿠키 소멸 날짜로 설정한다.
+  expireDate.setDate( expireDate.getDate() - 1 );
+  document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
+ }
+
 
 window.addEventListener('DOMContentLoaded', function() {    
     console.log("userId: " + getCookie('userId'))
@@ -153,7 +162,6 @@ function ctBodyClickHandler(e) {
     if(currentPath != null){
         var option = document.createElement('option')
         option.text = currentPath
-        option.id = 'locationItem'
         option.value = currentPath
         pastPathListDropdown.add(option)
     }
@@ -229,90 +237,7 @@ form.onsubmit = function() {
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
  }
 
- // 여기서부터 AWS 코드
-//  function downloadFile(filekey){
-//     window.location.assign("https://" + albumBucketName + ".s3." + bucketRegion
-//         + ".amazonaws.com/" + filekey)
-// }
-
-// function addFile(albumName) {
-//     var fileName = uploadFileName;
-//     var albumPhotosKey = encodeURIComponent(albumName) + '//';
-
-//     var photoKey = albumPhotosKey + fileName;
-    
-//     s3.upload({
-//       Key: photoKey,
-//       Body: file,
-//       ACL: 'public-read'
-//     }, function(err, data) {
-//       if (err) {
-//         return alert('There was an error uploading your file: ', err.message);
-//       }
-//       alert('Successfully uploaded file.');
-//       viewAlbum(albumName);
-//     });
-//   }  
-
-//   function deleteFile(albumName, photoKey) {
-//     s3.deleteObject({Key: photoKey}, function(err, data) {
-//       if (err) {
-//         return alert('There was an error deleting your file: ', err.message);
-//       }
-//       alert('Successfully deleted file.');
-//       viewAlbum(albumName);
-//     });
-//   }
-
-//   function createdir(albumName) {
-//     albumName = albumName.trim();
-//     if (!albumName) {
-//       return alert('Dir names must contain at least one non-space character.');
-//     }
-//     if (albumName.indexOf('/') !== -1) {
-//       return alert('Dir names cannot contain slashes.');
-//     }
-//     var albumKey = encodeURIComponent(albumName) + '/';
-//     s3.headObject({Key: albumKey}, function(err, data) {
-//       if (!err) {
-//         return alert('Album already exists.');
-//       }
-//       if (err.code !== 'NotFound') {
-//         return alert('There was an error creating your dir: ' + err.message);
-//       }
-//       s3.putObject({Key: albumKey}, function(err, data) {
-//         if (err) {
-//           return alert('There was an error creating your dir: ' + err.message);
-//         }
-//         alert('Successfully created dir.');
-//         viewAlbum(albumName);
-//       });
-//     });
-//   }
-
-//   function deletedir(albumName) {
-//     var albumKey = encodeURIComponent(albumName) + '/';
-//     s3.listObjects({Prefix: albumKey}, function(err, data) {
-//       if (err) {
-//         return alert('There was an error deleting your dir: ', err.message);
-//       }
-//       var objects = data.Contents.map(function(object) {
-//         return {Key: object.Key};
-//       });
-//       s3.deleteObjects({
-//         Delete: {Objects: objects, Quiet: true}
-//       }, function(err, data) {
-//         if (err) {
-//           return alert('There was an error deleting your dir: ', err.message);
-//         }
-//         alert('Successfully deleted dir.');
-//         listAlbums();
-//       });
-//     });
-//   }
-//===============================================
-//===============================================
-//다운로드 버튼 클릭시
+ //다운버튼 클릭시
 var downbtn = document.querySelector('.download')
 function btnDownClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
