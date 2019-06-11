@@ -149,7 +149,7 @@ class Main_View(View):
             except File.DoesNotExist:
                 pass
 
-            file_url = self.bucket_put_file(file_name, user_id)
+            file_url = self.bucket_put_file(path + file_name)
 
             self.file_save(path + file_name, user_id)  # ex > KhuKhuBox/file.txt
             context = {'file_url': file_url}
@@ -186,8 +186,9 @@ class Main_View(View):
             path = request.POST.get("curPath")
             # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
             file_name = file_name[len(path):]
-            file_url = self.bucket_download_file(file_name, user_id)  # url 받아오기
+            file_url = self.bucket_download_file(path + file_name)  # url 받아오기
 
+            print(file_url)
             context = {'file_url': file_url}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
@@ -222,18 +223,18 @@ class Main_View(View):
 
         return render(request, 'blog/html/fileService.html')
 
-    def bucket_put_file(self, file_name, user_id):
-        return self.mybucket.put_object(user_id, file_name)
+    def bucket_put_file(self, file):
+        return self.mybucket.put_object(file)
         # view 요청이 끝나면 Main_View의 object가 소멸해서 filelist에 설정해도 사라짐.
         # self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
-    def bucket_delete_file(self, file_name, user_id):
-        self.mybucket.delete_object(user_id, file_name)
+    def bucket_delete_file(self, file):
+        self.mybucket.delete_object(file)
         # view 요청이 끝나면 Main_View의 object가 소멸해서 filelist에 설정해도 사라짐.
         # self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
-    def bucket_download_file(self, file_name, user_id):
-        return self.mybucket.download_object(user_id, file_name)
+    def bucket_download_file(self, file):
+        return self.mybucket.download_object(file)
 
     def file_save(self, file_name, user_id):
         userfile = File(File_Name=file_name, Owner=User.objects.get(User_Id=user_id),
@@ -250,7 +251,7 @@ class Main_View(View):
                         if isDir == -1 or name[-1] == '/':
                             self.file_delete(file.File_Name, user_id, fileStorage)
         else:
-            self.bucket_delete_file(file_name, user_id)
+            self.bucket_delete_file(file_name)
 
         userfile = File.objects.get(File_Name=file_name, Owner=User.objects.get(User_Id=user_id))
         userfile.delete()
