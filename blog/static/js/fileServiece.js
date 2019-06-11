@@ -287,8 +287,12 @@ function btnDownClickEventHandler() {
             filenameArr.push(currentPath + chkArr[i].value)
         }    
     }
+    if(filenameArr.length != 1){
+        console.log("err: selection err")
+        return false
+    }
     formdata.append("request", "file_download")
-    formdata.append("file_name", filenameArr)
+    formdata.append("file_name", filenameArr[0])
     formdata.append("user_id", getCookie('userId'))
     formdata.append("curPath", currentPath)
     
@@ -306,12 +310,11 @@ function btnDownClickEventHandler() {
                 postContentsOfDirAndPrint(currentPath)
                 var responseJson = JSON.parse(xhr.response)
                 console.log(responseJson['file_url'])
-
                 
                 var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
-                for(let i=0; i < urllist.length; i++){
-                    window.location.assign(urllist[i])
-                }               
+                //for(let i=0; i < urllist.length; i++){
+                window.location.assign(urllist)
+                //}               
             }
         } else {
             console.log("xhr response error")
