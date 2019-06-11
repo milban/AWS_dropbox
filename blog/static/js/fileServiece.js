@@ -260,7 +260,7 @@ function addFile(albumName, file) {
         return alert('There was an error uploading your file: ', err.message);
       }
       alert('Successfully uploaded file.');
-      viewAlbum(albumName);
+      //viewAlbum(albumName);
     });
   }  
 
@@ -295,7 +295,7 @@ function addFile(albumName, file) {
           return alert('There was an error creating your dir: ' + err.message);
         }
         alert('Successfully created dir.');
-        viewAlbum(albumName);
+        //viewAlbum(albumName);
       });
     });
   }
@@ -423,6 +423,7 @@ function btnMkdir(dirname) {
         if(xhr.status==200) {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
+                createdir(currentPath)
                 console.log(xhr.response)
                 postContentsOfDirAndPrint(currentPath)
             }
