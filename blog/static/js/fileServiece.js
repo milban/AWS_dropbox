@@ -304,7 +304,11 @@ function btnDownClickEventHandler() {
             if(xhr.readyState==4) {
                 console.log(xhr.response)
                 postContentsOfDirAndPrint(currentPath)
-                var urllist = xhr.response['file_url'] //응답으로부터 url리스트 가져옴
+                var responseJson = JSON.parse(xhr.response)
+                console.log(responseJson['file_url'])
+
+                
+                var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
                 for(let i=0; i < urllist.length; i++){
                     window.location.assign(urllist[i])
                 }               
