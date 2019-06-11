@@ -195,10 +195,10 @@ btn.addEventListener('change', btnChangeEventHandler)
 function uploadFileToS3(url) {
   const xhr = new XMLHttpRequest()
   var file = document.querySelector('.button').files[0]
-  var formData = new FormData()
+  //var formData = new FormData()
   // formData.append("Key", uploadFileName)
   // formData.append('ContentType', file.type);
-  formData.append("Body", file)
+  //formData.append("Body", file)
   // formData.append("ACL", "public-read")
   
   xhr.open('PUT', url)
@@ -212,7 +212,7 @@ function uploadFileToS3(url) {
       console.log("s3 upload error")
     }
   }
-  xhr.send(formData)
+  xhr.send(file)
 }
 
 // 유저가 전송버튼 클릭 시
