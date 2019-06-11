@@ -19,9 +19,7 @@ var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
 var currentPath  = null// 파일이름 뺀 현재 경로
 var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
-
-var pastPathListDropdown = document.getElementById('locDropdown')
-var pastPathList = []
+var locationbtn = document.querySelector('#locDropdown')
 
 function getCookie(cName) {
     console.log(cName)
@@ -153,9 +151,18 @@ function ctBodyClickHandler(e) {
     if(currentPath != null){
         var option = document.createElement('option')
         option.text = currentPath
-        option.id = 'locationItem'
         option.value = currentPath
-        pastPathListDropdown.add(option)
+        var options = locationbtn.options
+        var isOption = false
+        for(var i=0; i<options.length; i++) {
+            if(option.text == options[i].text) {
+                isOption = true
+                break
+            }
+        }
+        if(!isOption) {
+            locationbtn.add(option)
+        }
     }
     var htmlFileList = document.querySelector('.file-list')
     var userClickRow = e.target.parentElement
@@ -478,7 +485,6 @@ function sharePopup(){
 }
 
 //드롭다운으로 디렉토리 이동
-var locationbtn = document.querySelector('#locDropdown')
 function btnMoveEventHandler() {
     if(locationbtn.value != 'location1'){
         currentDir = document.querySelector('#current-dir')
@@ -486,7 +492,7 @@ function btnMoveEventHandler() {
         currentPath=locationbtn.value
         postContentsOfDirAndPrint(locationbtn.value)
         console.log('moved to ' + locationbtn.value)
-        locationbtn.value = 'location1'        
+        locationbtn.value = 'location1'
     }    
 }
 locationbtn.addEventListener('click', btnMoveEventHandler)
