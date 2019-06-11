@@ -19,7 +19,7 @@ var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
 var currentPath  = null// 파일이름 뺀 현재 경로
 var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
-
+var currentDir //경로표시해주는 화면상의 텍스트
 var pastPathListDropdown = document.getElementById('locDropdown')
 var pastPathList = []
 
