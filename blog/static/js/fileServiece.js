@@ -249,6 +249,7 @@ form.onsubmit = function() {
             }
             if(xhr.readyState==4) {
                 var responseJson = xhr.response
+                console.log(responseJson.file_url)
                 uploadFileToS3(responseJson.file_url)
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
