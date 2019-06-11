@@ -204,7 +204,7 @@ function uploadFileToS3(url) {
       }
     }
   }
-  xhr.send()
+  xhr.send(file)
 }
 
 // 유저가 전송버튼 클릭 시
