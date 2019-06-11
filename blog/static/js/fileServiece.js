@@ -191,6 +191,21 @@ function btnChangeEventHandler(e) {
 }
 btn.addEventListener('change', btnChangeEventHandler)
 
+
+//
+//
+AWS.config.update({
+
+    accessKeyId: '',
+    secretAccessKey: ''
+
+});
+ 
+AWS.config.region = 'ap-northeast-2';
+//
+ //바꾼부분
+ //
+
 // 유저가 전송버튼 클릭 시
 var form = document.querySelector('.file-form')
 form.onsubmit = function() {
@@ -217,6 +232,7 @@ form.onsubmit = function() {
     console.log("file_name: " + uploadFileName)
     console.log("curPath: " + currentPath)
 
+    var bucket = new AWS.S3({ params: { Bucket: albumBucketName } })
     var file = document.querySelector('.button').files[0]
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
@@ -230,6 +246,21 @@ form.onsubmit = function() {
             if(xhr.readyState==4) {
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
+                //
+                if (file) {
+                    var params = {
+                        Key: file.name,
+                        ContentType: file.type,
+                        Body: file,
+                        ACL: 'public-read' // 접근 권한
+                    }
+
+                    bucket.putObject(params, function (err, data) {
+                        // 업로드 성공
+                    })
+                //
+                //바꾼부분
+                //
             }
         } else {
             console.log("xhr response error")
@@ -421,5 +452,3 @@ function btnMoveEventHandler() {
     }    
 }
 locationbtn.addEventListener('click', btnMoveEventHandler)
-//===========================
-//===========================
