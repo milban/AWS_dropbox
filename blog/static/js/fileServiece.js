@@ -1,6 +1,5 @@
 var albumBucketName = 'beanuploadtestbucket';
 var bucketRegion = 'ap-northeast-2';
-var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
 
 //var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
@@ -192,20 +191,6 @@ function btnChangeEventHandler(e) {
 btn.addEventListener('change', btnChangeEventHandler)
 
 
-//
-//
-AWS.config.update({
-
-    accessKeyId: '',
-    secretAccessKey: ''
-
-});
- 
-AWS.config.region = 'ap-northeast-2';
-//
- //바꾼부분
- //
-
 // 유저가 전송버튼 클릭 시
 var form = document.querySelector('.file-form')
 form.onsubmit = function() {
@@ -246,22 +231,33 @@ form.onsubmit = function() {
             if(xhr.readyState==4) {
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
-                //
-                if (file) {
+                //====
+                if (file) {            
+                    AWS.config.update({
+                        "accessKeyId": "[SECRET KEY]",
+                        "secretAccessKey": "[SECRET ACCESS KEY]",
+                        "region": "us-east-1"
+                    });
+                    var s3 = new AWS.S3();
                     var params = {
+                        Bucket: '[YOUR-BUCKET]',
                         Key: file.name,
                         ContentType: file.type,
                         Body: file,
-                        ACL: 'public-read' // 접근 권한
-                    }
-
-                    bucket.putObject(params, function (err, data) {
-                        // 업로드 성공
-                    })
-                //
-                //바꾼부분
-                //
-            }
+                        ACL: 'public-read'
+                    };        
+                    s3.putObject(params, function (err, res) {
+                        if (err) {
+                            console.log("에러 : "+  err)
+                        } else {
+                            console.log("잘 업로드했어")
+                        }
+                    });
+                } else {
+                    console.log("업로드할게 없어")
+                }
+                //====
+            
         } else {
             console.log("xhr response error")
             console.log(xhr.statusText)
