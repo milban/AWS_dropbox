@@ -167,12 +167,9 @@ class Main_View(View):
             curPath = request.POST.get("curPath")
             fileStorage = File.objects.filter(Owner__User_Id=user_id)
 
-            if file_name.find(",") == -1:
-                self.file_delete(curPath + file_name, user_id, fileStorage)  # DB 파일제거
-            else:
-                filelist = file_name.split(",")
-                for file in filelist:
-                    self.file_delete(curPath + file, user_id, fileStorage)  # DB 파일제거
+            filelist = file_name.split(",")
+            for file in filelist:
+                self.file_delete(curPath + file, user_id, fileStorage)  # DB 파일제거
 
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
