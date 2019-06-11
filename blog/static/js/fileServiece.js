@@ -7,13 +7,13 @@ var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
 var currentPath  = null// 파일이름 뺀 현재 경로
 var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
-<<<<<<< HEAD
+
 var currentDir //경로표시해주는 화면상의 텍스트
 var pastPathListDropdown = document.getElementById('locDropdown')
 var pastPathList = []
-=======
+
 var locationbtn = document.querySelector('#locDropdown')
->>>>>>> 87d23f10864d3a80bd72d08b50e8a5286c040dee
+
 
 function getCookie(cName) {
     console.log(cName)
@@ -241,11 +241,10 @@ form.onsubmit = function() {
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
  }
 
-<<<<<<< HEAD
+
  //다운버튼 클릭시
-=======
 //다운로드 버튼 클릭시
->>>>>>> 87d23f10864d3a80bd72d08b50e8a5286c040dee
+
 var downbtn = document.querySelector('.download')
 function btnDownClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
