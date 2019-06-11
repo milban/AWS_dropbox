@@ -195,10 +195,11 @@ btn.addEventListener('change', btnChangeEventHandler)
 function uploadFileToS3(url) {
   const xhr = new XMLHttpRequest()
   var file = document.querySelector('.button').files[0]
-  var formData = new FormData()
-  formData.append("key", file)
-  formData.append('Content-Type', file.type);
-  formData.append("file", uploadFileName)
+  //var formData = new FormData()
+  // formData.append("Key", uploadFileName)
+  // formData.append('ContentType', file.type);
+  //formData.append("Body", file)
+  // formData.append("ACL", "public-read")
   
   xhr.open('PUT', url)
   xhr.onreadystatechange = function() {
@@ -207,10 +208,13 @@ function uploadFileToS3(url) {
         console.log(xhr.response)
       }
     }
-  }
-  xhr.send(formData)
-}
 
+    else {
+      console.log("s3 upload error")
+    }
+  }
+  xhr.send(file)
+}
 
 // 유저가 전송버튼 클릭 시
 var form = document.querySelector('.file-form')
@@ -249,13 +253,12 @@ form.onsubmit = function() {
                 progressBar.value = evt.loaded/evt.total*100;
             }
             if(xhr.readyState==4) {
-                uploadFileToS3(xhr.response)
+                var responseJson = JSON.parse(xhr.response)
+                console.log(responseJson['file_url'])
+                uploadFileToS3(responseJson['file_url'])
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
 
-                //
-                //
-                //
             }
 
         } else {
@@ -303,7 +306,7 @@ function btnDownClickEventHandler() {
                 postContentsOfDirAndPrint(currentPath)
                 var urllist = xhr.response['file_url'] //응답으로부터 url리스트 가져옴
                 for(let i=0; i < urllist.length; i++){
-                    window.open(urllist[i])
+                    window.location.assign(urllist[i])
                 }               
             }
         } else {
