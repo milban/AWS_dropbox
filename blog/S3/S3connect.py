@@ -19,10 +19,8 @@ class bucket:
         return self.s3client.generate_presigned_url('put_object', Params={'Bucket':self.__bucket, 'Key':filename}, ExpiresIn=120, HttpMethod = 'PUT')
 
     def delete_object(self, filename):
-        #path = userid + "/" + filename
         self.s3client.delete_object(Bucket=self.__bucket, Key=filename)
 
     def download_object(self, filename):
-        #path = userid + "/" + filename
         return self.s3client.generate_presigned_url('get_object', Params={'Bucket': self.__bucket, 'Key': filename}, ExpiresIn=120, HttpMethod = 'GET')
 
