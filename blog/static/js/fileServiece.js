@@ -7,7 +7,13 @@ var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
 var currentPath  = null// 파일이름 뺀 현재 경로
 var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
+
+var currentDir //경로표시해주는 화면상의 텍스트
+var pastPathListDropdown = document.getElementById('locDropdown')
+var pastPathList = []
+
 var locationbtn = document.querySelector('#locDropdown')
+
 
 function getCookie(cName) {
     console.log(cName)
@@ -24,6 +30,15 @@ function getCookie(cName) {
   }
   return unescape(cValue);
 }
+
+function deleteCookie( cookieName )
+ {
+  var expireDate = new Date();
+  
+  //어제 날짜를 쿠키 소멸 날짜로 설정한다.
+  expireDate.setDate( expireDate.getDate() - 1 );
+  document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
+ }
 
 
 window.addEventListener('DOMContentLoaded', function() {    
@@ -218,6 +233,7 @@ form.onsubmit = function() {
     console.log("file_name: " + uploadFileName)
     console.log("curPath: " + currentPath)
 
+    var bucket = new AWS.S3({ params: { Bucket: albumBucketName } })
     var file = document.querySelector('.button').files[0]
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
@@ -232,6 +248,21 @@ form.onsubmit = function() {
                 uploadFileToS3(xhr.response)
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
+                //
+                if (file) {
+                    var params = {
+                        Key: file.name,
+                        ContentType: file.type,
+                        Body: file,
+                        ACL: 'public-read' // 접근 권한
+                    }
+
+                    bucket.putObject(params, function (err, data) {
+                        // 업로드 성공
+                    })
+                //
+                //바꾼부분
+                //
             }
         } else {
             console.log("xhr response error")
@@ -243,7 +274,10 @@ form.onsubmit = function() {
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
  }
 
+
+ //다운버튼 클릭시
 //다운로드 버튼 클릭시
+
 var downbtn = document.querySelector('.download')
 function btnDownClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
@@ -420,5 +454,3 @@ function btnMoveEventHandler() {
     }    
 }
 locationbtn.addEventListener('click', btnMoveEventHandler)
-//===========================
-//===========================
