@@ -249,7 +249,8 @@ form.onsubmit = function() {
                 progressBar.value = evt.loaded/evt.total*100;
             }
             if(xhr.readyState==4) {
-                uploadFileToS3(xhr.response)
+                var responseJson = xhr.response
+                uploadFileToS3(responseJson.file_url)
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
             }
