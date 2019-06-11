@@ -110,6 +110,31 @@ JSON
 
 ]
 
+파일 URL받아오기
+POST ~/main/  
+form data
+{
+  "request" : "file_url",
+  "file_name" : "파일이름",  ex > KhuKhuBox/file.txt
+  "user_id" : "유저이름", ex > user
+  "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
+}
+
+return
+JSON
+
+[
+    
+  {
+        
+     "file_url": "파일 url",
+
+   }
+
+
+]
+
+
 
 
 디렉토리 생성
