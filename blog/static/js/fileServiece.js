@@ -191,6 +191,50 @@ function btnChangeEventHandler(e) {
 btn.addEventListener('change', btnChangeEventHandler)
 
 
+// upload file to S3
+function uploadFileToS3(url) {
+  const xhr = new XMLHttpRequest()
+  var file = document.querySelector('.button').files[0]
+  
+  xhr.open('PUT', url)
+  xhr.onreadystatechange = function() {
+    if(xhr.status==400) {
+      if(xhr.readyState==4) {
+        console.log(xhr.response)
+      }
+    }
+  }
+  xhr.send(file)
+}
+
+
+function up2s3(file){
+    if (file) {            
+        AWS.config.update({
+            "accessKeyId": "[SECRET KEY]",
+            "secretAccessKey": "[SECRET ACCESS KEY]",
+            "region": "us-east-1"
+        });
+        var s3 = new AWS.S3();
+        var params = {
+            Bucket: '[YOUR-BUCKET]',
+            Key: file.name,
+            ContentType: file.type,
+            Body: file,
+            ACL: 'public-read'
+        };        
+        s3.putObject(params, function (err, res) {
+            if (err) {
+                console.log("에러 : "+  err)
+            } else {
+                console.log("잘 업로드했어")
+            }
+        });
+    } else {
+        console.log("업로드할게 없어")
+    }
+}
+
 // 유저가 전송버튼 클릭 시
 var form = document.querySelector('.file-form')
 form.onsubmit = function() {
@@ -217,7 +261,6 @@ form.onsubmit = function() {
     console.log("file_name: " + uploadFileName)
     console.log("curPath: " + currentPath)
 
-    var bucket = new AWS.S3({ params: { Bucket: albumBucketName } })
     var file = document.querySelector('.button').files[0]
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
@@ -229,35 +272,17 @@ form.onsubmit = function() {
                 progressBar.value = evt.loaded/evt.total*100;
             }
             if(xhr.readyState==4) {
+                uploadFileToS3(xhr.response)
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
+
                 //====
-                if (file) {            
-                    AWS.config.update({
-                        "accessKeyId": "[SECRET KEY]",
-                        "secretAccessKey": "[SECRET ACCESS KEY]",
-                        "region": "us-east-1"
-                    });
-                    var s3 = new AWS.S3();
-                    var params = {
-                        Bucket: '[YOUR-BUCKET]',
-                        Key: file.name,
-                        ContentType: file.type,
-                        Body: file,
-                        ACL: 'public-read'
-                    };        
-                    s3.putObject(params, function (err, res) {
-                        if (err) {
-                            console.log("에러 : "+  err)
-                        } else {
-                            console.log("잘 업로드했어")
-                        }
-                    });
-                } else {
-                    console.log("업로드할게 없어")
-                }
+                up2s3(file)
                 //====
             
+
+            }
+
         } else {
             console.log("xhr response error")
             console.log(xhr.statusText)
