@@ -176,6 +176,22 @@ function btnChangeEventHandler(e) {
 }
 btn.addEventListener('change', btnChangeEventHandler)
 
+// upload file to S3
+function uploadFileToS3(url) {
+  const xhr = new XMLHttpRequest()
+  var file = document.querySelector('.button').files[0]
+  
+  xhr.open('PUT', url)
+  xhr.onreadystatechange = fucntion() {
+    if(xhr.status==400) {
+      if(xhr.readyState==4) {
+        console.log(xhr.response)
+      }
+    }
+  }
+  xhr.send()
+}
+
 // 유저가 전송버튼 클릭 시
 var form = document.querySelector('.file-form')
 form.onsubmit = function() {
@@ -213,6 +229,7 @@ form.onsubmit = function() {
                 progressBar.value = evt.loaded/evt.total*100;
             }
             if(xhr.readyState==4) {
+                uploadFileToS3(xhr.response)
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
             }
