@@ -195,6 +195,10 @@ btn.addEventListener('change', btnChangeEventHandler)
 function uploadFileToS3(url) {
   const xhr = new XMLHttpRequest()
   var file = document.querySelector('.button').files[0]
+  var formData = new FormData()
+  formData.append("key", file)
+  formData.append('Content-Type', file.type);
+  formData.append("file", uploadFileName)
   
   xhr.open('PUT', url)
   xhr.onreadystatechange = function() {
@@ -204,7 +208,7 @@ function uploadFileToS3(url) {
       }
     }
   }
-  xhr.send(file)
+  xhr.send(formData)
 }
 
 
