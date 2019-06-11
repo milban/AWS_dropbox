@@ -198,7 +198,7 @@ function uploadFileToS3(url) {
   var formData = new FormData()
   // formData.append("Key", uploadFileName)
   // formData.append('ContentType', file.type);
-  // formData.append("Body", file)
+  formData.append("Body", file)
   // formData.append("ACL", "public-read")
   
   xhr.open('PUT', url)
