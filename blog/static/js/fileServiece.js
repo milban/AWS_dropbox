@@ -197,7 +197,7 @@ function uploadFileToS3(url) {
   var file = document.querySelector('.button').files[0]
   
   xhr.open('PUT', url)
-  xhr.onreadystatechange = fucntion() {
+  xhr.onreadystatechange = function() {
     if(xhr.status==400) {
       if(xhr.readyState==4) {
         console.log(xhr.response)
