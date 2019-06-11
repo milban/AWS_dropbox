@@ -196,10 +196,10 @@ function uploadFileToS3(url) {
   const xhr = new XMLHttpRequest()
   var file = document.querySelector('.button').files[0]
   var formData = new FormData()
-  formData.append("Key", uploadFileName)
-  formData.append('ContentType', file.type);
-  formData.append("Body", file)
-  formData.append("ACL", "public-read")
+  // formData.append("Key", uploadFileName)
+  // formData.append('ContentType', file.type);
+  // formData.append("Body", file)
+  // formData.append("ACL", "public-read")
   
   xhr.open('PUT', url)
   xhr.onreadystatechange = function() {
