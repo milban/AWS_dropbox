@@ -225,7 +225,6 @@ form.onsubmit = function() {
                 progressBar.value = evt.loaded/evt.total*100;
             }
             if(xhr.readyState==4) {
-                addFile(currentPath, file)
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
             }
@@ -423,7 +422,6 @@ function btnMkdir(dirname) {
         if(xhr.status==200) {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
-                createdir(currentPath)
                 console.log(xhr.response)
                 postContentsOfDirAndPrint(currentPath)
             }
