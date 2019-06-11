@@ -212,33 +212,6 @@ function uploadFileToS3(url) {
 }
 
 
-function up2s3(file){
-    if (file) {            
-        AWS.config.update({
-            "accessKeyId": "[SECRET KEY]",
-            "secretAccessKey": "[SECRET ACCESS KEY]",
-            "region": "us-east-1"
-        });
-        var s3 = new AWS.S3();
-        var params = {
-            Bucket: '[YOUR-BUCKET]',
-            Key: file.name,
-            ContentType: file.type,
-            Body: file,
-            ACL: 'public-read'
-        };        
-        s3.putObject(params, function (err, res) {
-            if (err) {
-                console.log("에러 : "+  err)
-            } else {
-                console.log("잘 업로드했어")
-            }
-        });
-    } else {
-        console.log("업로드할게 없어")
-    }
-}
-
 // 유저가 전송버튼 클릭 시
 var form = document.querySelector('.file-form')
 form.onsubmit = function() {
@@ -280,11 +253,9 @@ form.onsubmit = function() {
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
 
-                //====
-                up2s3(file)
-                //====
-            
-
+                //
+                //
+                //
             }
 
         } else {
