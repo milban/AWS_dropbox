@@ -1,6 +1,5 @@
 var albumBucketName = 'beanuploadtestbucket';
 var bucketRegion = 'ap-northeast-2';
-var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
 
 //var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
@@ -191,6 +190,7 @@ function btnChangeEventHandler(e) {
 }
 btn.addEventListener('change', btnChangeEventHandler)
 
+
 // upload file to S3
 function uploadFileToS3(url) {
   const xhr = new XMLHttpRequest()
@@ -209,6 +209,34 @@ function uploadFileToS3(url) {
     }
   }
   xhr.send(formData)
+}
+
+
+function up2s3(file){
+    if (file) {            
+        AWS.config.update({
+            "accessKeyId": "[SECRET KEY]",
+            "secretAccessKey": "[SECRET ACCESS KEY]",
+            "region": "us-east-1"
+        });
+        var s3 = new AWS.S3();
+        var params = {
+            Bucket: '[YOUR-BUCKET]',
+            Key: file.name,
+            ContentType: file.type,
+            Body: file,
+            ACL: 'public-read'
+        };        
+        s3.putObject(params, function (err, res) {
+            if (err) {
+                console.log("에러 : "+  err)
+            } else {
+                console.log("잘 업로드했어")
+            }
+        });
+    } else {
+        console.log("업로드할게 없어")
+    }
 }
 
 // 유저가 전송버튼 클릭 시
@@ -237,7 +265,6 @@ form.onsubmit = function() {
     console.log("file_name: " + uploadFileName)
     console.log("curPath: " + currentPath)
 
-    var bucket = new AWS.S3({ params: { Bucket: albumBucketName } })
     var file = document.querySelector('.button').files[0]
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
@@ -253,7 +280,14 @@ form.onsubmit = function() {
                 uploadFileToS3(responseJson.file_url)
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
+
+                //====
+                up2s3(file)
+                //====
+            
+
             }
+
         } else {
             console.log("xhr response error")
             console.log(xhr.statusText)
