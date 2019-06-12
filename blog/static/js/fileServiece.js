@@ -314,7 +314,7 @@ function btnDownClickEventHandler() {
                 var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
                 //문자열 리스트 파싱할것
                 //for(let i=0; i < urllist.length; i++){
-                window.location.assign(urllist)
+                window.open(urllist)
                 //}               
             }
         } else {
