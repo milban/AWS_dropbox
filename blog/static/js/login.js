@@ -21,6 +21,7 @@ function redirectToMain() {
                 //postContentsOfDirAndPrint(currentPath)
                 window.location.replace('http://gagak.iptime.org:38000/main')
                 //리다이렉트
+                
             }
         } else {
             console.log("xhr response error")
