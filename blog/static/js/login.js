@@ -12,15 +12,12 @@ function redirectToMain() {
     const url =""
     
     xhr.open('GET', url) // 비동기 방식으로 Request 오픈
-    xhr.setRequestHeader("AUTHORIZATION", getCookie('userId'))
+    xhr.setRequestHeader("HTTP_AUTHORIZATION", getCookie('userId'))
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
                 console.log(xhr.response)
-                //postContentsOfDirAndPrint(currentPath)
-                window.location.replace('http://gagak.iptime.org:38000/main')
-                //리다이렉트
             }
         } else {
             console.log("xhr response error")
