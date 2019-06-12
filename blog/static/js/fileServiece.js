@@ -267,13 +267,23 @@ form.onsubmit = function() {
  }
 
  // download file to S3
-function downloadFileToS3(url) {
+function downloadFileToS3(url, fileName) {
     const xhr = new XMLHttpRequest()
     
     xhr.open('GET', url)
     xhr.onreadystatechange = function() {
-        if(xhr.readyState==4){
-            downloadTxt(xhr.response, "tmp")
+        if(this.readyState == this.HEADERS_RECEIVED) {
+            var contentType = client.getResponseHeader("Content-Type");
+            if(xhr.readyState==4) {
+                if (contentType != 'text/plain') {
+                    if(xhr.readyState==4){
+                        downloadTxt(xhr.response, fileName)
+                    }
+                }
+                else {
+                    window.location.assign(url)
+                }
+            }
         }
     }
     xhr.send(null)
@@ -281,8 +291,7 @@ function downloadFileToS3(url) {
 
 function downloadTxt(text, filename) {
     var element = document.createElement('a');
-    //element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('href', 'octet/stream' + encodeURIComponent(text));
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
     element.style.display = 'none';
     document.body.appendChild(element);
@@ -327,7 +336,7 @@ function btnDownClickEventHandler() {
                 console.log(responseJson['file_url'])
                 
                 var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
-                downloadFileToS3(urllist)
+                downloadFileToS3(urllist, filenameArr[0])
                 //문자열 리스트 파싱할것
                 //for(let i=0; i < urllist.length; i++)
                 //window.location.assign(urllist)
