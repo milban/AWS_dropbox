@@ -195,11 +195,6 @@ btn.addEventListener('change', btnChangeEventHandler)
 function uploadFileToS3(url) {
   const xhr = new XMLHttpRequest()
   var file = document.querySelector('.button').files[0]
-  //var formData = new FormData()
-  // formData.append("Key", uploadFileName)
-  // formData.append('ContentType', file.type);
-  //formData.append("Body", file)
-  // formData.append("ACL", "public-read")
   
   xhr.open('PUT', url)
   xhr.onreadystatechange = function() {
@@ -271,7 +266,39 @@ form.onsubmit = function() {
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
  }
 
+<<<<<<< HEAD
 //다운버튼 클릭시
+=======
+ // download file to S3
+function downloadFileToS3(url, fileName) {
+    const xhr = new XMLHttpRequest()
+    
+    xhr.open('GET', url)
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == xhr.HEADERS_RECEIVED) {
+            var contentType = xhr.getResponseHeader("Content-Type");
+            if (contentType == 'text/plain') {
+                downloadTxt(xhr.response, fileName)
+            }
+            else {
+                window.location.assign(url)
+            }
+        }
+    }
+    xhr.send(null)
+  }
+
+function downloadTxt(text, filename) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+
+>>>>>>> fd2e46ac2996efe9ededa8ec6aa2fec45ab7e989
 //다운로드 버튼 클릭시
 var downbtn = document.querySelector('.download')
 function btnDownClickEventHandler() {
@@ -309,12 +336,21 @@ function btnDownClickEventHandler() {
                 var responseJson = JSON.parse(xhr.response)
                 console.log(responseJson['file_url'])
                 
+<<<<<<< HEAD
                 var url = responseJson['file_url'] //응답으로부터 url리스트 가져옴
                 //문자열 리스트 파싱할것
                 //for(let i=0; i < urllist.length; i++)
                 urllist = url.split("?")
                 window.location.assign(urllist[0])
                 //}               
+=======
+                var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
+                downloadFileToS3(urllist, filenameArr[0])
+                //문자열 리스트 파싱할것
+                //for(let i=0; i < urllist.length; i++)
+                //window.location.assign(urllist)
+                //}      
+>>>>>>> fd2e46ac2996efe9ededa8ec6aa2fec45ab7e989
             }
         } else {
             console.log("xhr response error")
