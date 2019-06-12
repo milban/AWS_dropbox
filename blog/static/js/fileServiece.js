@@ -282,7 +282,7 @@ function downloadFileToS3(url) {
         console.log("s3 upload error")
       }
     }
-    xhr.send()
+    xhr.send(null)
   }
 
 //다운로드 버튼 클릭시
