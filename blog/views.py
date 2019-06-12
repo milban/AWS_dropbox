@@ -43,7 +43,7 @@ class Login_VIew(View):
             print(jwt)
             token = token.encode('utf-8')
             token = jwt.decode(token, user.User_Password, alhorithm='HS256')
-            return render(request, 'blog/html/fileService.html')
+            return redirect('main_page')
         except:
             return render(request, 'blog/html/login.html')
 
