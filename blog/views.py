@@ -119,7 +119,7 @@ class Main_View(View):
             user_id = request.META.get('HTTP_USERID')
             token = request.META.get('HTTP_AUTHORIZATION')
 
-            user = User.objects.filter('User_Id'= user_id)
+            user = User.objects.filter(User_Id=user_id)
             print(jwt)
             token = token.encode('utf-8')
             token = jwt.decode(token, user.User_Password, alhorithm='HS256')
