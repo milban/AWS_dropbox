@@ -34,16 +34,18 @@ class Login_VIew(View):
     #     return render(request, 'blog/html/login.html')
 
     def get(self, request):
-        jwt = request.META.get('HTTP_AUTHORIZATION')
+        token = request.META.get('HTTP_AUTHORIZATION')
         try:
             user_id = request.META.get('HTTP_USERID')
             token = request.META.get('HTTP_AUTHORIZATION')
 
-            user = User.objects.filter(User_Id=user_id)
-            print(jwt)
+            user = User.objects.get(User_Id=user_id)
             token = token.encode('utf-8')
-            token = jwt.decode(token, user.User_Password, alhorithm='HS256')
-            return redirect('main_page')
+            print(user)
+            print(user.User_Password)
+            token = jwt.decode(token, user.User_Password, algorithm='HS256')
+            print(token)
+            return redirect('Main_View')
         except:
             return render(request, 'blog/html/login.html')
 
@@ -60,7 +62,7 @@ class Login_VIew(View):
         try:
             user = User.objects.get(User_Id=id)
             if user.User_Password == pw:
-                token = jwt.encode({'userID': id, 'expire_date': (datetime.datetime.now() + datetime.timedelta(minutes=30)).timetuple()}, pw, algorithm='HS256')
+                token = jwt.encode({'userID': id, 'expire_date': (datetime.datetime.now() + datetime.timedelta(minutes=30)).timetuple()}, user.User_Password, algorithm='HS256')
                 token = token.decode('utf-8')
                 context = {'token': token}
                 return HttpResponse(json.dumps(context), content_type='application/json')
@@ -129,17 +131,17 @@ class Main_View(View):
     filelist = ""
 
     def get(self, request):
-        jwt = request.META.get('HTTP_AUTHORIZATION')
+        token = request.META.get('HTTP_AUTHORIZATION')
         try:
             user_id = request.META.get('HTTP_USERID')
             token = request.META.get('HTTP_AUTHORIZATION')
 
-            user = User.objects.filter(User_Id=user_id)
-            print(jwt)
+            user = User.objects.get(User_Id=user_id)
             token = token.encode('utf-8')
-            token = jwt.decode(token, user.User_Password, alhorithm='HS256')
+            token = jwt.decode(token, user.User_Password, algorithm='HS256')
             return render(request, 'blog/html/fileService.html')
         except:
+            print('asdf')
             return redirect('home_page')
 
     def post(self, request):
