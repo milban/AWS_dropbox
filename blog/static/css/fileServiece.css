@@ -38,15 +38,6 @@ body {
     padding: 20px;
 }
 
-.header-msg {
-    flex: 0 0 70%;
-}
-
-.logout {
-    flex: 0 0 20%;
-    background-color: #f44336;
-}
-
 .content {
     width: 60%;
     padding: 20px;
@@ -156,4 +147,9 @@ body {
 .mkdir {
     background-color: #e7e7e7;
     color: black;
+}
+
+.logout {
+    background-color: #e7e7e7;
+    color: darkolivegreen;
 }
