@@ -19,7 +19,7 @@ function redirectToMain() {
             if(xhr.readyState==4) {
                 console.log(xhr.response)
                 //postContentsOfDirAndPrint(currentPath)
-                window.location.href(blog/html/fileService.html)
+                window.location.href='/main'
                 //리다이렉트
             }
         } else {
