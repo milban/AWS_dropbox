@@ -45,7 +45,7 @@ class Login_VIew(View):
             token = jwt.decode(token, user.User_Password, alhorithm='HS256')
             return render(request, 'blog/html/fileService.html')
         except:
-            return redirect('home_page')
+            return render(request, 'blog/html/login.html')
 
     def post(self, request):
         message = ""
