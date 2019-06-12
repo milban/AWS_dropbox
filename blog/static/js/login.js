@@ -65,7 +65,7 @@ loginForm.onsubmit = function() {
     const xhr = new XMLHttpRequest()
     var formdata = new FormData();
     formdata.append("userId", getCookie('userId'))
-    formdata.append("password", document.querySelector('userpw').value)
+    formdata.append("password", document.querySelector('#userpw').value)
     const url =""
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
