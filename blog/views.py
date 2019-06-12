@@ -28,10 +28,24 @@ class Home_View(View):
 
 class Login_VIew(View):
 
+    # def get(self, request):
+    #     # if Access.getuserstate():
+    #     # return redirect('main_page')
+    #     return render(request, 'blog/html/login.html')
+
     def get(self, request):
-        # if Access.getuserstate():
-        # return redirect('main_page')
-        return render(request, 'blog/html/login.html')
+        jwt = request.META.get('HTTP_AUTHORIZATION')
+        try:
+            user_id = request.META.get('HTTP_USERID')
+            token = request.META.get('HTTP_AUTHORIZATION')
+
+            user = User.objects.filter(User_Id=user_id)
+            print(jwt)
+            token = token.encode('utf-8')
+            token = jwt.decode(token, user.User_Password, alhorithm='HS256')
+            return render(request, 'blog/html/fileService.html')
+        except:
+            return render(request, 'blog/html/login.html')
 
     def post(self, request):
         message = ""
@@ -50,7 +64,6 @@ class Login_VIew(View):
                 token = token.decode('utf-8')
                 context = {'token': token}
                 return HttpResponse(json.dumps(context), content_type='application/json')
-
             else:
                 message = "비밀번호가 일치하지 않습니다."
         except User.DoesNotExist:
