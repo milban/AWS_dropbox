@@ -12,7 +12,8 @@ function redirectToMain() {
     const url =""
     
     xhr.open('GET', url) // 비동기 방식으로 Request 오픈
-    xhr.setRequestHeader("HTTP_AUTHORIZATION", getCookie('userId'))
+    xhr.setRequestHeader("AUTHORIZATION", getCookie("jwt"))
+    xhr.setRequestHeader("USERID", getCookie("userId"))
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
             console.log(xhr.responseText)
@@ -24,7 +25,7 @@ function redirectToMain() {
             console.log(xhr.statusText)
         }
     }
-    xhr.send(formdata) // Request 전송
+    xhr.send(null) // Request 전송
 } //리다이렉트하도록 만들기
 
 function setCookie(cName, cValue, cDay){
