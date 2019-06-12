@@ -9,7 +9,7 @@
 
 function redirectToMain() {
     const xhr = new XMLHttpRequest()
-    const url ="http://gagak.iptime.org:38000/main"
+    const url ="http://gagak.iptime.org:38000/main/"
     
     xhr.open('GET', url) // 비동기 방식으로 Request 오픈
     xhr.setRequestHeader("AUTHORIZATION", getCookie('userId'))
