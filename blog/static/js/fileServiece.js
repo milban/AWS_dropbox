@@ -1,18 +1,5 @@
 var albumBucketName = 'beanuploadtestbucket';
 var bucketRegion = 'ap-northeast-2';
-var IdentityPoolId = 'ap-northeast-2:ca1edf4b-0706-4e3e-906c-9f0b2f823ca5';
-
-// AWS.config.update({
-//   region: bucketRegion,
-//   credentials: new AWS.CognitoIdentityCredentials({
-//     IdentityPoolId: IdentityPoolId
-//   })
-// });
-
-// var s3 = new AWS.S3({
-//   apiVersion: '2006-03-01',
-//   params: {Bucket: albumBucketName}
-// });
 
 //var content = document.querySelector('.content')
 //var testBtn = document.querySelector('.testBtn')
@@ -20,8 +7,12 @@ var currentPath  = null// 파일이름 뺀 현재 경로
 var currentFilePath // 파일이름 포함한 현재 경로
 var uploadFileName // 업로드할 파일 이름
 
+var currentDir //경로표시해주는 화면상의 텍스트
 var pastPathListDropdown = document.getElementById('locDropdown')
 var pastPathList = []
+
+var locationbtn = document.querySelector('#locDropdown')
+
 
 function getCookie(cName) {
     console.log(cName)
@@ -38,6 +29,15 @@ function getCookie(cName) {
   }
   return unescape(cValue);
 }
+
+function deleteCookie( cookieName )
+ {
+  var expireDate = new Date();
+  
+  //어제 날짜를 쿠키 소멸 날짜로 설정한다.
+  expireDate.setDate( expireDate.getDate() - 1 );
+  document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
+ }//토큰 사용하니까 쿠키는 사용 안할것
 
 
 window.addEventListener('DOMContentLoaded', function() {    
@@ -153,9 +153,18 @@ function ctBodyClickHandler(e) {
     if(currentPath != null){
         var option = document.createElement('option')
         option.text = currentPath
-        option.id = 'locationItem'
         option.value = currentPath
-        pastPathListDropdown.add(option)
+        var options = locationbtn.options
+        var isOption = false
+        for(var i=0; i<options.length; i++) {
+            if(option.text == options[i].text) {
+                isOption = true
+                break
+            }
+        }
+        if(!isOption) {
+            locationbtn.add(option)
+        }
     }
     var htmlFileList = document.querySelector('.file-list')
     var userClickRow = e.target.parentElement
@@ -180,6 +189,27 @@ function btnChangeEventHandler(e) {
     console.log(currentFilePath)
 }
 btn.addEventListener('change', btnChangeEventHandler)
+
+
+// upload file to S3
+function uploadFileToS3(url) {
+  const xhr = new XMLHttpRequest()
+  var file = document.querySelector('.button').files[0]
+  
+  xhr.open('PUT', url)
+  xhr.onreadystatechange = function() {
+    if(xhr.status==400) {
+      if(xhr.readyState==4) {
+        console.log(xhr.response)
+      }
+    }
+
+    else {
+      console.log("s3 upload error")
+    }
+  }
+  xhr.send(file)
+}
 
 // 유저가 전송버튼 클릭 시
 var form = document.querySelector('.file-form')
@@ -206,6 +236,8 @@ form.onsubmit = function() {
 
     console.log("file_name: " + uploadFileName)
     console.log("curPath: " + currentPath)
+
+    var file = document.querySelector('.button').files[0]
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     xhr.onreadystatechange = function() {
@@ -216,9 +248,14 @@ form.onsubmit = function() {
                 progressBar.value = evt.loaded/evt.total*100;
             }
             if(xhr.readyState==4) {
+                var responseJson = JSON.parse(xhr.response)
+                console.log(responseJson['file_url'])
+                uploadFileToS3(responseJson['file_url'])
                 postContentsOfDirAndPrint(currentPath)
                 console.log(xhr.responseText)
+
             }
+
         } else {
             console.log("xhr response error")
             console.log(xhr.statusText)
@@ -229,92 +266,45 @@ form.onsubmit = function() {
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
  }
 
- // 여기서부터 AWS 코드
-//  function downloadFile(filekey){
-//     window.location.assign("https://" + albumBucketName + ".s3." + bucketRegion
-//         + ".amazonaws.com/" + filekey)
-// }
-
-// function addFile(albumName) {
-//     var fileName = uploadFileName;
-//     var albumPhotosKey = encodeURIComponent(albumName) + '//';
-
-//     var photoKey = albumPhotosKey + fileName;
+<<<<<<< HEAD
+//다운버튼 클릭시
+=======
+ // download file to S3
+function downloadFileToS3(url, fileName) {
+    const xhr = new XMLHttpRequest()
     
-//     s3.upload({
-//       Key: photoKey,
-//       Body: file,
-//       ACL: 'public-read'
-//     }, function(err, data) {
-//       if (err) {
-//         return alert('There was an error uploading your file: ', err.message);
-//       }
-//       alert('Successfully uploaded file.');
-//       viewAlbum(albumName);
-//     });
-//   }  
+    xhr.open('GET', url)
+    xhr.onreadystatechange = function() {
+        var contentType
+        if(xhr.readyState == xhr.HEADERS_RECEIVED) {
+            contentType = xhr.getResponseHeader("Content-Type")
+        }
+        if(xhr.readyState==4) {
+            if (contentType == 'text/plain') {
+                downloadTxt(xhr.response, fileName)
+            } else {
+                window.location.assign(url)
+            }
+        }
+    }
+    xhr.send(null)
+  }
 
-//   function deleteFile(albumName, photoKey) {
-//     s3.deleteObject({Key: photoKey}, function(err, data) {
-//       if (err) {
-//         return alert('There was an error deleting your file: ', err.message);
-//       }
-//       alert('Successfully deleted file.');
-//       viewAlbum(albumName);
-//     });
-//   }
+function downloadTxt(text, filename) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
 
-//   function createdir(albumName) {
-//     albumName = albumName.trim();
-//     if (!albumName) {
-//       return alert('Dir names must contain at least one non-space character.');
-//     }
-//     if (albumName.indexOf('/') !== -1) {
-//       return alert('Dir names cannot contain slashes.');
-//     }
-//     var albumKey = encodeURIComponent(albumName) + '/';
-//     s3.headObject({Key: albumKey}, function(err, data) {
-//       if (!err) {
-//         return alert('Album already exists.');
-//       }
-//       if (err.code !== 'NotFound') {
-//         return alert('There was an error creating your dir: ' + err.message);
-//       }
-//       s3.putObject({Key: albumKey}, function(err, data) {
-//         if (err) {
-//           return alert('There was an error creating your dir: ' + err.message);
-//         }
-//         alert('Successfully created dir.');
-//         viewAlbum(albumName);
-//       });
-//     });
-//   }
-
-//   function deletedir(albumName) {
-//     var albumKey = encodeURIComponent(albumName) + '/';
-//     s3.listObjects({Prefix: albumKey}, function(err, data) {
-//       if (err) {
-//         return alert('There was an error deleting your dir: ', err.message);
-//       }
-//       var objects = data.Contents.map(function(object) {
-//         return {Key: object.Key};
-//       });
-//       s3.deleteObjects({
-//         Delete: {Objects: objects, Quiet: true}
-//       }, function(err, data) {
-//         if (err) {
-//           return alert('There was an error deleting your dir: ', err.message);
-//         }
-//         alert('Successfully deleted dir.');
-//         listAlbums();
-//       });
-//     });
-//   }
-//===============================================
-//===============================================
+>>>>>>> fd2e46ac2996efe9ededa8ec6aa2fec45ab7e989
 //다운로드 버튼 클릭시
 var downbtn = document.querySelector('.download')
 function btnDownClickEventHandler() {
+
     var chkArr = document.getElementsByName("check-file")
     var filenameArr = []
     const xhr = new XMLHttpRequest()
@@ -325,8 +315,12 @@ function btnDownClickEventHandler() {
             filenameArr.push(currentPath + chkArr[i].value)
         }    
     }
+    if(filenameArr.length != 1){
+        console.log("err: selection err")
+        return false
+    }
     formdata.append("request", "file_download")
-    formdata.append("file_name", filenameArr)
+    formdata.append("file_name", filenameArr[0])
     formdata.append("user_id", getCookie('userId'))
     formdata.append("curPath", currentPath)
     
@@ -341,11 +335,24 @@ function btnDownClickEventHandler() {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
                 console.log(xhr.response)
-                postContentsOfDirAndPrint(currentPath)
-                var urllist = xhr.response['file_url'] //응답으로부터 url리스트 가져옴
-                for(let i=0; i < urllist.length; i++){
-                    window.open(urllist[i])
-                }               
+                var responseJson = JSON.parse(xhr.response)
+                console.log(responseJson['file_url'])
+                
+<<<<<<< HEAD
+                var url = responseJson['file_url'] //응답으로부터 url리스트 가져옴
+                //문자열 리스트 파싱할것
+                //for(let i=0; i < urllist.length; i++)
+                urllist = url.split("?")
+                window.location.assign(urllist[0])
+                //}               
+=======
+                var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
+                downloadFileToS3(urllist, filenameArr[0])
+                //문자열 리스트 파싱할것
+                //for(let i=0; i < urllist.length; i++)
+                //window.location.assign(urllist)
+                //}      
+>>>>>>> fd2e46ac2996efe9ededa8ec6aa2fec45ab7e989
             }
         } else {
             console.log("xhr response error")
@@ -434,7 +441,8 @@ function mkdirPopup(){
 }
 
 //URL공유버튼 클릭시
-function btnShare() {
+var sharebtn = document.querySelector('.share')
+function btnShareClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
     var filenameArr = []
     const xhr = new XMLHttpRequest()
@@ -445,10 +453,10 @@ function btnShare() {
             filenameArr.push(currentPath + chkArr[i].value)
         }    
     }
-    if(filenameArr.length == 0 || filenameArr.length > 1){
+    if(filenameArr.length != 1){
         return 'Please select one file'
     }
-    formdata.append("request", "file_download")
+    formdata.append("request", "file_url")
     formdata.append("file_name", filenameArr[0])
     formdata.append("user_id", getCookie('userId'))
     formdata.append("curPath", currentPath)
@@ -463,7 +471,8 @@ function btnShare() {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
                 console.log(xhr.response)
-                alert("url link : " + xhr.response['file_url'])
+                var responseJson = JSON.parse(xhr.response)
+                alert("url link : " + responseJson['file_url'])
             }
         } else {
             console.log("xhr response error")
@@ -471,14 +480,10 @@ function btnShare() {
         }
     }
     xhr.send(formdata) // Request 전송
-    return 'sample url'
 }
-function sharePopup(){    
-    alert( btnShare(), '' );
-}
+sharebtn.addEventListener('click', btnShareClickEventHandler)
 
 //드롭다운으로 디렉토리 이동
-var locationbtn = document.querySelector('#locDropdown')
 function btnMoveEventHandler() {
     if(locationbtn.value != 'location1'){
         currentDir = document.querySelector('#current-dir')
@@ -486,9 +491,7 @@ function btnMoveEventHandler() {
         currentPath=locationbtn.value
         postContentsOfDirAndPrint(locationbtn.value)
         console.log('moved to ' + locationbtn.value)
-        locationbtn.value = 'location1'        
+        locationbtn.value = 'location1'
     }    
 }
 locationbtn.addEventListener('click', btnMoveEventHandler)
-//===========================
-//===========================

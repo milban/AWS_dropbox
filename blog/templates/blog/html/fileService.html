@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'css/login.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/fileServiece.css' %}">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 </head>
 
 <body>
@@ -53,7 +54,7 @@
                 </form>
                 <div><button class="fc-btn download" type="button">DOWNLOAD</button></div>
                 <div><button class="fc-btn delete" type="button">DELETE</button></div>
-                <div><button class="fc-btn share" type="button" onclick = sharePopup()>SHARE</button></div>
+                <div><button class="fc-btn share" type="button">SHARE</button></div>
                 <div><button class="fc-btn mkdir" type="button" onclick = mkdirPopup()>NEW FOLDER</button></div>
             </div>
         </div>
