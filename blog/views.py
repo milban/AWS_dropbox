@@ -64,7 +64,6 @@ class Login_VIew(View):
                 token = token.decode('utf-8')
                 context = {'token': token}
                 return HttpResponse(json.dumps(context), content_type='application/json')
-
             else:
                 message = "비밀번호가 일치하지 않습니다."
         except User.DoesNotExist:
