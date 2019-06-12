@@ -14,9 +14,7 @@
                 <a href="{% url 'home_page' %}"><img src="{% static "images/khuCrap.png" %}" /></a>
             </div>
             <form class="userInfo" action="" method="post">
-                <!--
                 {% csrf_token %}
-                -->
                 <div><input id="userid" type="text" name="userId" placeholder="ID"></div>
                 <div><input id="userpw" type="password" name="password" placeholder="PW"></div>
                 <button class="submit-btn" type="submit">로그인</button>
