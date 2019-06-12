@@ -404,7 +404,8 @@ function mkdirPopup(){
 }
 
 //URL공유버튼 클릭시
-function btnShare() {
+var sharebtn = document.querySelector('.share')
+function btnShareClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
     var filenameArr = []
     const xhr = new XMLHttpRequest()
@@ -415,10 +416,10 @@ function btnShare() {
             filenameArr.push(currentPath + chkArr[i].value)
         }    
     }
-    if(filenameArr.length == 0 || filenameArr.length > 1){
+    if(filenameArr.length != 1){
         return 'Please select one file'
     }
-    formdata.append("request", "file_download")
+    formdata.append("request", "file_url")
     formdata.append("file_name", filenameArr[0])
     formdata.append("user_id", getCookie('userId'))
     formdata.append("curPath", currentPath)
@@ -433,7 +434,8 @@ function btnShare() {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
                 console.log(xhr.response)
-                alert("url link : " + xhr.response['file_url'])
+                var responseJson = JSON.parse(xhr.response)
+                alert("url link : " + responseJson['file_url'])
             }
         } else {
             console.log("xhr response error")
@@ -441,11 +443,8 @@ function btnShare() {
         }
     }
     xhr.send(formdata) // Request 전송
-    return 'sample url'
 }
-function sharePopup(){    
-    alert( btnShare(), '' );
-}
+sharebtn.addEventListener('click', btnShareClickEventHandler)
 
 //드롭다운으로 디렉토리 이동
 function btnMoveEventHandler() {
