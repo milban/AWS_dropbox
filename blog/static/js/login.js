@@ -86,5 +86,5 @@ loginForm.onsubmit = function() {
         }
     }
     xhr.send(formdata) // Request 전송
-    return false
+    return true
 }
