@@ -313,10 +313,9 @@ function btnDownClickEventHandler() {
                 
                 var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
                 //문자열 리스트 파싱할것
-                for(let i=0; i < urllist.length; i++){
-                window.location.open(uurllist[i])
+                //for(let i=0; i < urllist.length; i++){
                 window.location.assign(urllist)
-                }               
+                //}               
             }
         } else {
             console.log("xhr response error")
@@ -435,7 +434,6 @@ function btnShare() {
             if(xhr.readyState==4) {
                 console.log(xhr.response)
                 alert("url link : " + xhr.response['file_url'])
-                window.location.open(xhr.response['file_url'])
             }
         } else {
             console.log("xhr response error")

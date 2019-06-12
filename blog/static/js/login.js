@@ -25,7 +25,7 @@ function redirectToMain(url) {
             if(xhr.readyState==4) {
                 console.log(xhr.response)
                 //postContentsOfDirAndPrint(currentPath)
-                window.location.href(xhr.response.currentPath)
+                window.location.href("이동할 곳 넣자")
                 //리다이렉트
             }
         } else {
@@ -70,7 +70,7 @@ function submitBtnHandler() {
                 //postContentsOfDirAndPrint(currentPath)
                 var temptoken = ""
                 if(temptoken!=undefined)
-                redirectToMain(xhr.response.path)
+                redirectToMain("url 넣자")
             }
         } else {
             console.log("xhr response error")
