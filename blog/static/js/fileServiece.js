@@ -304,7 +304,6 @@ function btnDownClickEventHandler() {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
                 console.log(xhr.response)
-                postContentsOfDirAndPrint(currentPath)
                 var responseJson = JSON.parse(xhr.response)
                 console.log(responseJson['file_url'])
                 
@@ -312,7 +311,8 @@ function btnDownClickEventHandler() {
                 //문자열 리스트 파싱할것
                 //for(let i=0; i < urllist.length; i++){
                 //window.location.assign(urllist)
-                window.open(url, '_self')
+                var query = '?download';
+                window.open(url+query, '_self')
                 //}               
             }
         } else {
