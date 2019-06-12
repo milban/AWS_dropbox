@@ -195,11 +195,6 @@ btn.addEventListener('change', btnChangeEventHandler)
 function uploadFileToS3(url) {
   const xhr = new XMLHttpRequest()
   var file = document.querySelector('.button').files[0]
-  //var formData = new FormData()
-  // formData.append("Key", uploadFileName)
-  // formData.append('ContentType', file.type);
-  //formData.append("Body", file)
-  // formData.append("ACL", "public-read")
   
   xhr.open('PUT', url)
   xhr.onreadystatechange = function() {
@@ -271,6 +266,25 @@ form.onsubmit = function() {
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
  }
 
+ // download file to S3
+function downloadFileToS3(url) {
+    const xhr = new XMLHttpRequest()
+    
+    xhr.open('GET', url)
+    xhr.onreadystatechange = function() {
+      if(xhr.status==400) {
+        if(xhr.readyState==4) {
+          console.log(xhr.response)
+        }
+      }
+  
+      else {
+        console.log("s3 upload error")
+      }
+    }
+    xhr.send()
+  }
+
 //다운로드 버튼 클릭시
 var downbtn = document.querySelector('.download')
 function btnDownClickEventHandler() {
@@ -308,10 +322,11 @@ function btnDownClickEventHandler() {
                 console.log(responseJson['file_url'])
                 
                 var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
+                downloadFileToS3(urllist)
                 //문자열 리스트 파싱할것
                 //for(let i=0; i < urllist.length; i++)
                 //window.location.assign(urllist)
-                //}               
+                //}      
             }
         } else {
             console.log("xhr response error")
