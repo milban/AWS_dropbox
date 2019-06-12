@@ -19,7 +19,7 @@ function redirectToMain() {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
                 console.log(xhr.response)
-                window.location.replace("http://gagak.iptime.org:38000/main")
+                //window.location.replace("http://gagak.iptime.org:38000/main")
             }
         } else {
             console.log("xhr response error")
