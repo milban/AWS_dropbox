@@ -272,7 +272,7 @@ function downloadFileToS3(url, fileName) {
     
     xhr.open('GET', url)
     xhr.onreadystatechange = function() {
-        if(this.readyState == this.HEADERS_RECEIVED) {
+        if(xhr.readyState == xhr.HEADERS_RECEIVED) {
             var contentType = xhr.getResponseHeader("Content-Type");
             if(xhr.readyState==4) {
                 if (contentType != 'text/plain') {
