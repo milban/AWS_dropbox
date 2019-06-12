@@ -19,7 +19,7 @@ function redirectToMain() {
             if(xhr.readyState==4) {
                 console.log(xhr.response)
                 //postContentsOfDirAndPrint(currentPath)
-                //document.window.location.replace('/main')
+                window.location.replace('http://gagak.iptime.org:38000/main')
                 //리다이렉트
             }
         } else {
@@ -64,9 +64,10 @@ function submitBtnHandler() {
                 //postContentsOfDirAndPrint(currentPath)
                 var strFileList = xhr.response
                 var token = JSON.parse(strFileList)['token']
-                if(token!=null)
-                setCookie('jwt', toekn, 1)
-                redirectToMain()
+                if(token!=null) {
+                    setCookie('jwt', token, 1)
+                    redirectToMain()
+                }
             }
         } else {
             console.log("xhr response error")
