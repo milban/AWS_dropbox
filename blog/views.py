@@ -25,7 +25,7 @@ class Home_View(View):
         # return redirect('main_page')
         return render(request, 'blog/html/index.html')
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class Login_VIew(View):
 
     # def get(self, request):
@@ -43,7 +43,7 @@ class Login_VIew(View):
             print(jwt)
             token = token.encode('utf-8')
             token = jwt.decode(token, user.User_Password, alhorithm='HS256')
-            return render(request, 'blog/html/fileService.html')
+            return redirect('main_page')
         except:
             return render(request, 'blog/html/login.html')
 
