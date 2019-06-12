@@ -273,14 +273,26 @@ form.onsubmit = function() {
 
 
  //다운로드 함수
- function downloadWithURL(uri, name){
-    var link = document.createElement("a");
-    link.download = name;
-    link.href = uri;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    delete link;
+ function downloadWithURL(url, name){
+    // Create an invisible A element
+    const a = document.createElement("a");
+    a.style.display = "none";
+    document.body.appendChild(a);
+
+    // Set the HREF to a Blob representation of the data to be downloaded
+    a.href = window.URL.createObjectURL(
+        new Blob([url])
+    );
+
+    // Use download attribute to set set desired file name
+    a.setAttribute("download", name);
+
+    // Trigger the download by simulating click
+    a.click();
+
+    // Cleanup
+    window.URL.revokeObjectURL(a.href);
+    document.body.removeChild(a);
  }
  //다운버튼 클릭시
 //다운로드 버튼 클릭시
@@ -323,12 +335,10 @@ function btnDownClickEventHandler() {
                 var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
                 //문자열 리스트 파싱할것
                 //for(let i=0; i < urllist.length; i++){
-<<<<<<< HEAD
+
                 //window.location.assign(urllist)
                 downloadWithURL(urllist, filenameArr[0])
-=======
-                window.open(urllist)
->>>>>>> d8cec0ef4a186e16ab2b860ea337c7e75b7e2837
+
                 //}               
             }
         } else {
