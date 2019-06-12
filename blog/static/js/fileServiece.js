@@ -277,8 +277,8 @@ function downloadFileToS3(url) {
           console.log(xhr.response)
         }
       }
-  
       else {
+        console.log(xhr.response)
         console.log("s3 upload error")
       }
     }
