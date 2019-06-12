@@ -45,7 +45,7 @@ function submitBtnHandler() {
     setCookie('userId', userId, 1)
     //쿠키 설정
     //이 아래로는 토큰 받은걸로 처리하자
-    
+    /*
     const xhr = new XMLHttpRequest()
     var formdata = new FormData();
     formdata.append("userId", getCookie('userId'))
@@ -74,7 +74,7 @@ function submitBtnHandler() {
         }
     }
     xhr.send(formdata) // Request 전송
-    
+    */
 }
 
 btn.addEventListener('click', submitBtnHandler)

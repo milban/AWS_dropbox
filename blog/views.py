@@ -15,7 +15,7 @@ from blog.models import User, File
 from blog.serializers import FileSerializer
 
 import hashlib
-import jwt
+#import jwt
 import datetime
 import json
 
@@ -42,7 +42,7 @@ class Login_VIew(View):
         pw = post.get("password")
         #hashFunc.update(pw)
         #pw = hashFunc.hexdigest().upper()
-
+        
         try:
             user = User.objects.get(User_Id=id)
             if user.User_Password == pw:
@@ -56,7 +56,7 @@ class Login_VIew(View):
             message = "없는 User입니다."
 
         return render(request, 'blog/html/login.html', {'message': message})
-
+        
 
 class Regist_View(View):
     message = ""
