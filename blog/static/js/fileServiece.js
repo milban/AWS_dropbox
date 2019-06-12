@@ -37,7 +37,7 @@ function deleteCookie( cookieName )
   //어제 날짜를 쿠키 소멸 날짜로 설정한다.
   expireDate.setDate( expireDate.getDate() - 1 );
   document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
- }
+ }//토큰 사용하니까 쿠키는 사용 안할것
 
 
 window.addEventListener('DOMContentLoaded', function() {    
@@ -312,9 +312,11 @@ function btnDownClickEventHandler() {
                 console.log(responseJson['file_url'])
                 
                 var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
-                //for(let i=0; i < urllist.length; i++){
+                //문자열 리스트 파싱할것
+                for(let i=0; i < urllist.length; i++){
+                window.location.open(uurllist[i])
                 window.location.assign(urllist)
-                //}               
+                }               
             }
         } else {
             console.log("xhr response error")
@@ -433,6 +435,7 @@ function btnShare() {
             if(xhr.readyState==4) {
                 console.log(xhr.response)
                 alert("url link : " + xhr.response['file_url'])
+                window.location.open(xhr.response['file_url'])
             }
         } else {
             console.log("xhr response error")
