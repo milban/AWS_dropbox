@@ -28,10 +28,24 @@ class Home_View(View):
 
 class Login_VIew(View):
 
+    # def get(self, request):
+    #     # if Access.getuserstate():
+    #     # return redirect('main_page')
+    #     return render(request, 'blog/html/login.html')
+
     def get(self, request):
-        # if Access.getuserstate():
-        # return redirect('main_page')
-        return render(request, 'blog/html/login.html')
+        jwt = request.META.get('HTTP_AUTHORIZATION')
+        try:
+            user_id = request.META.get('HTTP_USERID')
+            token = request.META.get('HTTP_AUTHORIZATION')
+
+            user = User.objects.filter(User_Id=user_id)
+            print(jwt)
+            token = token.encode('utf-8')
+            token = jwt.decode(token, user.User_Password, alhorithm='HS256')
+            return render(request, 'blog/html/fileService.html')
+        except:
+            return redirect('home_page')
 
     def post(self, request):
         message = ""
