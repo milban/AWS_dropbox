@@ -34,7 +34,12 @@ body {
 }
 
 .header {
+    display: flex;
     padding: 20px;
+}
+
+.logout {
+    background-color: #f44336;
 }
 
 .content {
