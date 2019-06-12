@@ -282,7 +282,7 @@ form.onsubmit = function() {
 
     // Set the HREF to a Blob representation of the data to be downloaded
     a.href = window.URL.createObjectURL(
-        new Blob([url])
+        url
     );
 
     // Use download attribute to set set desired file name
