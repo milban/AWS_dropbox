@@ -67,9 +67,6 @@ function submitBtnHandler() {
     formdata.append("userId", getCookie('userId'))
     formdata.append("password", document.getElementById('userpw'))
     const url =""
-
-    console.log("user_id" + ':' + getCookie('userId'))
-    console.log("curPath: " + currentPath + dirname + '/') 
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     xhr.onreadystatechange = function() {
@@ -108,9 +105,6 @@ loginForm.onsubmit = function() {
     formdata.append("userId", getCookie('userId'))
     formdata.append("password", document.getElementById('userpw'))
     const url =""
-
-    console.log("user_id" + ':' + getCookie('userId'))
-    console.log("curPath: " + currentPath + dirname + '/') 
     
     xhr.open('POST', url) // 비동기 방식으로 Request 오픈
     xhr.onreadystatechange = function() {
