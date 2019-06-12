@@ -323,8 +323,12 @@ function btnDownClickEventHandler() {
                 var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
                 //문자열 리스트 파싱할것
                 //for(let i=0; i < urllist.length; i++){
+<<<<<<< HEAD
                 //window.location.assign(urllist)
                 downloadWithURL(urllist, filenameArr[0])
+=======
+                window.open(urllist)
+>>>>>>> d8cec0ef4a186e16ab2b860ea337c7e75b7e2837
                 //}               
             }
         } else {
