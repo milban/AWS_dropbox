@@ -311,8 +311,6 @@ function btnDownClickEventHandler() {
                 //문자열 리스트 파싱할것
                 //for(let i=0; i < urllist.length; i++){
                 //window.location.assign(urllist)
-                var query = '?download';
-                window.open(urllist+query)
                 //}               
             }
         } else {
