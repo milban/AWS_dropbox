@@ -433,7 +433,8 @@ function btnShare() {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
                 console.log(xhr.response)
-                alert("url link : " + xhr.response['file_url'])
+                var responseJson = JSON.parse(xhr.response)
+                alert("url link : " + responseJson['file_url'])
             }
         } else {
             console.log("xhr response error")
