@@ -312,7 +312,7 @@ function btnDownClickEventHandler() {
                 //for(let i=0; i < urllist.length; i++){
                 //window.location.assign(urllist)
                 var query = '?download';
-                window.open(url+query, '_self')
+                window.open(urllist+query)
                 //}               
             }
         } else {
