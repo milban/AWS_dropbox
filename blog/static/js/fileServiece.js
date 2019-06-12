@@ -281,7 +281,8 @@ function downloadFileToS3(url) {
 
 function downloadTxt(text, filename) {
     var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    //element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('href', 'octet/stream' + encodeURIComponent(text));
     element.setAttribute('download', filename);
     element.style.display = 'none';
     document.body.appendChild(element);
