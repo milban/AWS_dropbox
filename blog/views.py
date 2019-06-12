@@ -25,7 +25,7 @@ class Home_View(View):
         # return redirect('main_page')
         return render(request, 'blog/html/index.html')
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class Login_VIew(View):
 
     # def get(self, request):
