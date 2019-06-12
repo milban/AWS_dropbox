@@ -272,9 +272,18 @@ form.onsubmit = function() {
  }
 
 
+ //다운로드 함수
+ function downloadWithURL(uri, name){
+    var link = document.createElement("a");
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    delete link;
+ }
  //다운버튼 클릭시
 //다운로드 버튼 클릭시
-
 var downbtn = document.querySelector('.download')
 function btnDownClickEventHandler() {
     var chkArr = document.getElementsByName("check-file")
@@ -314,7 +323,8 @@ function btnDownClickEventHandler() {
                 var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
                 //문자열 리스트 파싱할것
                 //for(let i=0; i < urllist.length; i++){
-                window.location.assign(urllist)
+                //window.location.assign(urllist)
+                downloadWithURL(urllist, filenameArr[0])
                 //}               
             }
         } else {
