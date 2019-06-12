@@ -280,21 +280,16 @@ function downloadFileToS3(url) {
   }
 
 function downloadTxt(text) {
-    var blob = new Blob([text]);
-    if (window.navigator.msSaveOrOpenBlob){
-      window.navigator.msSaveBlob(blob, "filename.txt");
-    }
-    else {
-      var a = window.document.createElement("a");
-  
-      a.href = window.URL.createObjectURL(blob, {
+    var blob = new Blob([text])
+    var a = window.document.createElement("a");
+
+    a.href = window.URL.createObjectURL(blob, {
         type: "text/plain"
-      });
-      a.download = "filename.txt";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
+    });
+    a.download = "filename.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
 //다운로드 버튼 클릭시
