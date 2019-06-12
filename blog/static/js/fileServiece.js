@@ -273,24 +273,21 @@ function downloadFileToS3(url) {
     xhr.open('GET', url)
     xhr.onreadystatechange = function() {
       if(xhr.status==400) {
-        downloadTxt(xhr.response)
+        downloadTxt(xhr.response, "tmp")
       }
     }
     xhr.send(null)
   }
 
-function downloadTxt(text) {
-    var blob = new Blob([text])
-    var a = window.document.createElement("a");
-
-    a.href = window.URL.createObjectURL(blob, {
-        type: "text/plain"
-    });
-    a.download = "filename.txt";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }
+function downloadTxt(text, filename) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
 
 //다운로드 버튼 클릭시
 var downbtn = document.querySelector('.download')
