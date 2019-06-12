@@ -73,12 +73,12 @@ loginForm.onsubmit = function() {
             if(xhr.readyState==4) {
                 console.log(xhr.response)
                 //postContentsOfDirAndPrint(currentPath)
-                var strFileList = xhr.response
-                var token = JSON.parse(strFileList)['token']
-                if(token!=null) {
-                    setCookie('jwt', token, 1)
+                //var strFileList = xhr.response
+                //var token = JSON.parse(strFileList)['token']
+                //if(token!=null) {
+                    //setCookie('jwt', token, 1)
                     //redirectToMain()
-                }
+                //}
             }
         } else {
             console.log("xhr response error")
