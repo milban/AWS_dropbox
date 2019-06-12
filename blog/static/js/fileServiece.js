@@ -272,6 +272,7 @@ form.onsubmit = function() {
  }
 
 
+
  //다운로드 함수
  function downloadWithURL(url, name){
     // Create an invisible A element
@@ -328,16 +329,15 @@ function btnDownClickEventHandler() {
             console.log(xhr.responseText)
             if(xhr.readyState==4) {
                 console.log(xhr.response)
-                postContentsOfDirAndPrint(currentPath)
                 var responseJson = JSON.parse(xhr.response)
                 console.log(responseJson['file_url'])
                 
                 var urllist = responseJson['file_url'] //응답으로부터 url리스트 가져옴
                 //문자열 리스트 파싱할것
-                //for(let i=0; i < urllist.length; i++){
-
+                //for(let i=0; i < urllist.length; i++)
                 //window.location.assign(urllist)
                 downloadWithURL(urllist, filenameArr[0])
+
 
                 //}               
             }
