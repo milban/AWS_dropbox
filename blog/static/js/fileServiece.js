@@ -13,6 +13,13 @@ var pastPathList = []
 
 var locationbtn = document.querySelector('#locDropdown')
 
+function setCookie(cName, cValue, cDay){
+    var expire = new Date();
+    expire.setDate(expire.getDate() + cDay);
+    cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
+    if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
+    document.cookie = cookies;
+}
 
 function getCookie(cName) {
     console.log(cName)
