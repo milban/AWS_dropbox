@@ -272,6 +272,8 @@ function downloadFileToS3(url, fileName) {
     
     xhr.open('GET', url)
     xhr.onreadystatechange = function() {
+        console.log(xhr.status)
+        console.log(xhr.readyState)
         var contentType = undefined
         if(xhr.readyState == xhr.HEADERS_RECEIVED) {
             contentType = xhr.getResponseHeader("Content-Type")
