@@ -272,15 +272,17 @@ function downloadFileToS3(url, fileName) {
     
     xhr.open('GET', url)
     xhr.onreadystatechange = function() {
-        var contentType
+        var contentType = undefined
         if(xhr.readyState == xhr.HEADERS_RECEIVED) {
             contentType = xhr.getResponseHeader("Content-Type")
         }
-        if(xhr.readyState==4) {
-            if (contentType == 'text/plain') {
-                downloadTxt(xhr.response, fileName)
-            } else {
-                window.location.assign(url)
+        if(xhr.readyState) {
+            if (contentType != undefined) {
+                if (contentType == 'text/plain') {
+                    downloadTxt(xhr.response, fileName)
+                } else {
+                    window.location.assign(url)
+                }
             }
         }
     }
