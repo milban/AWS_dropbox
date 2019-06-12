@@ -39,11 +39,11 @@ body {
 }
 
 .header-msg {
-    width: 80%;
+    flex: 0 0 70%;
 }
 
 .logout {
-    width: 20%;
+    flex: 0 0 20%;
     background-color: #f44336;
 }
 
