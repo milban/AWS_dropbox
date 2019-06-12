@@ -30,16 +30,6 @@ function getCookie(cName) {
   return unescape(cValue);
 }
 
-function deleteCookie( cookieName )
- {
-  var expireDate = new Date();
-  
-  //어제 날짜를 쿠키 소멸 날짜로 설정한다.
-  expireDate.setDate( expireDate.getDate() - 1 );
-  document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
- }//토큰 사용하니까 쿠키는 사용 안할것
-
-
 window.addEventListener('DOMContentLoaded', function() {    
     console.log("userId: " + getCookie('userId'))
     currentDir = document.querySelector('#current-dir')
@@ -481,3 +471,11 @@ function btnMoveEventHandler() {
     }    
 }
 locationbtn.addEventListener('click', btnMoveEventHandler)
+
+// 로그아웃
+var logoutBtn = document.querySelector('.logout')
+function logoutBtnHandler() {
+    setCookie('userId', getCookie('userId'), -1)
+    window.location.replace('/')
+}
+logoutBtn.addEventListener('click', logoutBtnHandler)
