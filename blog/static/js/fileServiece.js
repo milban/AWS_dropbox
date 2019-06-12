@@ -272,8 +272,9 @@ function downloadFileToS3(url) {
     
     xhr.open('GET', url)
     xhr.onreadystatechange = function() {
-        console.log(xhr.response)
-        downloadTxt(xhr.response, "tmp")
+        if(xhr.status==400){
+            downloadTxt(xhr.response, "tmp")
+        }
     }
     xhr.send(null)
   }
