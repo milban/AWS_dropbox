@@ -50,12 +50,6 @@ class Login_VIew(View):
                 token = token.decode('utf-8')
                 context = {'token': token}
                 return HttpResponse(json.dumps(context), content_type='application/json')
-                # Login 성공
-                token = jwt.encode({'userID': id, 'expire_date': (datetime.datetime.now() + datetime.timedelta(minutes=30)).timetuple()}, pw, algorithm='HS256')
-                token = base64.b64encode(token).encode("utf-8")
-                context = {'token':token}
-                HttpResponse(json.dumps(context), content_type="application/json")
-                return redirect('main_page')
             else:
                 message = "비밀번호가 일치하지 않습니다."
         except User.DoesNotExist:
@@ -121,10 +115,16 @@ class Main_View(View):
     filelist = ""
 
     def get(self, request):
-        jwt = request.META.get('HTTP_AUTHORIZATION')
-        if Access.getuserstate():
+        try:
+            user_id = request.META.get('HTTP_USERID')
+            token = request.META.get('HTTP_AUTHORIZATION')
+
+            user = User.objects.filter('User_Id'= user_id)
+            print(jwt)
+            token = token.encode('utf-8')
+            token = jwt.decode(token, user.User_Password, alhorithm='HS256')
             return render(request, 'blog/html/fileService.html')
-        else:
+        except:
             return redirect('home_page')
 
     def post(self, request):
