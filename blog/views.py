@@ -15,7 +15,7 @@ from blog.models import User, File
 from blog.serializers import FileSerializer
 
 import hashlib
-#import jwt
+import jwt
 import datetime
 import json
 
@@ -50,6 +50,7 @@ class Login_VIew(View):
                 token = token.decode('utf-8')
                 context = {'token': token}
                 return HttpResponse(json.dumps(context), content_type='application/json')
+
             else:
                 message = "비밀번호가 일치하지 않습니다."
         except User.DoesNotExist:
@@ -115,6 +116,7 @@ class Main_View(View):
     filelist = ""
 
     def get(self, request):
+        jwt = request.META.get('HTTP_AUTHORIZATION')
         try:
             user_id = request.META.get('HTTP_USERID')
             token = request.META.get('HTTP_AUTHORIZATION')
