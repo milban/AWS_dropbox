@@ -38,7 +38,12 @@ body {
     padding: 20px;
 }
 
+.header-msg {
+    width: 80%;
+}
+
 .logout {
+    width: 20%;
     background-color: #f44336;
 }
 
