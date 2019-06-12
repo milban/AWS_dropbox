@@ -14,17 +14,18 @@ from blog.forms import UserLoginForm, UserRegistForm, DocumentForm
 from blog.models import User, File
 from blog.serializers import FileSerializer
 
-
 class Home_View(View):
     def get(self, request):
         # if Access.getuserstate():
         # return redirect('main_page')
         return render(request, 'blog/html/index.html')
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class Login_VIew(View):
 
     def get(self, request):
+        # if Access.getuserstate():
+        # return redirect('main_page')
         return render(request, 'blog/html/login.html')
 
     def post(self, request):
@@ -99,6 +100,9 @@ class Regist_View(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class Main_View(View):
     mybucket = bucket()
+    fileStorage = ""
+    curPath = "/"
+    filelist = ""
 
     def get(self, request):
         if Access.getuserstate():
@@ -121,12 +125,10 @@ class Main_View(View):
             for file in fileStorage:
                 if file.File_Name.find(curPath) == 0:
                     name = file.File_Name[len(curPath):]
-                    if len(name) == 0:
-                        continue
-
                     isDir = name.find("/")
-                    if (isDir == -1 or isDir == (len(name) - 1)):
-                        filelist.append(file.File_Name)
+                    if file.File_Name != curPath:
+                        if isDir == -1 or name[len(name) - 1] == '/':
+                            filelist.append(file.File_Name)
 
             queryset = File.objects.filter(File_Name__in=filelist)
             serializer = FileSerializer(queryset, many=True)
@@ -141,18 +143,9 @@ class Main_View(View):
             file_name = request.POST.get("file_name")
             user_id = request.POST.get("user_id")
             path = request.POST.get("curPath")
-
-            try:
-                file = File.objects.get(File_Name=path + file_name, Owner__User_Id=user_id)
-                self.bucket_delete_file(file_name, user_id)
-                file.delete()
-            except File.DoesNotExist:
-                pass
-
-            file_url = self.bucket_put_file(path + file_name)
-
+            self.bucket_put_file(file_name, user_id)
             self.file_save(path + file_name, user_id)  # ex > KhuKhuBox/file.txt
-            context = {'file_url': file_url}
+            context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
         # 파일 삭제
@@ -165,11 +158,17 @@ class Main_View(View):
             file_name = request.POST.get("file_name")
             user_id = request.POST.get("user_id")
             curPath = request.POST.get("curPath")
-            fileStorage = File.objects.filter(Owner__User_Id=user_id)
 
-            filelist = file_name.split(",")
-            for file in filelist:
-                self.file_delete(curPath + file, user_id, fileStorage)  # DB 파일제거
+            if file_name.find(",") == -1:
+                self.file_delete(curPath + file_name, user_id)  # DB 파일제거
+                if file_name[-1] != "/":
+                    self.bucket_delete_file(file_name, user_id)  # S3 파일제거
+            else:
+                filelist = file_name.split(",")
+                for file in filelist:
+                    self.file_delete(curPath + file, user_id)  # DB 파일제거
+                    if file != "/":
+                        self.bucket_delete_file(file, user_id)  # S3 파일제거
 
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
@@ -186,25 +185,8 @@ class Main_View(View):
             path = request.POST.get("curPath")
             # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
             file_name = file_name[len(path):]
-            file_url = self.bucket_download_file(path + file_name)  # url 받아오기
-
-            print(file_url)
-            context = {'file_url': file_url}
-            return HttpResponse(json.dumps(context), content_type="application/json")
-
-        # 파일 URL받아오기
-        # form data
-        # {  "request" : "file_url",
-        #    "file_name" : "파일이름",  ex > KhuKhuBox/file.txt
-        #    "user_id" : "유저이름", ex > user
-        #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
-        elif request.POST.get("request") == "file_url":
-            file_name = request.POST.get("file_name")
-            user_id = request.POST.get("user_id")
-            path = request.POST.get("curPath")
-            # KhuKhuBox/file.txt 에서 KhuKhuBox 제거 -> file.txt
-            file_name = file_name[len(path):]
             file_url = self.bucket_download_file(file_name, user_id)  # url 받아오기
+            print(file_url)
 
             context = {'file_url': file_url}
             return HttpResponse(json.dumps(context), content_type="application/json")
@@ -221,38 +203,39 @@ class Main_View(View):
             context = {'status': "ok"}
             return HttpResponse(json.dumps(context), content_type="application/json")
 
+        # 디렉토리 삭제
+        # form data
+        # {  "request" : "delete_directory",
+        #    "user_id" : "유저이름", ex > user
+        #    "curPath" : "디렉토리 이름" } ex > KhuKhuBox/
+        elif request.POST.get("request") == "delete_directory":
+            directory_name = request.POST.get("delete_directory")
+            user_id = request.POST.get("user_id")
+            self.file_delete(directory_name, user_id)
+            context = {'status': "ok"}
+            return HttpResponse(json.dumps(context), content_type="application/json")
+
         return render(request, 'blog/html/fileService.html')
 
-    def bucket_put_file(self, file):
-        return self.mybucket.put_object(file)
+    def bucket_put_file(self, file_name, user_id):
+        print(self.mybucket.put_object(user_id, file_name))
         # view 요청이 끝나면 Main_View의 object가 소멸해서 filelist에 설정해도 사라짐.
         # self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
-    def bucket_delete_file(self, file):
-        self.mybucket.delete_object(file)
+    def bucket_delete_file(self, file_name, user_id):
+        self.mybucket.delete_object(user_id, file_name)
         # view 요청이 끝나면 Main_View의 object가 소멸해서 filelist에 설정해도 사라짐.
         # self.filelist = File.objects.filter(Owner__User_Id=Access.getuserid())
 
-    def bucket_download_file(self, file):
-        return self.mybucket.download_object(file)
+    def bucket_download_file(self, file_name, user_id):
+        return self.mybucket.download_object(user_id, file_name)
 
     def file_save(self, file_name, user_id):
         userfile = File(File_Name=file_name, Owner=User.objects.get(User_Id=user_id),
                         upload_date=timezone.now())
         userfile.save()
 
-    def file_delete(self, file_name, user_id, fileStorage):
-        if (file_name[-1] == '/'):
-            for file in fileStorage:
-                if file.File_Name.find(file_name) == 0:
-                    name = file.File_Name[len(file_name):]
-                    isDir = name.find("/")
-                    if file.File_Name != file_name:
-                        if isDir == -1 or name[-1] == '/':
-                            self.file_delete(file.File_Name, user_id, fileStorage)
-        else:
-            self.bucket_delete_file(file_name)
-
+    def file_delete(self, file_name, user_id):
         userfile = File.objects.get(File_Name=file_name, Owner=User.objects.get(User_Id=user_id))
         userfile.delete()
 
