@@ -12,8 +12,8 @@ function redirectToMain() {
     const url =""
     
     xhr.open('GET', url) // 비동기 방식으로 Request 오픈
-    xhr.setRequestHeader("AUTHORIZATION", getCookie("jwt"))
-    xhr.setRequestHeader("USERID", getCookie("userId"))
+    xhr.setRequestHeader("AUTHORIZATION", localStorage.getItem('jwt'))
+    xhr.setRequestHeader("USERID", localStorage.getItem('userId'))
     xhr.onreadystatechange = function() {
         if(xhr.status==200) {
             console.log(xhr.responseText)
@@ -57,13 +57,14 @@ var loginForm = document.querySelector('.userInfo')
 loginForm.onsubmit = function() {
     var userId = document.querySelector('#userid').value
     console.log(userId)
-    setCookie('userId', userId, 1)
+    localStorage.setItem('userId', userId)
+    //setCookie('userId', userId, 1)
     //쿠키 설정
     //이 아래로는 토큰 받은걸로 처리하자
     
     const xhr = new XMLHttpRequest()
     var formdata = new FormData();
-    formdata.append("userId", getCookie('userId'))
+    formdata.append("userId", localStorage.getItem('userId'))
     formdata.append("password", document.querySelector('#userpw').value)
     const url =""
     
@@ -77,7 +78,8 @@ loginForm.onsubmit = function() {
                 var strFileList = xhr.response
                 var token = JSON.parse(strFileList)['token']
                 if(token!=null) {
-                    setCookie('jwt', token, 1)
+                    //setCookie('jwt', token, 1)
+                    localStorage.setItem('jwt', token)
                     redirectToMain()
                 }
             }
