@@ -271,31 +271,6 @@ form.onsubmit = function() {
     return false //중요! false를 리턴해야 버튼으로 인한 submit이 안된다.
  }
 
-
-
- //다운로드 함수
- function downloadWithURL(url, name){
-    // Create an invisible A element
-    const a = document.createElement("a");
-    a.style.display = "none";
-    document.body.appendChild(a);
-
-    // Set the HREF to a Blob representation of the data to be downloaded
-    a.href = window.URL.createObjectURL(
-        url
-    );
-
-    // Use download attribute to set set desired file name
-    a.setAttribute("download", name);
-
-    // Trigger the download by simulating click
-    a.click();
-
-    // Cleanup
-    window.URL.revokeObjectURL(a.href);
-    document.body.removeChild(a);
- }
- //다운버튼 클릭시
 //다운로드 버튼 클릭시
 var downbtn = document.querySelector('.download')
 function btnDownClickEventHandler() {
@@ -336,7 +311,6 @@ function btnDownClickEventHandler() {
                 //문자열 리스트 파싱할것
                 //for(let i=0; i < urllist.length; i++)
                 //window.location.assign(urllist)
-                downloadWithURL(urllist, filenameArr[0])
                 //}               
             }
         } else {
