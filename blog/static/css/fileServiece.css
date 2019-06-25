@@ -1,0 +1,155 @@
+@font-face {
+    font-family:'NanumSquareR';
+    src: url(../images/NanumSquareRoundR.ttf) format('truetype');
+}
+
+body {
+    font-family:'NanumSquareR';
+}
+
+.container {
+    width: auto;
+    margin: 10px auto;
+}
+
+.left-sidebar {
+    width: 20%;
+    height: 95vh;
+    background-color: #FBF8EF;
+    float: left;
+}
+
+#khuCrap {
+    width: 100%;
+    height: 120px;
+}
+
+.side-list {
+    margin: 20px;
+}
+
+.middle-container {
+    width: 80%;
+    float: left;
+}
+
+.header {
+    display: flex;
+    padding: 20px;
+}
+
+.content {
+    width: 60%;
+    padding: 20px;
+    padding-top: 0;
+    float: left;
+}
+
+#current-dir {
+    text-align: left;
+}
+
+.c-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-property {
+    display: flex;
+}
+
+.fp-select {
+    padding: 10px 0;
+    width: 10%;
+}
+
+.fp-type {
+    padding: 10px 0;
+    width: 10%;
+}
+
+.fp-name {
+    padding: 10px 0;
+    width: 50%;
+}
+
+.fp-date {
+    padding: 10px 0;
+    width: 30%;
+}
+
+.file-row {
+    height: 50px;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+.file-row:hover {
+    background: #EFF8FB;
+    cursor: pointer;
+}
+
+.file-select {
+    width: 10%;
+}
+
+.file-type {
+    width: 10%;
+}
+
+.file-name {
+    width: 50%;
+}
+
+.update-date {
+    width: 30%;
+}
+
+.file-control {
+    text-align: center;
+    width: 30%;
+    padding: 20px;
+    margin-bottom: 20px;
+    float: right;
+}
+
+.fc-btn {
+    margin-top: 20px;
+    width: 70%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+}
+
+.fc-btn:hover {
+    background-color: #4CAF50;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.download {
+    background-color: #008CBA;
+}
+
+.delete {
+    background-color: #f44336;
+}
+
+.share {
+    background-color: #e7e7e7;
+    color: black;
+}
+
+.mkdir {
+    background-color: #e7e7e7;
+    color: black;
+}
+
+.logout {
+    background-color: #e7e7e7;
+    color: darkolivegreen;
+}

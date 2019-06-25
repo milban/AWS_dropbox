@@ -1,17 +1,21 @@
 <!doctype html>
 <html lang="ko">
+{% load static %}
+{% csrf_token %}
 
 <head>
     <meta charset="utf-8">
     <title>KhuKhuBox</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/fileServiece.css">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/fileServiece.css' %}">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 </head>
 
 <body>
     <div class="container">
         <div class="left-sidebar">
-            <a href="../html/index.html"><img id="khuCrap" src="../images/khuCrap.png"></a>
+            <a href="{% url 'main_page' %}"><img id="khuCrap" src={% static "images/khuCrap.png" %} /></a>
             <div class="side-list">
                 <div>내 파일</div>
                 <div>공유</div>
@@ -22,16 +26,24 @@
                 <h1>쿠쿠박스</h1>
             </div>
             <div class="content">
-                <h2 id="current-dir">KhuKhuBox</h2>
+                <h2 id="current-dir"></h2>
+                <div>
+                    <select name="locations" id="locDropdown">
+                        <option id="locTitle" value="location1">이동할 위치를 선택해주세요</option>
+                    </select>
+                </div>
                 <table class="c-table">
                     <thead>
                         <tr class="file-property">
+                            <th class="fp-select"><input type="checkbox" name=""></th>
                             <th class="fp-type">유형</th>
                             <th class="fp-name">이름</th>
                             <th class="fp-date">날짜</th>
                         </tr>
                     </thead>
-                    <tbody class="ct-body"></tbody>
+                    <tbody>
+                        <tr class="file-list"></tr>
+                    </tbody>
                 </table>
             </div>
             <div class="file-control">
@@ -40,11 +52,16 @@
                     <progress id="progressBar" max="100" value="0"></progress>
                     <input type="submit" id="submit_btn" value="전송">
                 </form>
+                <div><button class="fc-btn download" type="button">DOWNLOAD</button></div>
+                <div><button class="fc-btn delete" type="button">DELETE</button></div>
+                <div><button class="fc-btn share" type="button">SHARE</button></div>
+                <div><button class="fc-btn mkdir" type="button" onclick = mkdirPopup()>NEW FOLDER</button></div>
+                <div><button class="fc-btn logout" type="button">로그아웃</button></div>
             </div>
         </div>
     </div>
+    <script src="{% static 'js/fileServiece.js' %}"></script> 
 
-    <script src="../js/fileServiece.js"></script>
 </body>
 
 </html>

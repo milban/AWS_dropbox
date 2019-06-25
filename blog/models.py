@@ -14,11 +14,11 @@ class User(models.Model):
     def __str__(self):
         return self.User_Nickname
 
-
 class File(models.Model):
-    File_Name = models.CharField(max_length=40)
+    File_Name = models.CharField(max_length=256)
     Owner = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     upload_date = models.DateTimeField(default=timezone.now)
+
     class Meta:
         unique_together = (('File_Name', 'Owner'),)
 

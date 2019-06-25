@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KhuKhuBox</title>
-    <link rel="stylesheet" href="../css/index-default.css">
+    <link rel="stylesheet" href="{% static 'css/index-default.css' %}">
 </head>
 <body>
-    <div class="total-container">
-        <header class="top-banner">
-            <div class="sign-up">회원가입</div>
-            <div class="login"><a href="../html/login.html">로그인</a></div>
-        </header>
-        <div class="content">
-            <div class="logo">
-                <img src="../images/khuCrap.png">
-            </div>
-            <div class="main-title">쿠쿠박스</div>
+<div class="total-container">
+    <header class="top-banner">
+        <div class="sign-up"><a href="{% url 'regist_page' %}">회원가입</a></div>
+        <div class="login"><a href="{% url 'login_page' %}">로그인</a></div>
+    </header>
+    <div class="content">
+        <div class="logo">
+            <img src="{% static "images/khuCrap.png" %}"/>
         </div>
-
+        <div class="main-title">쿠쿠박스</div>
     </div>
+</div>
+
 </body>
 </html>
